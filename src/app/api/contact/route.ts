@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { saveContact } from '@/lib/db'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -22,6 +23,16 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid email format' },
         { status: 400 }
       )
+    }
+
+    // Save contact to database
+    let savedContact;
+    try {
+      savedContact = await saveContact({ name, email, subject, message });
+      console.log('Contact saved to database:', savedContact.id);
+    } catch (dbError) {
+      console.error('Database save error:', dbError);
+      // Continue with email sending even if database save fails
     }
 
     // Send email using Resend
@@ -105,8 +116,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { 
-        message: 'Email sent successfully!',
-        id: data?.id 
+        message: 'Message sent successfully! Thank you for reaching out.',
+        emailId: data?.id,
+        contactId: savedContact?.id,
+        success: true
       },
       { status: 200 }
     )
