@@ -32,13 +32,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = projectSchema.parse(body);
 
-    // Convert empty strings to null for optional URL fields
+    // Convert empty strings to undefined for optional URL fields
     const projectData = {
-      ...validatedData,
-      image_url: validatedData.image_url || null,
-      github_url: validatedData.github_url || null,
-      demo_url: validatedData.demo_url || null,
-      long_description: validatedData.long_description || null,
+      title: validatedData.title,
+      description: validatedData.description,
+      image_url: validatedData.image_url || undefined,
+      github_url: validatedData.github_url || undefined,
+      live_url: validatedData.demo_url || undefined,
+      technologies: validatedData.technologies,
+      featured: validatedData.featured,
     };
 
     const project = await addProject(projectData);

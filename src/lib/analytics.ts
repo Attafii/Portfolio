@@ -1,8 +1,16 @@
 // Google Analytics 4 tracking utilities
+interface GtagFunction {
+  (...args: (string | object)[]): void;
+}
+
+interface DataLayerObject {
+  [key: string]: string | number | boolean | object | undefined;
+}
+
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: GtagFunction;
+    dataLayer: DataLayerObject[];
   }
 }
 
@@ -10,7 +18,7 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // Track page views
 export const pageview = (url: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && window.gtag && GA_TRACKING_ID) {
     window.gtag('config', GA_TRACKING_ID, {
       page_location: url,
     });
@@ -29,7 +37,7 @@ export const event = ({
   label?: string;
   value?: number;
 }) => {
-  if (typeof window !== 'undefined' && window.gtag) {
+  if (typeof window !== 'undefined' && window.gtag && GA_TRACKING_ID) {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,
@@ -96,7 +104,7 @@ export const trackChatbotInteraction = (action: 'open' | 'close' | 'message_sent
 };
 
 // Performance monitoring
-export const trackWebVitals = (metric: any) => {
+export const trackWebVitals = (metric: { name: string; value: number; id: string; delta: number }) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', metric.name, {
       event_category: 'Web Vitals',

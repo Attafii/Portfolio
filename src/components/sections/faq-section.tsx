@@ -19,12 +19,14 @@ import {
   CheckCircle
 } from "lucide-react";
 
+import React from "react";
+
 interface FAQ {
   id: string;
   question: string;
   answer: string;
   category: 'general' | 'pricing' | 'technical' | 'timeline' | 'support';
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const faqs: FAQ[] = [

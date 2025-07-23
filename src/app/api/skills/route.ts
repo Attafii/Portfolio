@@ -69,10 +69,10 @@ export async function GET(request: NextRequest) {
 
     // Here you would typically fetch from your database
     // For now, returning empty array
-    const skills: any[] = [];
+    const skills: Record<string, unknown>[] = [];
 
     return NextResponse.json(skills);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error fetching skills:', error);
     
     return NextResponse.json(

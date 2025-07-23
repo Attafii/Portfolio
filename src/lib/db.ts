@@ -436,20 +436,93 @@ export async function getAnalyticsStats(days = 30): Promise<{
     ]);
 
     return {
-      totalViews: Number(totalViewsResult[0].count),
-      uniqueVisitors: Number(uniqueVisitorsResult[0].count),
-      topPages: topPagesResult.map((row: any) => ({
-        page: row.page,
+      totalViews: Number(totalViewsResult[0]?.count) || 0,
+      uniqueVisitors: Number(uniqueVisitorsResult[0]?.count) || 0,
+      topPages: topPagesResult.map((row) => ({
+        page: String(row.page),
         views: Number(row.views)
       })),
-      dailyViews: dailyViewsResult.map((row: any) => ({
-        date: row.date,
+      dailyViews: dailyViewsResult.map((row) => ({
+        date: String(row.date),
         views: Number(row.views)
       }))
     };
   } catch (error) {
     console.error('Database error fetching analytics:', error);
     throw new Error('Failed to fetch analytics data');
+  }
+}
+
+// Project Functions
+export async function addProject(projectData: {
+  title: string;
+  description?: string;
+  image_url?: string;
+  github_url?: string;
+  live_url?: string;
+  technologies?: string[];
+  featured?: boolean;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      INSERT INTO projects (
+        title, description, image_url, github_url, live_url, technologies, featured
+      )
+      VALUES (
+        ${projectData.title}, ${projectData.description}, ${projectData.image_url || null},
+        ${projectData.github_url || null}, ${projectData.live_url || null},
+        ${JSON.stringify(projectData.technologies || [])}, ${projectData.featured || false}
+      )
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error adding project:', error);
+    throw new Error('Failed to add project');
+  }
+}
+
+export async function initializeDatabase(): Promise<void> {
+  try {
+    // Check if tables exist and create if needed
+    await sql`
+      CREATE TABLE IF NOT EXISTS projects (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        description TEXT,
+        image_url VARCHAR(500),
+        github_url VARCHAR(500),
+        live_url VARCHAR(500),
+        technologies JSONB,
+        featured BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+    
+    await sql`
+      CREATE TABLE IF NOT EXISTS page_views (
+        id SERIAL PRIMARY KEY,
+        page VARCHAR(255) NOT NULL,
+        user_agent TEXT,
+        ip_address INET,
+        viewed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+    
+    await sql`
+      CREATE TABLE IF NOT EXISTS contact_messages (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+    
+    console.log('Database tables initialized successfully');
+  } catch (error) {
+    console.error('Database initialization error:', error);
+    throw new Error('Failed to initialize database');
   }
 }
 

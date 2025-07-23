@@ -67,7 +67,7 @@ export function AboutSection() {
             </h2>
             <div className="flex items-center justify-center gap-2 text-lg text-muted-foreground mb-8">
               <MapPin className="w-5 h-5" />
-              <span>Tunisia 🇹🇳 • Working at Capgemini</span>
+              <span>Tunisia 🇹🇳 • Working at Capgemini • ❤️ Taken</span>
             </div>
           </motion.div>
 

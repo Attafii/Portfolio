@@ -416,7 +416,7 @@ export function ContactSection() {
                   </p>
                   <div className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span>Available for new projects</span>
+                    <span>Available for new projects • ❤️ Heart taken</span>
                   </div>
                 </CardContent>
               </Card>
