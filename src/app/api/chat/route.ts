@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
-
-// For development, we might need to handle SSL issues
-if (process.env.NODE_ENV === 'development') {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-}
+import { chatRatelimit, getClientIP, simpleRateLimit } from '@/lib/rate-limit';
+import { chatSchema, validateRequest } from '@/lib/validation';
 
 // Initialize Groq client
 const groq = new Groq({
@@ -77,14 +74,64 @@ Remember to be helpful, friendly, and professional. Always encourage visitors to
 
 export async function POST(request: NextRequest) {
   try {
-    const { message, conversationHistory = [] } = await request.json();
-
-    if (!message) {
+    // Rate limiting
+    const clientIP = getClientIP(request);
+    
+    let rateLimitResult;
+    
+    if (chatRatelimit) {
+      try {
+        // Try Redis-based rate limiting
+        rateLimitResult = await chatRatelimit.limit(clientIP);
+      } catch (error) {
+        console.log('Redis rate limiting failed, using fallback:', error);
+        // Fallback to in-memory rate limiting
+        rateLimitResult = simpleRateLimit(clientIP, 10, 10000); // 10 requests per 10 seconds
+      }
+    } else {
+      // Use in-memory rate limiting
+      rateLimitResult = simpleRateLimit(clientIP, 10, 10000); // 10 requests per 10 seconds
+    }
+    
+    if (!rateLimitResult.success) {
+      const resetTime = rateLimitResult.reset instanceof Date 
+        ? rateLimitResult.reset.getTime() 
+        : rateLimitResult.reset;
+      const resetISO = rateLimitResult.reset instanceof Date 
+        ? rateLimitResult.reset.toISOString() 
+        : new Date(rateLimitResult.reset).toISOString();
+        
       return NextResponse.json(
-        { error: 'Message is required' },
+        { 
+          error: 'Rate limit exceeded. Please wait before sending another message.',
+          retryAfter: Math.ceil((resetTime - Date.now()) / 1000)
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': resetISO,
+          }
+        }
+      );
+    }
+
+    const requestBody = await request.json();
+    
+    // Validate input
+    const validation = validateRequest(chatSchema, requestBody);
+    if (!validation.success) {
+      return NextResponse.json(
+        { 
+          error: 'Invalid input', 
+          details: validation.errors 
+        },
         { status: 400 }
       );
     }
+    
+    const { message, conversationHistory } = validation.data!;
 
     if (!process.env.GROQ_API_KEY) {
       return NextResponse.json(
@@ -101,7 +148,7 @@ export async function POST(request: NextRequest) {
 
     const messages = [
       systemMessage,
-      ...conversationHistory.slice(-10), // Keep last 10 messages for context
+      ...(conversationHistory || []).slice(-10), // Keep last 10 messages for context
       {
         role: 'user' as const,
         content: message

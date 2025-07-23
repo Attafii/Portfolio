@@ -1,29 +1,71 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { saveContact } from '@/lib/db'
+import { contactRatelimit, getClientIP, simpleRateLimit } from '@/lib/rate-limit'
+import { contactSchema, validateRequest } from '@/lib/validation'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json()
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
+    // Rate limiting
+    const clientIP = getClientIP(request);
+    
+    let rateLimitResult;
+    
+    if (contactRatelimit) {
+      try {
+        // Try Redis-based rate limiting
+        rateLimitResult = await contactRatelimit.limit(clientIP);
+      } catch (error) {
+        console.log('Redis rate limiting failed, using fallback:', error);
+        // Fallback to in-memory rate limiting
+        rateLimitResult = simpleRateLimit(clientIP, 5, 60000); // 5 requests per 60 seconds
+      }
+    } else {
+      // Use in-memory rate limiting
+      rateLimitResult = simpleRateLimit(clientIP, 5, 60000); // 5 requests per 60 seconds
+    }
+    
+    if (!rateLimitResult.success) {
+      const resetTime = rateLimitResult.reset instanceof Date 
+        ? rateLimitResult.reset.getTime() 
+        : rateLimitResult.reset;
+      const resetISO = rateLimitResult.reset instanceof Date 
+        ? rateLimitResult.reset.toISOString() 
+        : new Date(rateLimitResult.reset).toISOString();
+        
       return NextResponse.json(
-        { error: 'All fields are required' },
-        { status: 400 }
-      )
+        { 
+          error: 'Rate limit exceeded. Please wait before submitting another contact form.',
+          retryAfter: Math.ceil((resetTime - Date.now()) / 1000)
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': resetISO,
+          }
+        }
+      );
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
+    const requestBody = await request.json();
+    
+    // Validate input
+    const validation = validateRequest(contactSchema, requestBody);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
+        { 
+          error: 'Invalid input', 
+          details: validation.errors 
+        },
         { status: 400 }
-      )
+      );
     }
+    
+    const { name, email, subject, message } = validation.data!
 
     // Save contact to database
     let savedContact;

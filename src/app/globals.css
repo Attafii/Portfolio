@@ -253,3 +253,30 @@
 .dark .scrollbar-thin::-webkit-scrollbar-thumb {
   background-color: rgb(126, 58, 242);
 }
+
+/* Grid animation for admin dashboard */
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Admin login animations */
+@keyframes float-rotate {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+  100% { transform: translateY(0px) rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.8); }
+  100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0.4); }
+}
+
+.animate-float {
+  animation: float-rotate 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
