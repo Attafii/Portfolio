@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Twitter } from "lucide-react";
+import { trackContactForm, trackExternalLink } from "@/lib/analytics";
 
 interface FormData {
   name: string;
@@ -53,6 +54,9 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+
+    // Track form submission attempt
+    trackContactForm('form');
 
     try {
       const response = await fetch('/api/contact', {
