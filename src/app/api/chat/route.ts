@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
+// For development, we might need to handle SSL issues
+if (process.env.NODE_ENV === 'development') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 // Initialize Groq client
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -103,16 +108,59 @@ export async function POST(request: NextRequest) {
       }
     ];
 
-    // Call Groq API
-    const completion = await groq.chat.completions.create({
-      model: 'llama-3.1-70b-versatile', // or 'mixtral-8x7b-32768'
-      messages,
-      max_tokens: 500,
-      temperature: 0.7,
-      stream: false,
-    });
+    // Call Groq API with a reliable model
+    let completion;
+    try {
+      console.log('Calling Groq API with model: compound-beta');
+      completion = await groq.chat.completions.create({
+        model: 'compound-beta',
+        messages,
+        max_tokens: 1024,
+        temperature: 0.7,
+        top_p: 1,
+        stream: false
+      });
+      console.log('Groq API call successful');
+      
+      // Check if the response is actually valid JSON from Groq
+      if (!completion || !completion.choices || !completion.choices[0]) {
+        throw new Error('Invalid response from Groq API');
+      }
+    } catch (apiError) {
+      // If API fails, provide helpful fallback responses
+      console.error('Groq API call failed:', apiError);
+      
+      // Simple keyword-based responses as fallback
+      const lowerMessage = message.toLowerCase();
+      let fallbackReply = "";
+      
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+        fallbackReply = "Hello! I'm Ahmed's AI assistant. Ahmed is a skilled full-stack developer from Tunisia specializing in IoT, web development, and automotive software. He's available for projects and would love to hear from you at attafiahmed.dev@gmail.com!";
+      } else if (lowerMessage.includes('ahmed') || lowerMessage.includes('who')) {
+        fallbackReply = "Ahmed Attafi is a passionate full-stack developer from Tunisia 🇹🇳. He specializes in IoT development, web applications (React, Next.js), mobile apps, and automotive software. With expertise in modern technologies and a focus on clean, efficient code, Ahmed is available for freelance projects worldwide. Contact him at attafiahmed.dev@gmail.com!";
+      } else if (lowerMessage.includes('service') || lowerMessage.includes('work') || lowerMessage.includes('project')) {
+        fallbackReply = "Ahmed offers comprehensive development services: Full-stack web development, mobile app development, IoT solutions, automotive software, technical consulting, and more. He works with React, Next.js, Node.js, Python, Arduino, and modern cloud technologies. Ready to bring your ideas to life! Contact: attafiahmed.dev@gmail.com";
+      } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach')) {
+        fallbackReply = "You can reach Ahmed at: 📧 attafiahmed.dev@gmail.com. He's based in Tunisia but works with clients worldwide. Response time is usually within 24 hours. Feel free to discuss your project ideas or just say hello!";
+      } else if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech')) {
+        fallbackReply = "Ahmed's expertise includes: IoT & Embedded Systems, Full-Stack Development (React, Next.js, Node.js), Mobile Apps (React Native, Flutter), Automotive Software, Databases (PostgreSQL, MongoDB), Cloud Services (AWS, Azure), AI/ML Integration, and Hardware Programming (Arduino, Raspberry Pi). Always learning and staying current with tech trends!";
+      } else {
+        fallbackReply = "I'm Ahmed's AI assistant, but I'm having some connection issues right now. Ahmed is a talented full-stack developer from Tunisia specializing in IoT, web development, and innovative software solutions. For any questions about his work or to discuss projects, please contact him directly at attafiahmed.dev@gmail.com. He'd love to hear from you!";
+      }
+      
+      return NextResponse.json({
+        reply: fallbackReply,
+        success: true,
+        fallback: true
+      });
+    }
 
-    const reply = completion.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+    // If we get here, the API call was successful
+    console.log('Groq API response:', JSON.stringify(completion, null, 2));
+    
+    const reply = completion?.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.';
+    
+    console.log('Extracted reply:', reply);
 
     return NextResponse.json({
       reply,
@@ -122,15 +170,51 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Chat API error:', error);
     
+    // Handle different types of errors
     if (error instanceof Error) {
+      // SSL/Certificate errors
+      if (error.message.includes('certificate') || error.message.includes('CERT')) {
+        return NextResponse.json({
+          reply: "I'm experiencing some technical difficulties with the secure connection. Please try again in a moment, or feel free to contact Ahmed directly at attafiahmed.dev@gmail.com for immediate assistance!",
+          success: false,
+          error: 'SSL Certificate Error'
+        });
+      }
+      
+      // API key errors
+      if (error.message.includes('401') || error.message.includes('unauthorized')) {
+        return NextResponse.json({
+          reply: "I'm having trouble connecting to my AI service. Please contact Ahmed directly at attafiahmed.dev@gmail.com - he'd love to hear from you!",
+          success: false,
+          error: 'Authentication Error'
+        });
+      }
+      
+      // Network errors
+      if (error.message.includes('fetch') || error.message.includes('network')) {
+        return NextResponse.json({
+          reply: "I'm currently offline, but Ahmed is always available! Feel free to reach out to him directly at attafiahmed.dev@gmail.com or through the contact form below.",
+          success: false,
+          error: 'Network Error'
+        });
+      }
+      
       return NextResponse.json(
-        { error: `Chat service error: ${error.message}` },
+        { 
+          reply: "I'm experiencing some technical difficulties. Please contact Ahmed directly at attafiahmed.dev@gmail.com - he responds quickly and would love to help!",
+          success: false,
+          error: `Chat service error: ${error.message}` 
+        },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      { 
+        reply: "Something unexpected happened. Please reach out to Ahmed directly at attafiahmed.dev@gmail.com for immediate assistance!",
+        success: false,
+        error: 'An unexpected error occurred' 
+      },
       { status: 500 }
     );
   }
