@@ -71,7 +71,7 @@ export default function Home() {
       <footer className="relative py-8 border-t border-purple-200/20 dark:border-purple-800/20">
         <div className="container mx-auto px-4">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2024 Ahmed Attafi. Crafted with passion and code.</p>
+            <p>&copy; 2025 Ahmed Attafi • Made with ❤️ and lots of ☕ • ❤️ Happily taken</p>
           </div>
         </div>
       </footer>
