@@ -117,7 +117,6 @@ export function ModernHeroSection() {
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
               <span className="text-sm font-medium">Available for work</span>
-              <span className="text-xs opacity-60">• ❤️ Taken</span>
             </div>
           </motion.div>
 

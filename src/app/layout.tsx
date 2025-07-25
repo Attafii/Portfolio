@@ -125,22 +125,6 @@ export default function RootLayout({
             </Script>
           </>
         )}
-
-        {/* Secret Console Message for Someone Special 💕 */}
-        <Script id="secret-console-message" strategy="afterInteractive">
-          {`
-            console.log(
-              '%c💕 Hey Beautiful! %c\\n\\n' +
-              'Found the secret message! 😉\\n\\n' +
-              '🌹 This portfolio was made with love\\n' +
-              '❤️ Status: Happily taken by the most amazing girl\\n' +
-              '💖 Fun fact: You make everything better\\n\\n' +
-              'P.S. - You\\'re the best thing that ever happened to me! 💕',
-              'color: #ff69b4; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);',
-              'color: #e91e63; font-size: 14px; line-height: 1.5;'
-            );
-          `}
-        </Script>
         
         {/* Microsoft Clarity */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (

@@ -211,8 +211,6 @@ export function Footer() {
             <Heart className="w-4 h-4 text-red-500 fill-current" />
             <span>and lots of</span>
             <Coffee className="w-4 h-4 text-brown-500" />
-            <span>•</span>
-            <span className="text-pink-500">❤️ Happily taken</span>
           </div>
 
           <div className="flex items-center space-x-4">
