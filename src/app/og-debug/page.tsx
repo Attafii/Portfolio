@@ -13,8 +13,8 @@ export default function OpenGraphDebug() {
           <div className="space-y-2 text-sm font-mono">
             <p><span className="text-blue-400">og:title:</span> Ahmed Attafi - Full Stack Developer & Software Engineer</p>
             <p><span className="text-blue-400">og:description:</span> Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies.</p>
-            <p><span className="text-blue-400">og:image:</span> https://portfolio-ltsckqvdq-ahmed-attafis-projects.vercel.app/og-image.png</p>
-            <p><span className="text-blue-400">og:url:</span> https://portfolio-ltsckqvdq-ahmed-attafis-projects.vercel.app</p>
+            <p><span className="text-blue-400">og:image:</span> https://attafii.vercel.app/og-image.png</p>
+            <p><span className="text-blue-400">og:url:</span> https://attafii.vercel.app</p>
             <p><span className="text-blue-400">og:type:</span> website</p>
             <p><span className="text-blue-400">twitter:card:</span> summary_large_image</p>
           </div>
@@ -26,7 +26,7 @@ export default function OpenGraphDebug() {
             <div>
               <h3 className="text-lg font-medium mb-2">Facebook Debugger</h3>
               <a 
-                href="https://developers.facebook.com/tools/debug/?q=https://portfolio-ltsckqvdq-ahmed-attafis-projects.vercel.app"
+                href="https://developers.facebook.com/tools/debug/?q=https://attafii.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 underline"
@@ -64,7 +64,7 @@ export default function OpenGraphDebug() {
         <div className="bg-slate-800/50 rounded-lg p-6">
           <h2 className="text-2xl font-semibold mb-4">Image Preview</h2>
           <img 
-            src="https://portfolio-ltsckqvdq-ahmed-attafis-projects.vercel.app/og-image.png" 
+            src="https://attafii.vercel.app/og-image.png" 
             alt="OpenGraph Preview" 
             className="w-full max-w-2xl rounded-lg shadow-lg"
             onError={(e) => {
