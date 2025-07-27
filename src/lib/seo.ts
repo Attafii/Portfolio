@@ -33,7 +33,7 @@ const defaultSEO = {
     'Software Development'
   ],
   author: 'Ahmed Attafi',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-7gljvpvwk-ahmed-attafis-projects.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-ltsckqvdq-ahmed-attafis-projects.vercel.app',
   image: '/og-image.png',
   twitterHandle: '@ahmedattafi',
   linkedInProfile: 'https://linkedin.com/in/ahmedattafi'
