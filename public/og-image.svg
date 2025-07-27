@@ -1,0 +1,68 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="subtitleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="80" fill="#14b8a6" opacity="0.1"/>
+  <circle cx="950" cy="150" r="30" fill="#06b6d4" opacity="0.15"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#3b82f6" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main heading -->
+  <text x="600" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="url(#textGradient)">
+    Ahmed Attafi
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="url(#subtitleGradient)">
+    Full Stack Developer & Software Engineer
+  </text>
+  
+  <!-- Description -->
+  <text x="600" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8">
+    Building innovative solutions with React, Next.js, and modern technologies
+  </text>
+  
+  <!-- Tech stack badges -->
+  <g transform="translate(300, 420)">
+    <rect x="0" y="0" width="100" height="35" rx="17.5" fill="#3b82f6" opacity="0.2"/>
+    <text x="50" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#3b82f6">React</text>
+    
+    <rect x="120" y="0" width="100" height="35" rx="17.5" fill="#14b8a6" opacity="0.2"/>
+    <text x="170" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#14b8a6">Next.js</text>
+    
+    <rect x="240" y="0" width="120" height="35" rx="17.5" fill="#06b6d4" opacity="0.2"/>
+    <text x="300" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#06b6d4">TypeScript</text>
+    
+    <rect x="380" y="0" width="100" height="35" rx="17.5" fill="#10b981" opacity="0.2"/>
+    <text x="430" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="500" fill="#10b981">Node.js</text>
+  </g>
+  
+  <!-- Website URL -->
+  <text x="600" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#64748b">
+    ahmedattafi.com
+  </text>
+</svg>

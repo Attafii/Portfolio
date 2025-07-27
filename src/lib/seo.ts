@@ -33,8 +33,8 @@ const defaultSEO = {
     'Software Development'
   ],
   author: 'Ahmed Attafi',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ahmedattafi.com',
-  image: '/og-image.jpg',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app',
+  image: '/og-image.svg',
   twitterHandle: '@ahmedattafi',
   linkedInProfile: 'https://linkedin.com/in/ahmedattafi'
 };
@@ -81,9 +81,11 @@ export function generateMetadata(config: SEOConfig): Metadata {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: `${title} - Ahmed Attafi Portfolio`,
+          type: 'image/svg+xml',
         }
       ],
+      countryName: 'Tunisia',
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       ...(author && { authors: [author] }),
@@ -108,8 +110,8 @@ export function generateMetadata(config: SEOConfig): Metadata {
       'apple-mobile-web-app-title': 'Ahmed Attafi',
       'application-name': 'Ahmed Attafi Portfolio',
       'mobile-web-app-capable': 'yes',
-      'msapplication-TileColor': '#8b5cf6',
-      'theme-color': '#8b5cf6',
+      'msapplication-TileColor': '#3b82f6',
+      'theme-color': '#3b82f6',
     },
 
     // Robots

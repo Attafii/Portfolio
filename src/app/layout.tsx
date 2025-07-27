@@ -85,6 +85,34 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         
+        {/* Additional OpenGraph and SEO meta tags */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="profile:first_name" content="Ahmed" />
+        <meta property="profile:last_name" content="Attafi" />
+        <meta property="profile:username" content="ahmedattafi" />
+        <meta property="article:author" content="Ahmed Attafi" />
+        
+        {/* Twitter Card additional meta */}
+        <meta name="twitter:image:alt" content="Ahmed Attafi - Full Stack Developer Portfolio" />
+        <meta name="twitter:domain" content="portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app" />
+        
+        {/* LinkedIn specific */}
+        <meta property="og:image:secure_url" content="https://portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app/og-image.svg" />
+        
+        {/* Additional meta tags for better SEO */}
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Ahmed Attafi" />
+        <meta name="application-name" content="Ahmed Attafi Portfolio" />
+        <meta name="msapplication-TileColor" content="#3b82f6" />
+        <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
+        
         {/* Prefetch DNS for performance */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
