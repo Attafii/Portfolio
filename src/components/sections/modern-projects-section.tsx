@@ -16,7 +16,7 @@ const projects = [
     category: "IoT Development",
     status: "Live",
     featured: true,
-    color: "from-blue-500 to-purple-600",
+    color: "from-blue-500 to-teal-600",
     icon: Cpu,
     metrics: { users: "2.5K", uptime: "99.9%", devices: "15K+" }
   },
@@ -42,7 +42,7 @@ const projects = [
     category: "Mobile Development",
     status: "Development",
     featured: true,
-    color: "from-pink-500 to-orange-600",
+    color: "from-cyan-500 to-blue-600",
     icon: Smartphone,
     metrics: { downloads: "50K+", rating: "4.8★", security: "100%" }
   },
@@ -55,7 +55,7 @@ const projects = [
     category: "AI/ML",
     status: "Beta",
     featured: false,
-    color: "from-purple-500 to-indigo-600",
+    color: "from-teal-500 to-cyan-600",
     icon: Zap,
     metrics: { generated: "1M+", languages: "12", accuracy: "96%" }
   },
@@ -123,9 +123,9 @@ export function ModernProjectsSection() {
     >
       {/* Dynamic Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/30 to-pink-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-teal-50/30 to-cyan-50/30 dark:from-blue-900/10 dark:via-teal-900/10 dark:to-cyan-900/10" />
         <motion.div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl"
+          className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-blue-400/20 to-teal-400/20 blur-3xl"
           style={{ x, y }}
         />
       </div>
@@ -151,7 +151,7 @@ export function ModernProjectsSection() {
                 whileInView={{ opacity: 1, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-blue-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent"
               >
                 Projects
               </motion.span>{" "}
@@ -160,7 +160,7 @@ export function ModernProjectsSection() {
                 whileInView={{ opacity: 1, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="inline-block bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 bg-clip-text text-transparent"
               >
                 & Works
               </motion.span>
@@ -194,7 +194,7 @@ export function ModernProjectsSection() {
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg'
                     : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600'
                 }`}
                 initial={{ opacity: 0, y: 20 }}
@@ -214,7 +214,7 @@ export function ModernProjectsSection() {
             transition={{ duration: 1 }}
             className="mb-20"
           >
-            <h3 className="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
               Featured Projects
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -279,7 +279,7 @@ export function ModernProjectsSection() {
 
                     <CardContent className="p-6">
                       <div className="mb-3">
-                        <h4 className="text-xl font-bold mb-2 group-hover:text-purple-600 transition-colors">
+                        <h4 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
                           {project.title}
                         </h4>
                         <p className="text-sm text-muted-foreground">{project.category}</p>
@@ -305,7 +305,7 @@ export function ModernProjectsSection() {
                           <Badge 
                             key={tech} 
                             variant="secondary" 
-                            className="text-xs bg-purple-100/50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+                            className="text-xs bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
                           >
                             {tech}
                           </Badge>
@@ -331,10 +331,10 @@ export function ModernProjectsSection() {
             transition={{ duration: 0.8 }}
             className="text-center mt-20"
           >
-            <Card className="inline-block relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-300/30 dark:border-purple-700/30 backdrop-blur-sm">
+            <Card className="inline-block relative bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
               <CardContent className="p-8">
-                <Star className="w-12 h-12 mx-auto mb-4 text-purple-600" />
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <Star className="w-12 h-12 mx-auto mb-4 text-blue-600" />
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                   Have a Project in Mind?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-md mx-auto">
@@ -346,7 +346,7 @@ export function ModernProjectsSection() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-block"
                 >
-                  <div className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                  <div className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300">
                     Start a Project
                   </div>
                 </motion.div>

@@ -2,9 +2,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { ModernHeroSection } from "@/components/sections/modern-hero-section";
 import { CreativeAboutSection } from "@/components/sections/creative-about-section";
 import { ModernProjectsSection } from "@/components/sections/modern-projects-section";
-import { ServicesSection } from "@/components/sections/services-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { PricingSection } from "@/components/sections/pricing-section";
 import { BlogSection } from "@/components/sections/blog-section";
 import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { FAQSection } from "@/components/sections/faq-section";
@@ -18,21 +16,19 @@ export default function Home() {
       <div className="fixed inset-0 animated-gradient-light dark:animated-gradient-dark opacity-10 pointer-events-none" />
       
       {/* Modern Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-purple-200/20 dark:border-purple-800/20">
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-blue-200/20 dark:border-blue-800/20">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="font-bold text-xl gradient-text-purple-pink">
+            <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
               Ahmed Attafi
             </div>
             <div className="flex items-center gap-6">
               <nav className="hidden md:flex items-center gap-6">
-                <a href="#about" className="text-sm font-medium hover:text-purple-600 transition-colors">About</a>
-                <a href="#projects" className="text-sm font-medium hover:text-purple-600 transition-colors">Projects</a>
-                <a href="#services" className="text-sm font-medium hover:text-purple-600 transition-colors">Services</a>
-                <a href="#testimonials" className="text-sm font-medium hover:text-purple-600 transition-colors">Testimonials</a>
-                <a href="#pricing" className="text-sm font-medium hover:text-purple-600 transition-colors">Pricing</a>
-                <a href="#blog" className="text-sm font-medium hover:text-purple-600 transition-colors">Blog</a>
-                <a href="#contact" className="text-sm font-medium hover:text-purple-600 transition-colors">Contact</a>
+                <a href="#about" className="text-sm font-medium hover:text-blue-600 transition-colors">About</a>
+                <a href="#projects" className="text-sm font-medium hover:text-blue-600 transition-colors">Projects</a>
+                <a href="#testimonials" className="text-sm font-medium hover:text-blue-600 transition-colors">Testimonials</a>
+                <a href="#blog" className="text-sm font-medium hover:text-blue-600 transition-colors">Blog</a>
+                <a href="#contact" className="text-sm font-medium hover:text-blue-600 transition-colors">Contact</a>
               </nav>
               <ThemeToggle />
             </div>
@@ -48,14 +44,8 @@ export default function Home() {
         <section id="projects">
           <ModernProjectsSection />
         </section>
-        <section id="services">
-          <ServicesSection />
-        </section>
         <section id="testimonials">
           <TestimonialsSection />
-        </section>
-        <section id="pricing">
-          <PricingSection />
         </section>
         <section id="blog">
           <BlogSection />
@@ -68,7 +58,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="relative py-8 border-t border-purple-200/20 dark:border-purple-800/20">
+      <footer className="relative py-8 border-t border-blue-200/20 dark:border-blue-800/20">
         <div className="container mx-auto px-4">
           <div className="text-center text-muted-foreground">
             <p>&copy; 2025 Ahmed Attafi • Made with ❤️ and lots of ☕</p>

@@ -91,7 +91,7 @@ export function ContactSection() {
       title: "Email",
       content: "attafiahmed.dev@gmail.com",
       href: "mailto:attafiahmed.dev@gmail.com",
-      color: "from-blue-500 to-purple-500"
+      color: "from-blue-500 to-teal-500"
     },
     {
       icon: Phone,
@@ -105,7 +105,7 @@ export function ContactSection() {
       title: "Location",
       content: "Tunisia 🇹🇳",
       href: "#",
-      color: "from-purple-500 to-pink-500"
+      color: "from-teal-500 to-cyan-500"
     }
   ];
 
@@ -124,13 +124,13 @@ export function ContactSection() {
     >
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-blue-50/50 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-blue-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-teal-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:via-teal-900/20 dark:to-cyan-900/20" />
         <motion.div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl"
+          className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-blue-400/20 to-teal-400/20 blur-3xl"
           style={{ x, y }}
         />
         <motion.div
-          className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20 blur-2xl"
+          className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-teal-400/20 to-cyan-400/20 blur-2xl"
           style={{ 
             x: useSpring(mouseX, { stiffness: 50, damping: 20 }), 
             y: useSpring(mouseY, { stiffness: 50, damping: 20 }) 
@@ -148,9 +148,9 @@ export function ContactSection() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-purple-100/50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800">
-              <Mail className="w-4 h-4 text-purple-600" />
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">Get In Touch</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+              <Mail className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Get In Touch</span>
             </div>
 
             <h2 className="text-5xl md:text-7xl font-bold mb-6">
@@ -159,7 +159,7 @@ export function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-block bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-blue-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent"
               >
                 Let&apos;s Create
               </motion.span>
@@ -169,7 +169,7 @@ export function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent"
               >
                 Something Amazing
               </motion.span>
@@ -195,14 +195,14 @@ export function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 border-purple-200/50 dark:border-purple-800/50 backdrop-blur-sm">
+              <Card className="relative overflow-hidden bg-white/80 dark:bg-gray-900/80 border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm">
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-400/5 to-pink-400/5"
+                  className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-teal-400/5"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.6 }}
                 />
                 <CardContent className="relative p-8">
-                  <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     Send me a message
                   </h3>
 
@@ -221,7 +221,7 @@ export function ContactSection() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-purple-500"
+                          className="border-blue-200 dark:border-blue-800 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="Your full name"
                         />
                       </motion.div>
@@ -239,7 +239,7 @@ export function ContactSection() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-purple-500"
+                          className="border-blue-200 dark:border-blue-800 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="your.email@example.com"
                         />
                       </motion.div>
@@ -258,7 +258,7 @@ export function ContactSection() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-purple-500"
+                        className="border-blue-200 dark:border-blue-800 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Project inquiry, collaboration, etc."
                       />
                     </motion.div>
@@ -276,7 +276,7 @@ export function ContactSection() {
                         onChange={handleInputChange}
                         required
                         rows={5}
-                        className="border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-purple-500 resize-none"
+                        className="border-blue-200 dark:border-blue-800 focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Tell me about your project, ideas, or just say hello!"
                       />
                     </motion.div>
@@ -309,7 +309,7 @@ export function ContactSection() {
                       className={`w-full flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
                         isSubmitting
                           ? 'bg-gray-400 cursor-not-allowed'
-                          : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-xl'
+                          : 'bg-gradient-to-r from-blue-600 to-teal-600 hover:shadow-xl'
                       } text-white`}
                     >
                       {isSubmitting ? (
@@ -343,7 +343,7 @@ export function ContactSection() {
             >
               {/* Contact Information */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                   Contact Information
                 </h3>
                 
@@ -371,7 +371,7 @@ export function ContactSection() {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
                   Connect With Me
                 </h3>
                 
@@ -405,16 +405,16 @@ export function ContactSection() {
               </div>
 
               {/* Call to Action */}
-              <Card className="relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-300/30 dark:border-purple-700/30 backdrop-blur-sm">
+              <Card className="relative bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
                 <CardContent className="p-6">
-                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     Ready to start your project?
                   </h4>
                   <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
                     I am here to help you turn your ideas into reality. Whether you need a website, 
                     mobile app, IoT solution, or just want to chat about technology - let us connect!
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400">
+                  <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                     <span>Available for new projects</span>
                   </div>

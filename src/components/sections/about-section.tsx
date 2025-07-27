@@ -48,9 +48,9 @@ export function AboutSection() {
       <div className="absolute inset-0 bg-background/90" />
       
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 float" />
+      <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400 to-teal-400 rounded-full opacity-20 float" />
       <div className="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20 float" style={{animationDelay: '1s'}} />
-      <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full opacity-20 float" style={{animationDelay: '2s'}} />
+      <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-teal-400 to-green-400 rounded-full opacity-20 float" style={{animationDelay: '2s'}} />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

@@ -140,13 +140,13 @@ export function AIChatbot() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="relative w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg flex items-center justify-center text-white group"
+              className="relative w-16 h-16 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full shadow-lg flex items-center justify-center text-white group"
             >
               {/* Pulse animation */}
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 rounded-full"
+                className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-teal-600/30 rounded-full"
               />
               
               <MessageCircle className="w-6 h-6 relative z-10" />
@@ -179,9 +179,9 @@ export function AIChatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-2rem)]"
           >
-            <Card className="shadow-2xl border-purple-200/50 dark:border-purple-800/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl">
+            <Card className="shadow-2xl border-blue-200/50 dark:border-blue-800/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl">
               {/* Header */}
-              <CardHeader className="flex flex-row items-center justify-between p-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-lg">
+              <CardHeader className="flex flex-row items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-t-lg">
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
@@ -231,7 +231,7 @@ export function AIChatbot() {
                       {/* Messages */}
                       <div 
                         ref={chatContainerRef}
-                        className="h-80 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-purple-300 dark:scrollbar-thumb-purple-700"
+                        className="h-80 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-blue-300 dark:scrollbar-thumb-blue-700"
                       >
                         {messages.map((message) => (
                           <motion.div
@@ -243,8 +243,8 @@ export function AIChatbot() {
                           >
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                               message.sender === 'user' 
-                                ? 'bg-gradient-to-r from-blue-500 to-purple-500' 
-                                : 'bg-gradient-to-r from-purple-500 to-pink-500'
+                                ? 'bg-gradient-to-r from-blue-500 to-cyan-500' 
+                                : 'bg-gradient-to-r from-teal-500 to-blue-500'
                             } text-white`}>
                               {message.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                             </div>
@@ -252,7 +252,7 @@ export function AIChatbot() {
                             <div className={`flex-1 ${message.sender === 'user' ? 'text-right' : 'text-left'}`}>
                               <div className={`inline-block p-3 rounded-2xl max-w-[85%] ${
                                 message.sender === 'user'
-                                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
                                   : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100'
                               }`}>
                                 <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
@@ -270,7 +270,7 @@ export function AIChatbot() {
                             animate={{ opacity: 1 }}
                             className="flex gap-3"
                           >
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-500 to-blue-500 flex items-center justify-center text-white">
                               <Bot className="w-4 h-4" />
                             </div>
                             <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl">
@@ -278,17 +278,17 @@ export function AIChatbot() {
                                 <motion.div
                                   animate={{ scale: [1, 1.2, 1] }}
                                   transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-                                  className="w-2 h-2 bg-purple-500 rounded-full"
+                                  className="w-2 h-2 bg-blue-500 rounded-full"
                                 />
                                 <motion.div
                                   animate={{ scale: [1, 1.2, 1] }}
                                   transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
-                                  className="w-2 h-2 bg-purple-500 rounded-full"
+                                  className="w-2 h-2 bg-blue-500 rounded-full"
                                 />
                                 <motion.div
                                   animate={{ scale: [1, 1.2, 1] }}
                                   transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
-                                  className="w-2 h-2 bg-purple-500 rounded-full"
+                                  className="w-2 h-2 bg-blue-500 rounded-full"
                                 />
                               </div>
                             </div>
@@ -306,7 +306,7 @@ export function AIChatbot() {
                               <button
                                 key={index}
                                 onClick={() => handleQuickQuestion(question)}
-                                className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
+                                className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
                               >
                                 {question}
                               </button>

@@ -57,7 +57,7 @@ const blogPosts = [
     url: 'https://medium.com/@attafii/tunisia-tech-journey',
     featured: false,
     icon: Lightbulb,
-    color: 'text-purple-500'
+    color: 'text-teal-500'
   },
   {
     id: 4,
@@ -151,7 +151,7 @@ export function BlogSection() {
           {/* Section Header */}
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Latest <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Articles</span>
+              Latest <span className="bg-gradient-to-r from-blue-500 to-teal-600 bg-clip-text text-transparent">Articles</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Insights, tutorials, and thoughts on IoT, software development, and technology
@@ -333,7 +333,7 @@ export function BlogSection() {
 
           {/* CTA Section */}
           <motion.div variants={fadeInUp} className="mt-16">
-            <Card className="p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-none text-center">
+            <Card className="p-8 bg-gradient-to-r from-blue-50 to-teal-50 dark:from-blue-950/20 dark:to-teal-950/20 border-none text-center">
               <CardContent className="p-0">
                 <BookOpen className="w-12 h-12 text-blue-500 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-4">Want to stay updated?</h3>

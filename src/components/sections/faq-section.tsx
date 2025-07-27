@@ -141,7 +141,7 @@ export function FAQSection() {
     <section className="py-32 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/50 to-purple-50/50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-teal-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:via-teal-900/20 dark:to-cyan-900/20" />
         <motion.div
           animate={{ 
             x: [0, 60, 0],
@@ -149,7 +149,7 @@ export function FAQSection() {
             scale: [1, 1.1, 1]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-indigo-400/10 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-teal-400/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -174,7 +174,7 @@ export function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-blue-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent"
               >
                 Frequently
               </motion.span>
@@ -184,7 +184,7 @@ export function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="inline-block bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent"
               >
                 Asked Questions
               </motion.span>
@@ -218,7 +218,7 @@ export function FAQSection() {
                 whileTap={{ scale: 0.95 }}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg'
                     : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-gray-200 dark:border-gray-700'
                 }`}
               >
@@ -252,7 +252,7 @@ export function FAQSection() {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4 flex-1">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
                             <faq.icon className="w-5 h-5 text-blue-600" />
                           </div>
                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -302,14 +302,14 @@ export function FAQSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-16 text-center"
           >
-            <Card className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
+            <Card className="bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
               <CardContent className="p-8">
                 <div className="max-w-2xl mx-auto">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <MessageCircle className="w-8 h-8 text-blue-600" />
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     Still have questions?
                   </h3>
                   <p className="text-muted-foreground mb-6 text-lg">
@@ -318,7 +318,7 @@ export function FAQSection() {
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white">
+                    <Button className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white">
                       <MessageCircle className="w-5 h-5 mr-2" />
                       Ask a Question
                     </Button>

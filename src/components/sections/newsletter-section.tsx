@@ -73,7 +73,7 @@ export function NewsletterSection() {
     <section className="py-32 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-pink-50/50 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-teal-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:via-teal-900/20 dark:to-cyan-900/20" />
         <motion.div
           animate={{ 
             x: [0, 80, 0],
@@ -81,7 +81,7 @@ export function NewsletterSection() {
             scale: [1, 1.2, 1]
           }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-purple-400/10 rounded-full blur-3xl"
+          className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-teal-400/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{ 
@@ -90,7 +90,7 @@ export function NewsletterSection() {
             scale: [1, 1.1, 1]
           }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-teal-400/10 to-cyan-400/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -103,9 +103,9 @@ export function NewsletterSection() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-indigo-100/50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800">
-              <Mail className="w-4 h-4 text-indigo-600" />
-              <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300">Newsletter</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+              <Mail className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Newsletter</span>
             </div>
 
             <h2 className="text-5xl md:text-7xl font-bold mb-6">
@@ -114,7 +114,7 @@ export function NewsletterSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-blue-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent"
               >
                 Stay
               </motion.span>
@@ -124,7 +124,7 @@ export function NewsletterSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="inline-block bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent"
               >
                 Connected
               </motion.span>
@@ -150,13 +150,13 @@ export function NewsletterSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Card className="relative overflow-hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-indigo-200/50 dark:border-indigo-800/50 shadow-2xl">
+              <Card className="relative overflow-hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-blue-200/50 dark:border-blue-800/50 shadow-2xl">
                 <CardContent className="p-8">
                   {!isSubmitted ? (
                     <>
                       <div className="flex items-center gap-3 mb-6">
-                        <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl flex items-center justify-center">
-                          <Sparkles className="w-6 h-6 text-indigo-600" />
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl flex items-center justify-center">
+                          <Sparkles className="w-6 h-6 text-blue-600" />
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold">Get Exclusive Updates</h3>
@@ -172,7 +172,7 @@ export function NewsletterSection() {
                             placeholder="Enter your email address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="pl-12 h-12 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:border-indigo-500 focus:ring-indigo-500"
+                            className="pl-12 h-12 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-500"
                             required
                           />
                         </div>
@@ -180,7 +180,7 @@ export function NewsletterSection() {
                         <Button
                           type="submit"
                           disabled={isLoading || !email}
-                          className="w-full h-12 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold"
+                          className="w-full h-12 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold"
                         >
                           {isLoading ? (
                             <motion.div
@@ -214,7 +214,7 @@ export function NewsletterSection() {
                             transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                             className="text-center"
                           >
-                            <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                               {stat.number}
                             </div>
                             <div className="text-xs text-muted-foreground">{stat.label}</div>
@@ -263,7 +263,7 @@ export function NewsletterSection() {
               className="space-y-8"
             >
               <div>
-                <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                   What You&apos;ll Get
                 </h3>
                 <p className="text-muted-foreground text-lg">
@@ -281,8 +281,8 @@ export function NewsletterSection() {
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                     className="flex items-start gap-4"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <benefit.icon className="w-6 h-6 text-indigo-600" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <benefit.icon className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
@@ -298,11 +298,11 @@ export function NewsletterSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-indigo-200/30 dark:border-indigo-800/30"
+                className="bg-gradient-to-br from-blue-50/50 to-teal-50/50 dark:from-blue-900/20 dark:to-teal-900/20 rounded-xl p-6 border border-blue-200/30 dark:border-blue-800/30"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-indigo-600" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <blockquote className="text-sm italic text-muted-foreground mb-3">

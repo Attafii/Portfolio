@@ -43,7 +43,7 @@ export function ModernHeroSection() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
@@ -66,8 +66,8 @@ export function ModernHeroSection() {
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
           animation: 'grid-move 20s linear infinite'
@@ -94,8 +94,8 @@ export function ModernHeroSection() {
               className={`w-${4 + i} h-${4 + i} opacity-20 rotate-45`}
               style={{
                 background: `linear-gradient(45deg, 
-                  ${i % 3 === 0 ? '#8b5cf6' : i % 3 === 1 ? '#ec4899' : '#06b6d4'}, 
-                  ${i % 3 === 0 ? '#ec4899' : i % 3 === 1 ? '#06b6d4' : '#8b5cf6'})`,
+                  ${i % 3 === 0 ? '#3b82f6' : i % 3 === 1 ? '#06b6d4' : '#14b8a6'}, 
+                  ${i % 3 === 0 ? '#06b6d4' : i % 3 === 1 ? '#14b8a6' : '#3b82f6'})`,
                 transform: `rotate(${i * 60}deg) scale(${0.5 + i * 0.1})`,
                 borderRadius: i % 2 === 0 ? '50%' : '20%'
               }}
@@ -117,7 +117,7 @@ export function ModernHeroSection() {
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg">
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-sm" />
               <span className="text-sm font-medium text-white">Available for work</span>
-              <span className="text-sm text-pink-300 font-medium">• taken ❤️</span>
+              <span className="text-sm text-blue-300 font-medium">• taken ❤️</span>
             </div>
           </motion.div>
 
@@ -134,9 +134,9 @@ export function ModernHeroSection() {
                   key={index}
                   variants={letterVariants}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="inline-block bg-gradient-to-br from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent"
+                  className="inline-block bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 bg-clip-text text-transparent"
                   style={{
-                    textShadow: '0 0 30px rgba(139, 92, 246, 0.5)'
+                    textShadow: '0 0 30px rgba(59, 130, 246, 0.5)'
                   }}
                 >
                   {letter}
@@ -148,9 +148,9 @@ export function ModernHeroSection() {
                   key={index + 5}
                   variants={letterVariants}
                   transition={{ duration: 0.6, delay: (index + 5) * 0.1 }}
-                  className="inline-block bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                  className="inline-block bg-gradient-to-br from-teal-500 via-blue-500 to-cyan-400 bg-clip-text text-transparent"
                   style={{
-                    textShadow: '0 0 30px rgba(236, 72, 153, 0.5)'
+                    textShadow: '0 0 30px rgba(20, 184, 166, 0.5)'
                   }}
                 >
                   {letter}
@@ -176,7 +176,7 @@ export function ModernHeroSection() {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent"
                 style={{ backgroundSize: "200% 100%" }}
               >
                 Software Developer & IoT Specialist
@@ -203,7 +203,7 @@ export function ModernHeroSection() {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="text-center group cursor-pointer"
               >
-                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-pink-400 group-hover:to-blue-400 transition-all duration-300">
+                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-br from-blue-400 to-teal-400 bg-clip-text text-transparent group-hover:from-teal-400 group-hover:to-cyan-400 transition-all duration-300">
                   {stat.number}
                 </div>
                 <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
@@ -231,7 +231,7 @@ export function ModernHeroSection() {
                 whileHover={{ 
                   scale: 1.2, 
                   rotate: 360,
-                  backgroundColor: "rgba(139, 92, 246, 0.2)"
+                  backgroundColor: "rgba(59, 130, 246, 0.2)"
                 }}
                 whileTap={{ scale: 0.9 }}
                 className="relative p-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm group"
@@ -239,7 +239,7 @@ export function ModernHeroSection() {
               >
                 <social.icon className="w-6 h-6" />
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20"
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/20 to-teal-400/20"
                   initial={{ scale: 0, opacity: 0 }}
                   whileHover={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.3 }}
@@ -273,7 +273,7 @@ export function ModernHeroSection() {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-purple-400 rounded-full"
+            className="absolute w-1 h-1 bg-blue-400 rounded-full"
             initial={{
               x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1200,
               y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 800,

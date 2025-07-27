@@ -119,7 +119,7 @@ export function TestimonialsSection() {
     <section className="py-32 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-blue-50/50 to-purple-50/50 dark:from-green-900/20 dark:via-blue-900/20 dark:to-purple-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-blue-50/50 to-teal-50/50 dark:from-green-900/20 dark:via-blue-900/20 dark:to-teal-900/20" />
         <motion.div
           animate={{ 
             x: [0, 100, 0],
@@ -152,7 +152,7 @@ export function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-block bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-green-600 via-blue-600 to-teal-600 bg-clip-text text-transparent"
               >
                 What Clients
               </motion.span>
@@ -162,7 +162,7 @@ export function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-blue-600 via-teal-600 to-green-600 bg-clip-text text-transparent"
               >
                 Are Saying
               </motion.span>
