@@ -34,7 +34,7 @@ const defaultSEO = {
   ],
   author: 'Ahmed Attafi',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app',
-  image: '/og-image.svg',
+  image: '/og-image.png',
   twitterHandle: '@ahmedattafi',
   linkedInProfile: 'https://linkedin.com/in/ahmedattafi'
 };
@@ -82,7 +82,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
           width: 1200,
           height: 630,
           alt: `${title} - Ahmed Attafi Portfolio`,
-          type: 'image/svg+xml',
+          type: 'image/png',
         }
       ],
       countryName: 'Tunisia',
