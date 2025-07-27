@@ -97,10 +97,10 @@ export default function RootLayout({
         
         {/* Twitter Card additional meta */}
         <meta name="twitter:image:alt" content="Ahmed Attafi - Full Stack Developer Portfolio" />
-        <meta name="twitter:domain" content="portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app" />
+        <meta name="twitter:domain" content="portfolio-7gljvpvwk-ahmed-attafis-projects.vercel.app" />
         
         {/* LinkedIn specific */}
-        <meta property="og:image:secure_url" content="https://portfolio-ivxa3ok0s-ahmed-attafis-projects.vercel.app/og-image.svg" />
+        <meta property="og:image:secure_url" content="https://portfolio-7gljvpvwk-ahmed-attafis-projects.vercel.app/og-image.png" />
         
         {/* Additional meta tags for better SEO */}
         <meta name="format-detection" content="telephone=no" />
