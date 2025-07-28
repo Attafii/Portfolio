@@ -36,7 +36,7 @@ const defaultSEO = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.vercel.app',
   image: '/og-image.png',
   twitterHandle: '@ahmedattafi',
-  linkedInProfile: 'https://linkedin.com/in/ahmedattafi'
+  linkedInProfile: 'https://www.linkedin.com/in/ahmed-attafi/'
 };
 
 export function generateMetadata(config: SEOConfig): Metadata {
@@ -165,7 +165,7 @@ export function generateStructuredData(config: SEOConfig & {
     "url": defaultSEO.siteUrl,
     "sameAs": [
       defaultSEO.linkedInProfile,
-      "https://github.com/attafii",
+      "https://github.com/Attafii",
       "https://twitter.com/ahmedattafi"
     ],
     "jobTitle": "Full Stack Developer",

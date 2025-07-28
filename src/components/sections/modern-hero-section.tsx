@@ -233,9 +233,9 @@ export function ModernHeroSection() {
             className="flex items-center justify-center gap-6 mb-30"
           >
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
-              { icon: Mail, href: "#", label: "Email" }
+              { icon: Github, href: "https://github.com/Attafii", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/ahmed-attafi/", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:attafiahmed.dev@gmail.com", label: "Email" }
             ].map((social, index) => (
               <motion.a
                 key={index}

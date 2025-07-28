@@ -120,7 +120,7 @@ export default async function SettingsPage() {
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-2">
                     LinkedIn URL
                   </label>
-                  <Input defaultValue="https://linkedin.com/in/ahmed-attafi" />
+                  <Input defaultValue="https://www.linkedin.com/in/ahmed-attafi/" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-2">

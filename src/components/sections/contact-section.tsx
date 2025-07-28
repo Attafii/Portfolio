@@ -96,8 +96,8 @@ export function ContactSection() {
     {
       icon: Phone,
       title: "Phone",
-      content: "Available upon request",
-      href: "#",
+      content: "+216 96 576 301",
+      href: "tel:+21696576301",
       color: "from-green-500 to-blue-500"
     },
     {
@@ -110,9 +110,9 @@ export function ContactSection() {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub", color: "hover:text-gray-900 dark:hover:text-white" },
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-400" },
+    { icon: Github, href: "https://github.com/Attafii", label: "GitHub", color: "hover:text-gray-900 dark:hover:text-white" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ahmed-attafi/", label: "LinkedIn", color: "hover:text-blue-600" },
+    { icon: Twitter, href: "https://x.com/ahmedattafi_", label: "Twitter", color: "hover:text-blue-400" },
   ];
 
   return (
