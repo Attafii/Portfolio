@@ -62,7 +62,7 @@ export function AboutSection() {
         >
           {/* Section Header */}
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 gradient-text-purple-pink glow-text">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 gradient-text-purple-pink glow-text font-inter">
               About Me
             </h2>
             <div className="flex items-center justify-center gap-2 text-lg text-muted-foreground mb-8">

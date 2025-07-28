@@ -61,9 +61,9 @@ export function Navigation() {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-bold text-xl bg-gradient-to-r from-blue-500 to-teal-600 bg-clip-text text-transparent"
+            className="font-bold text-xl bg-gradient-to-r from-blue-500 to-teal-600 bg-clip-text text-transparent font-inter tracking-wider"
           >
-            Ahmed Attafi
+            AHMED ATTAFI
           </motion.div>
 
           {/* Desktop Navigation */}

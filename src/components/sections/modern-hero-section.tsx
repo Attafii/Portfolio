@@ -128,7 +128,7 @@ export function ModernHeroSection() {
             animate="animate"
             className="mb-6"
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight font-inter">
               {["A", "h", "m", "e", "d"].map((letter, index) => (
                 <motion.span
                   key={index}
