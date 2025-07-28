@@ -128,6 +128,18 @@ export function ModernHeroSection() {
             animate="animate"
             className="mb-6"
           >
+            {/* Greeting Text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mb-4"
+            >
+              <span className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
+                Hi I'm
+              </span>
+            </motion.div>
+            
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight font-inter">
               {["A", "h", "m", "e", "d"].map((letter, index) => (
                 <motion.span
