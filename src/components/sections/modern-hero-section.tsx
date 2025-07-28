@@ -112,7 +112,7 @@ export function ModernHeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="mb-8 mt-8 md:mt-12"
+            className="mb-6 mt-6 md:mt-2"
           >
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg">
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-sm" />
@@ -218,7 +218,7 @@ export function ModernHeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex items-center justify-center gap-6 mb-16"
+            className="flex items-center justify-center gap-6 mb-30"
           >
             {[
               { icon: Github, href: "#", label: "GitHub" },
@@ -253,7 +253,7 @@ export function ModernHeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}

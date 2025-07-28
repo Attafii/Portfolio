@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ModernHeroSection } from "@/components/sections/modern-hero-section";
 import { CreativeAboutSection } from "@/components/sections/creative-about-section";
@@ -11,10 +12,45 @@ import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { AIChatbot } from "@/components/ai-chatbot";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Track scroll position for navbar animation, active section, and progress
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+      
+      // Calculate scroll progress
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      setScrollProgress(scrolled);
+      
+      // Determine active section based on scroll position
+      const sections = ['hero', 'about', 'projects', 'testimonials', 'blog', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -24,95 +60,287 @@ export default function Home() {
     setIsMobileMenuOpen(false); // Close mobile menu after clicking
   };
 
+  // Quick action handlers
+  const handleDownloadCV = () => {
+    // You can replace this with your actual CV file path
+    const link = document.createElement('a');
+    link.href = '/Ahmed_Attafi_CV.pdf'; // Add your CV file to public folder
+    link.download = 'Ahmed_Attafi_CV.pdf';
+    link.click();
+  };
+
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       {/* Global gradient background */}
       <div className="fixed inset-0 animated-gradient-light dark:animated-gradient-dark opacity-10 pointer-events-none" />
       
-      {/* Modern Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-blue-200/20 dark:border-blue-800/20">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img 
+      {/* Modern Animated Navigation */}
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+          isScrolled 
+            ? 'bg-background/70 backdrop-blur-2xl border-b border-blue-200/30 dark:border-blue-800/30 shadow-lg shadow-blue-500/5' 
+            : 'bg-background/40 backdrop-blur-xl border-b border-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className={`flex items-center transition-all duration-300 ${
+            isScrolled ? 'py-2' : 'py-4'
+          }`}>
+            {/* Animated Logo */}
+            <motion.div 
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <motion.img 
                 src="/Attafii.svg" 
                 alt="Attafii Logo" 
-                className="h-7 w-auto" 
+                className={`w-auto transition-all duration-300 ${
+                  isScrolled ? 'h-6' : 'h-8'
+                }`}
+                initial={{ rotate: -10, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               />
+            </motion.div>
+
+            {/* Centered Desktop Navigation */}
+            <div className="hidden md:flex flex-1 justify-center">
+              <motion.nav 
+                className="flex items-center gap-8"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                {['about', 'projects', 'testimonials', 'blog', 'contact'].map((item, index) => {
+                  const isActive = activeSection === item;
+                  return (
+                    <motion.button
+                      key={item}
+                      onClick={() => scrollToSection(item)}
+                      className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 capitalize font-poppins
+                                 ${isActive 
+                                   ? 'text-blue-600 dark:text-blue-400' 
+                                   : 'text-foreground/80 hover:text-blue-600 dark:hover:text-blue-400'
+                                 } group`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 + (index * 0.1) }}
+                    >
+                      {/* Text */}
+                      <span className="relative z-10">
+                        {item}
+                      </span>
+                      
+                      {/* Underline indicator */}
+                      <motion.div
+                        className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-teal-500 transition-all duration-300
+                                   ${isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'}`}
+                        initial={{ width: 0 }}
+                        animate={{ width: isActive ? "100%" : "0%" }}
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.button>
+                  );
+                })}
+              </motion.nav>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6">
-              <nav className="flex items-center gap-6">
-                <button onClick={() => scrollToSection('about')} className="text-sm font-medium hover:text-blue-600 transition-colors">About</button>
-                <button onClick={() => scrollToSection('projects')} className="text-sm font-medium hover:text-blue-600 transition-colors">Projects</button>
-                <button onClick={() => scrollToSection('testimonials')} className="text-sm font-medium hover:text-blue-600 transition-colors">Testimonials</button>
-                <button onClick={() => scrollToSection('blog')} className="text-sm font-medium hover:text-blue-600 transition-colors">Blog</button>
-                <button onClick={() => scrollToSection('contact')} className="text-sm font-medium hover:text-blue-600 transition-colors">Contact</button>
-              </nav>
-              <ThemeToggle />
+            {/* Right side - Quick Actions & Theme Toggle */}
+            <div className="hidden md:flex items-center gap-4">
+              {/* Quick Actions */}
+              <motion.div
+                className="flex items-center gap-2"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                {/* Download CV Button */}
+                <motion.button
+                  onClick={handleDownloadCV}
+                  className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-white 
+                             bg-transparent hover:bg-blue-600 dark:hover:bg-blue-500
+                             border border-blue-200 dark:border-blue-800 hover:border-blue-600 dark:hover:border-blue-500
+                             rounded-full transition-all duration-300 font-poppins font-medium
+                             backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/25
+                             group overflow-hidden flex items-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  title="Download CV"
+                >
+                  <Download className="w-4 h-4" />
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    Download CV
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+
+                {/* Separator */}
+                <div className="w-px h-6 bg-border mx-2" />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.9 }}
+              >
+                <ThemeToggle />
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-3">
-              <ThemeToggle />
-              <button
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+              >
+                <ThemeToggle />
+              </motion.div>
+              
+              <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="relative p-2 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, rotate: -180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
                 aria-label="Toggle mobile menu"
               >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </button>
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="h-5 w-5 text-blue-600" />
+                  ) : (
+                    <Menu className="h-5 w-5 group-hover:text-blue-600 transition-colors" />
+                  )}
+                </motion.div>
+                
+                {/* Animated background */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/10 to-teal-500/10"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </motion.button>
             </div>
           </div>
 
           {/* Mobile Navigation Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex flex-col space-y-3 pt-4">
-                <button 
-                  onClick={() => scrollToSection('about')} 
-                  className="text-left px-3 py-2 text-sm font-medium hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, y: -20 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="md:hidden overflow-hidden"
+              >
+                <motion.div 
+                  className="pb-6 pt-4 border-t border-blue-200/20 dark:border-blue-800/20 bg-background/30 backdrop-blur-lg rounded-b-2xl mt-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
                 >
-                  About
-                </button>
-                <button 
-                  onClick={() => scrollToSection('projects')} 
-                  className="text-left px-3 py-2 text-sm font-medium hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-                >
-                  Projects
-                </button>
-                <button 
-                  onClick={() => scrollToSection('testimonials')} 
-                  className="text-left px-3 py-2 text-sm font-medium hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-                >
-                  Testimonials
-                </button>
-                <button 
-                  onClick={() => scrollToSection('blog')} 
-                  className="text-left px-3 py-2 text-sm font-medium hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-                >
-                  Blog
-                </button>
-                <button 
-                  onClick={() => scrollToSection('contact')} 
-                  className="text-left px-3 py-2 text-sm font-medium hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-                >
-                  Contact
-                </button>
-              </div>
-            </div>
-          )}
+                  <div className="flex flex-col space-y-1 px-4">
+                    {['about', 'projects', 'testimonials', 'blog', 'contact'].map((item, index) => {
+                      const isActive = activeSection === item;
+                      return (
+                        <motion.button
+                          key={item}
+                          onClick={() => scrollToSection(item)}
+                          className={`relative w-full px-4 py-3 text-sm font-medium transition-all duration-300 capitalize font-poppins
+                                     text-left group
+                                     ${isActive 
+                                       ? 'text-blue-600 dark:text-blue-400' 
+                                       : 'text-foreground/80 hover:text-blue-600 dark:hover:text-blue-400'
+                                     }`}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          whileHover={{ scale: 1.02, x: 8 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          {/* Text */}
+                          <span className="relative z-10">
+                            {item}
+                          </span>
+                          
+                          {/* Left border indicator */}
+                          <motion.div
+                            className={`absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-teal-500 transition-all duration-300
+                                       ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: isActive ? 1 : 0 }}
+                            whileHover={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                          
+                          {/* Background highlight */}
+                          <motion.div
+                            className={`absolute inset-0 bg-blue-50 dark:bg-blue-900/10 transition-opacity duration-300
+                                       ${isActive ? 'opacity-50' : 'opacity-0 group-hover:opacity-30'}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: isActive ? 0.5 : 0 }}
+                            whileHover={{ opacity: 0.3 }}
+                          />
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </nav>
+
+        {/* Real-time Progress Indicator */}
+        <motion.div
+          className="absolute bottom-0 left-0 w-full h-1 bg-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1 }}
+        >
+          <motion.div
+            className="h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 origin-left shadow-lg"
+            animate={{ 
+              width: `${scrollProgress}%`,
+              boxShadow: scrollProgress > 0 ? '0 0 20px rgba(59, 130, 246, 0.5)' : 'none'
+            }}
+            transition={{ 
+              width: { duration: 0.1, ease: "easeOut" },
+              boxShadow: { duration: 0.3 }
+            }}
+            style={{
+              background: `linear-gradient(90deg, 
+                #3b82f6 0%, 
+                #06b6d4 ${scrollProgress / 2}%, 
+                #14b8a6 100%)`
+            }}
+          />
+        </motion.div>
+      </motion.nav>
 
       <main className="relative z-10">
-        <ModernHeroSection />
+        <section id="hero">
+          <ModernHeroSection />
+        </section>
         <section id="about">
           <CreativeAboutSection />
         </section>
