@@ -19,8 +19,12 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-blue-200/20 dark:border-blue-800/20">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="font-bold text-xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-inter">
-              Ahmed Attafi
+            <div className="flex items-center">
+              <img 
+                src="/Attafii.svg" 
+                alt="Attafii Logo" 
+                className="h-8 w-auto" 
+              />
             </div>
             <div className="flex items-center gap-6">
               <nav className="hidden md:flex items-center gap-6">

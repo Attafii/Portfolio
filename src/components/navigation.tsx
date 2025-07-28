@@ -61,9 +61,13 @@ export function Navigation() {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="font-bold text-xl bg-gradient-to-r from-blue-500 to-teal-600 bg-clip-text text-transparent font-inter tracking-wider"
+            className="flex items-center"
           >
-            AHMED ATTAFI
+            <img 
+              src="/Attafii.svg" 
+              alt="Attafii Logo" 
+              className="h-8 w-auto" 
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
