@@ -1,36 +1,79 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Coffee, Code, Heart, Briefcase, Star, Zap, Award, Target } from "lucide-react";
 
 const skills = [
-  { name: "React & Next.js", level: 95, color: "from-blue-400 to-blue-600" },
-  { name: "TypeScript", level: 90, color: "from-cyan-400 to-cyan-600" },
-  { name: "Node.js", level: 85, color: "from-teal-400 to-teal-600" },
-  { name: "IoT Development", level: 88, color: "from-green-400 to-green-600" },
-  { name: "Cloud Architecture", level: 82, color: "from-blue-500 to-teal-500" },
-  { name: "PostgreSQL", level: 87, color: "from-indigo-400 to-blue-600" }
+  { name: "React & Next.js", color: "from-cyan-400 to-cyan-600" },
+  { name: "Python & C/C++", color: "from-purple-400 to-purple-600" },
+  { name: "Node.js & Express", color: "from-green-400 to-green-600" },
+  { name: "Flutter & Mobile Dev", color: "from-orange-400 to-red-600" },
+  { name: "Arduino & Raspberry Pi", color: "from-teal-400 to-teal-600" },
+  { name: "IoT & Embedded Systems", color: "from-blue-400 to-blue-600" },
+  { name: "Azure Cloud & AI", color: "from-blue-500 to-teal-500" },
+  { name: "PostgreSQL & MongoDB", color: "from-indigo-400 to-blue-600" }
+];
+
+const certifications = [
+  { 
+    name: "Microsoft Azure AI Fundamentals", 
+    issuer: "Microsoft", 
+    date: "Jun 2024",
+    icon: "🏆"
+  },
+  { 
+    name: "Foundational C# with Microsoft", 
+    issuer: "freeCodeCamp", 
+    date: "Jul 2024",
+    icon: "💻"
+  },
+  { 
+    name: "Introduction to Git and GitHub", 
+    issuer: "Google", 
+    date: "Jun 2024",
+    icon: "🔧"
+  },
+  { 
+    name: "Test Automation Foundations", 
+    issuer: "Udemy", 
+    date: "Nov 2024",
+    icon: "🧪"
+  },
+  { 
+    name: "Introduction to DevOps", 
+    issuer: "IBM", 
+    date: "Aug 2024",
+    icon: "⚙️"
+  },
+  { 
+    name: "Jira Fundamentals", 
+    issuer: "Coursera", 
+    date: "Nov 2024",
+    icon: "📋"
+  }
 ];
 
 const achievements = [
-  { icon: Award, title: "Top Performer", desc: "Capgemini Excellence Award 2024", color: "text-blue-500" },
-  { icon: Target, title: "Project Success", desc: "100% client satisfaction rate", color: "text-teal-500" },
-  { icon: Zap, title: "Innovation", desc: "5+ IoT solutions deployed", color: "text-cyan-500" },
-  { icon: Star, title: "Recognition", desc: "Featured in tech publications", color: "text-green-500" }
+  { icon: Award, title: "Azure AI Certified", desc: "Microsoft Azure AI Fundamentals", color: "text-blue-500" },
+  { icon: Target, title: "Full-Stack Developer", desc: "React, Node.js, Flutter", color: "text-teal-500" },
+  { icon: Zap, title: "IoT Specialist", desc: "5+ IoT systems deployed", color: "text-cyan-500" },
+  { icon: Star, title: "DevOps & Git Expert", desc: "CI/CD & Version Control", color: "text-green-500" }
 ];
 
 const timeline = [
-  { year: "2024", title: "Senior QA Engineer", company: "Capgemini", current: true },
-  { year: "2023", title: "IoT Specialist", company: "Tech Solutions", current: false },
-  { year: "2022", title: "Full Stack Developer", company: "StartUp Inc", current: false },
-  { year: "2021", title: "Junior Developer", company: "Dev Agency", current: false }
+  { year: "2024", title: "Software Quality Engineer", company: "Capgemini Engineering", current: true },
+  { year: "2023", title: "IoT System Developer", company: "Smart Kokusai", current: false },
+  { year: "2022", title: "Platform Architect", company: "CIN Group", current: false },
+  { year: "2021", title: "Computer Engineering Student", company: "ISTIC", current: false }
 ];
 
 export function CreativeAboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -38,6 +81,43 @@ export function CreativeAboutSection() {
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
     <section ref={containerRef} className="py-32 relative overflow-hidden">
@@ -146,18 +226,17 @@ export function CreativeAboutSection() {
                   
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      Born and raised in <strong className="text-blue-600 dark:text-blue-400">Tunisia 🇹🇳</strong>, 
-                      I discovered my passion for technology early on. What started as curiosity about how things work 
-                      evolved into a deep love for creating digital solutions that make a real impact.
+                      I am a passionate and versatile <strong className="text-blue-600 dark:text-blue-400">IoT & Software Developer</strong> with a strong foundation in embedded systems, automotive technologies, and full-stack development. With hands-on experience in both hardware and software domains, I specialize in building intelligent, secure, and user-centric systems that bridge the physical and digital worlds.
                     </p>
                     <p>
                       Currently serving as an <strong className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                      Automotive Software QA Engineer at Capgemini Engineering</strong>, I ensure the highest quality 
-                      standards for next-generation automotive software while pursuing my passion for IoT and full-stack development.
+                      Automotive Software Tester at Capgemini Engineering</strong>, I develop and execute comprehensive test plans for automotive software systems, focusing on safety, compliance, and performance optimization for next-generation automotive technologies.
                     </p>
                     <p>
-                      My unique blend of QA expertise, development skills, and IoT knowledge positions me to bridge 
-                      the gap between robust software quality and innovative technical solutions.
+                      My work spans across automotive software testing, IoT system architecture, and investment platform development, combining technical depth with a keen eye for design and usability. I thrive in hybrid and collaborative environments, where innovation, problem-solving, and continuous learning are key.
+                    </p>
+                    <p>
+                      🎓 Currently pursuing my <strong className="text-teal-600 dark:text-teal-400">Engineering Degree in Embedded Ambient and Mobile Systems</strong> at ESPRIT (2023-2027), building upon my Bachelor's in Computer Engineering from ISTIC.
                     </p>
                   </div>
                 </CardContent>
@@ -201,6 +280,52 @@ export function CreativeAboutSection() {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Key Statistics */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-4"
+              >
+                {[
+                  { number: "5+", label: "Years Experience", icon: "💼", color: "from-blue-500 to-cyan-500" },
+                  { number: "20+", label: "Projects Completed", icon: "🚀", color: "from-green-500 to-teal-500" },
+                  { number: "8+", label: "Certifications", icon: "🏆", color: "from-purple-500 to-pink-500" },
+                  { number: "4", label: "Programming Languages", icon: "💻", color: "from-orange-500 to-red-500" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="group cursor-pointer"
+                  >
+                    <Card className="h-full text-center p-4 bg-gradient-to-br from-white/80 to-gray-50/80 dark:from-gray-900/80 dark:to-gray-800/80 border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm group-hover:shadow-xl transition-all duration-300">
+                      <CardContent className="p-2">
+                        <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+                        <motion.div 
+                          className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ duration: 0.8, delay: index * 0.2 }}
+                        >
+                          {stat.number}
+                        </motion.div>
+                        <div className="text-xs text-muted-foreground font-medium leading-tight">{stat.label}</div>
+                        
+                        {/* Animated background on hover */}
+                        <motion.div
+                          className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 rounded-lg transition-opacity duration-300`}
+                        />
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
 
             {/* Right Column - Skills & Achievements */}
@@ -218,29 +343,24 @@ export function CreativeAboutSection() {
                     Technical Expertise
                   </h3>
                   <div className="space-y-6">
-                    {skills.map((skill, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium">{skill.name}</span>
-                          <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                        </div>
-                        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: index * 0.1 }}
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
+                    <div className="flex flex-wrap gap-3">
+                      {skills.map((skill, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <Badge 
+                            className={`bg-gradient-to-r ${skill.color} text-white border-none px-3 py-1.5 text-sm font-medium cursor-pointer hover:shadow-lg transition-all duration-300`}
+                          >
+                            {skill.name}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -267,12 +387,60 @@ export function CreativeAboutSection() {
                 ))}
               </div>
 
+              {/* Certifications */}
+              <Card className="relative bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200/50 dark:border-purple-800/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    🏆 Recent Certifications
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {certifications.map((cert, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                      >
+                        <div className="flex items-start gap-3 p-4 rounded-lg bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-purple-200/30 dark:border-purple-700/30 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300">
+                          <span className="text-2xl">{cert.icon}</span>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-sm leading-tight mb-1">{cert.name}</h4>
+                            <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">{cert.issuer}</p>
+                            <p className="text-xs text-muted-foreground">{cert.date}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Fun Facts */}
               <Card className="relative bg-gradient-to-br from-green-50/80 to-teal-50/80 dark:from-green-900/20 dark:to-teal-900/20 border-green-200/50 dark:border-green-800/50 backdrop-blur-sm">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
-                    When I&apos;m Not Coding
+                    Languages & Interests
                   </h3>
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">🇹🇳 Arabic</span>
+                      <span className="text-sm text-green-600 font-semibold">Native</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">🇺🇸 English</span>
+                      <span className="text-sm text-blue-600 font-semibold">Fluent</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">🇫🇷 French</span>
+                      <span className="text-sm text-teal-600 font-semibold">Professional</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">🇩🇪 German</span>
+                      <span className="text-sm text-gray-600 font-semibold">Elementary</span>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 dark:bg-gray-800/50">
                       <Coffee className="w-5 h-5 text-amber-600" />
@@ -283,12 +451,12 @@ export function CreativeAboutSection() {
                       <span className="text-sm">Open Source</span>
                     </div>
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 dark:bg-gray-800/50">
-                      <span className="text-lg">🎮</span>
-                      <span className="text-sm">Gaming</span>
+                      <span className="text-lg">🚗</span>
+                      <span className="text-sm">Automotive Tech</span>
                     </div>
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-white/50 dark:bg-gray-800/50">
-                      <span className="text-lg">📚</span>
-                      <span className="text-sm">Tech Blogs</span>
+                      <span className="text-lg">🤖</span>
+                      <span className="text-sm">AI & ML</span>
                     </div>
                   </div>
                 </CardContent>
