@@ -9,16 +9,19 @@ import { ExternalLink, Github, Code, Palette, Smartphone, Globe, Database, Cpu, 
 const projects = [
   {
     id: 1,
-    title: "Smart Home IoT Platform",
-    description: "A comprehensive IoT platform for home automation with real-time monitoring, voice control, and predictive analytics.",
+    title: "ArchiFlow - Architecture Office Management",
+    description: "Comprehensive Qt-based desktop application for architecture office management with AI integration, mapping services, and modular design for complete business workflow automation.",
     image: "/api/placeholder/600/400",
-    technologies: ["React", "Node.js", "IoT", "MongoDB", "WebSocket"],
-    category: "IoT Development",
+    technologies: ["Qt 6.x", "C++17", "SQLite", "Groq AI", "Mapbox", "CMake"],
+    category: "Desktop Application",
     status: "Live",
     featured: true,
-    color: "from-blue-500 to-teal-600",
+    color: "from-indigo-500 to-purple-600",
     icon: Cpu,
-    metrics: { users: "2.5K", uptime: "99.9%", devices: "15K+" }
+    metrics: { modules: "6", features: "50+", integration: "Full AI" },
+    github: "https://github.com/Attafii/Archiflow",
+    projectUrl: "/projects/archiflow",
+    highlights: ["Employee Management", "Project Tracking", "Contract Management", "Materials Inventory", "Invoice Generation", "AI Assistant"]
   },
   {
     id: 2,
@@ -87,7 +90,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "IoT Development", "Web Development", "Mobile Development", "AI/ML", "Blockchain", "Design Systems"];
+const categories = ["All", "Desktop Application", "Web Development", "Mobile Development", "AI/ML", "Blockchain", "Design Systems"];
 
 export function ModernProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -249,6 +252,7 @@ export function ModernProjectsSection() {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+                          onClick={() => project.projectUrl && window.open(project.projectUrl, '_blank')}
                         >
                           <ExternalLink className="w-5 h-5 text-white" />
                         </motion.button>
@@ -256,6 +260,7 @@ export function ModernProjectsSection() {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+                          onClick={() => project.github && window.open(project.github, '_blank')}
                         >
                           <Github className="w-5 h-5 text-white" />
                         </motion.button>
