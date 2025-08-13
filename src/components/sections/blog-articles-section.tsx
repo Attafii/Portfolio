@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 import { 
   BookOpen, 
   Calendar, 
@@ -22,7 +23,7 @@ import {
   TrendingUp
 } from 'lucide-react'
 
-// Mock blog data - in production, this would come from a CMS or API
+// Blog articles data with proper routing links
 const blogArticles = [
   {
     id: 1,
@@ -38,12 +39,13 @@ const blogArticles = [
     image: "/blog/iot-azure.jpg",
     views: 1247,
     likes: 89,
-    status: "published"
+    status: "published",
+    slug: "building-scalable-iot-solutions-azure"
   },
   {
     id: 2,
     title: "Modern React Patterns: Hooks, Context, and Performance",
-    excerpt: "Exploring advanced React patterns that improve code reusability, maintainability, and application performance in large-scale projects.",
+    excerpt: "Advanced patterns for building maintainable and performant React applications with hooks, context, and optimization techniques.",
     content: "Full article content would be here...",
     author: "Ahmed Attafi",
     publishDate: "2025-01-10",
@@ -54,39 +56,42 @@ const blogArticles = [
     image: "/blog/react-patterns.jpg",
     views: 2156,
     likes: 134,
-    status: "published"
+    status: "published",
+    slug: "modern-react-patterns-performance"
   },
   {
     id: 3,
-    title: "Database Optimization Techniques for High-Traffic Applications",
-    excerpt: "Proven strategies for optimizing database performance, including indexing, query optimization, and caching mechanisms for enterprise applications.",
+    title: "Database Performance Optimization: From Slow Queries to Lightning Fast",
+    excerpt: "Complete guide to identifying bottlenecks and optimizing database performance for production applications.",
     content: "Full article content would be here...",
     author: "Ahmed Attafi",
-    publishDate: "2025-01-05",
-    readingTime: 10,
+    publishDate: "2025-01-08",
+    readingTime: 15,
     category: "Backend",
-    tags: ["Database", "SQL", "Performance", "Optimization"],
-    featured: false,
+    tags: ["Database", "Performance", "SQL", "Optimization", "PostgreSQL", "Indexing"],
+    featured: true,
     image: "/blog/database-optimization.jpg",
-    views: 892,
-    likes: 67,
-    status: "published"
+    views: 3842,
+    likes: 287,
+    status: "published",
+    slug: "database-performance-optimization"
   },
   {
     id: 4,
-    title: "Microservices Architecture: Lessons from Production",
-    excerpt: "Real-world insights into implementing microservices at scale, covering service communication, data consistency, and deployment strategies.",
+    title: "Microservices Architecture: Design Patterns and Best Practices",
+    excerpt: "Build scalable, maintainable microservices systems with proven architectural patterns and implementation strategies.",
     content: "Full article content would be here...",
     author: "Ahmed Attafi",
-    publishDate: "2024-12-28",
-    readingTime: 15,
+    publishDate: "2025-01-06",
+    readingTime: 18,
     category: "Architecture",
-    tags: ["Microservices", "Docker", "Kubernetes", "DevOps"],
+    tags: ["Microservices", "Architecture", "Distributed Systems", "API Design", "DevOps"],
     featured: false,
     image: "/blog/microservices.jpg",
-    views: 1543,
-    likes: 98,
-    status: "published"
+    views: 4721,
+    likes: 356,
+    status: "published",
+    slug: "microservices-architecture-patterns"
   },
   {
     id: 5,
@@ -102,7 +107,8 @@ const blogArticles = [
     image: "/blog/typescript-practices.jpg",
     views: 734,
     likes: 45,
-    status: "published"
+    status: "published",
+    slug: "typescript-best-practices-enterprise"
   },
   {
     id: 6,
@@ -118,7 +124,8 @@ const blogArticles = [
     image: "/blog/web-security.jpg",
     views: 1098,
     likes: 76,
-    status: "published"
+    status: "published",
+    slug: "web-security-best-practices"
   }
 ]
 
@@ -329,14 +336,16 @@ export function BlogArticlesSection() {
                           ))}
                         </div>
                         
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-blue-600 dark:text-blue-400 hover:bg-blue-500/10 group"
-                        >
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+                        <Link href={`/blog/${article.slug}`}>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-blue-600 dark:text-blue-400 hover:bg-blue-500/10 group"
+                          >
+                            Read More
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>
@@ -416,13 +425,15 @@ export function BlogArticlesSection() {
                             ))}
                           </div>
                           
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/10 p-2"
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </Button>
+                          <Link href={`/blog/${article.slug}`}>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/10 p-2"
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </Button>
+                          </Link>
                         </div>
                       </CardContent>
                     </Card>
