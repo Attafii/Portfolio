@@ -8,6 +8,7 @@ import { CreativeAboutSection } from "@/components/sections/creative-about-secti
 import { ModernProjectsSection } from "@/components/sections/modern-projects-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { BlogSection } from "@/components/sections/blog-section";
+import { BlogArticlesSection } from "@/components/sections/blog-articles-section";
 import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { GitHubActivitySection } from "@/components/sections/github-activity-section";
@@ -354,7 +355,7 @@ export default function Home() {
           <TestimonialsSection />
         </section>
         <section id="blog">
-          <BlogSection />
+          <BlogArticlesSection />
         </section>
         <NewsletterSection />
         <section id="contact">
