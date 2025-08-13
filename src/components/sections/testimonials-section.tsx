@@ -12,7 +12,8 @@ import {
   Users,
   Award,
   Linkedin,
-  ExternalLink
+  ExternalLink,
+  UserCheck
 } from "lucide-react";
 
 interface Testimonial {
@@ -32,68 +33,39 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: "1",
-    name: "Sarah Johnson",
-    role: "CTO",
-    company: "TechFlow Solutions",
-    avatar: "/testimonials/sarah.jpg",
-    content: "Ahmed delivered an exceptional IoT monitoring system that exceeded our expectations. His attention to detail and technical expertise in both hardware and software integration is remarkable. The solution he built has improved our operational efficiency by 40%.",
+    name: "Eya Khemiri",
+    role: "Software Developer and Team Leader",
+    company: "Capgemini Engineering",
+    avatar: "/testimonials/eya.jpg",
+    content: "Working with Ahmed has been an outstanding experience. He is highly determined and focused on finding effective solutions, consistently handling obstacles with efficiency and skill. Every project we’ve worked on together has been delivered quickly without compromising on quality, demonstrating remarkable attention to detail and a strong commitment to excellence. His professionalism and expertise make him an indispensable contributor to any future project",
     rating: 5,
-    project: "Industrial IoT Monitoring System",
-    linkedinUrl: "https://linkedin.com/in/sarah-johnson",
-    companyUrl: "https://techflow.com",
-    date: "2024-01-15"
+    project: "IntelliConnect & Multiple Projects",
+    linkedinUrl: "https://www.linkedin.com/in/eya-khemiri/",
+    date: "2025-02-15"
   },
   {
     id: "2",
-    name: "Michael Chen",
-    role: "Product Manager",
-    company: "Automotive Innovations",
-    avatar: "/testimonials/michael.jpg",
-    content: "Working with Ahmed on our automotive software project was a game-changer. His deep understanding of real-time systems and embedded programming helped us deliver a critical feature ahead of schedule. Highly recommended for complex technical projects.",
+    name: "Mohamed Ashref BNA",
+    role: "Solution Developer",
+    company: "Tessan Group",
+    avatar: "/ashrefjpeg.jpeg",
+    content: "Ahmed is an outstanding developer. We've worked on multiple projects together, and his dedication and technical skills never cease to amaze me. He has a unique ability to understand complex requirements and deliver elegant solutions. Always reliable and professional.",
     rating: 5,
-    project: "Automotive Control System",
-    linkedinUrl: "https://linkedin.com/in/michael-chen",
-    companyUrl: "https://autoinnovations.com",
-    date: "2023-12-20"
+    project: "Collaborative Development Projects",
+    linkedinUrl: "https://www.linkedin.com/in/mohamedashrefbna/",
+    date: "2025-05-20"
   },
   {
     id: "3",
-    name: "Emily Rodriguez",
-    role: "Lead Developer",
-    company: "GreenTech Startup",
-    avatar: "/testimonials/emily.jpg",
-    content: "Ahmed's full-stack development skills are outstanding. He built our entire web platform from scratch using Next.js and created a beautiful, responsive design. His code quality and documentation made future maintenance a breeze.",
+    name: "Rayen Fassatoui",
+    role: "Web Developer",
+    company: "Aquil App",
+    avatar: "/rayen.jpeg",
+    content: "Ahmed is an exceptional developer and a great Coworker to work with. Our collaboration on various projects has been smooth and productive. His attention to detail, clean code practices, and innovative thinking make him a valuable team member. I highly recommend working with him.",
     rating: 5,
-    project: "Sustainability Platform",
-    linkedinUrl: "https://linkedin.com/in/emily-rodriguez",
-    companyUrl: "https://greentech.startup",
-    date: "2023-11-10"
-  },
-  {
-    id: "4",
-    name: "David Kumar",
-    role: "Engineering Director",
-    company: "SmartCity Solutions",
-    avatar: "/testimonials/david.jpg",
-    content: "Ahmed's expertise in IoT and database design was crucial for our smart city project. He designed a scalable architecture that handles thousands of sensors efficiently. His problem-solving approach and communication skills are exceptional.",
-    rating: 5,
-    project: "Smart City Infrastructure",
-    linkedinUrl: "https://linkedin.com/in/david-kumar",
-    companyUrl: "https://smartcity.solutions",
-    date: "2023-10-05"
-  },
-  {
-    id: "5",
-    name: "Lisa Thompson",
-    role: "Founder",
-    company: "HealthTech Innovations",
-    avatar: "/testimonials/lisa.jpg",
-    content: "Ahmed developed a sophisticated mobile app for our healthcare platform. His attention to user experience and security requirements was impressive. The app has received excellent feedback from our users and medical professionals.",
-    rating: 5,
-    project: "Healthcare Mobile App",
-    linkedinUrl: "https://linkedin.com/in/lisa-thompson",
-    companyUrl: "https://healthtech.innovations",
-    date: "2023-09-15"
+    project: "Software Development Projects",
+    linkedinUrl: "https://www.linkedin.com/in/rayenfassatoui/",
+    date: "2025-06-10"
   }
 ];
 
@@ -143,7 +115,7 @@ export function TestimonialsSection() {
           >
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
               <Users className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-medium text-green-700 dark:text-green-300">Client Testimonials</span>
+              <span className="text-sm font-medium text-green-700 dark:text-green-300">Colleague Testimonials</span>
             </div>
 
             <h2 className="text-5xl md:text-7xl font-bold mb-6">
@@ -154,7 +126,7 @@ export function TestimonialsSection() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="inline-block bg-gradient-to-r from-green-600 via-blue-600 to-teal-600 bg-clip-text text-transparent"
               >
-                What Clients
+                What Colleagues
               </motion.span>
               <br />
               <motion.span
@@ -175,8 +147,8 @@ export function TestimonialsSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl text-muted-foreground max-w-3xl mx-auto"
             >
-              Don&apos;t just take my word for it. Here&apos;s what industry leaders and satisfied clients 
-              have to say about working with me on their projects.
+              Don&apos;t just take my word for it. Here&apos;s what close colleagues and collaborators 
+              have to say about working with me on various projects and initiatives.
             </motion.p>
           </motion.div>
 
@@ -189,10 +161,10 @@ export function TestimonialsSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
           >
             {[
-              { icon: Users, label: "Happy Clients", value: "50+" },
-              { icon: Award, label: "Projects Completed", value: "75+" },
-              { icon: Star, label: "Average Rating", value: "4.9/5" },
-              { icon: Quote, label: "Success Rate", value: "98%" }
+              { icon: Users, label: "Close Colleagues", value: "3+" },
+              { icon: Award, label: "Projects Completed", value: "15+" },
+              { icon: Star, label: "Average Rating", value: "5.0/5" },
+              { icon: Quote, label: "Collaboration Rate", value: "100%" }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -235,8 +207,16 @@ export function TestimonialsSection() {
                       transition={{ duration: 0.5 }}
                       className="mb-6"
                     >
-                      <div className="w-24 h-24 mx-auto md:mx-0 mb-4 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center">
-                        <Users className="w-12 h-12 text-green-600" />
+                      <div className="w-24 h-24 mx-auto md:mx-0 mb-4 rounded-full overflow-hidden bg-gradient-to-br from-green-500/20 to-blue-500/20 flex items-center justify-center">
+                        {currentTestimonial.id === "1" ? (
+                          <UserCheck className="w-12 h-12 text-green-600" />
+                        ) : (
+                          <img 
+                            src={currentTestimonial.avatar} 
+                            alt={currentTestimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
                       </div>
                       
                       <h3 className="text-xl font-bold mb-2">{currentTestimonial.name}</h3>
@@ -362,18 +342,18 @@ export function TestimonialsSection() {
             <Card className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border-green-300/30 dark:border-green-700/30 backdrop-blur-sm">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                  Ready to join these satisfied clients?
+                  Ready to collaborate on your next project?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Let&apos;s discuss your project and see how I can help you achieve your goals. 
-                  I&apos;m committed to delivering exceptional results that exceed expectations.
+                  Let&apos;s discuss your project ideas and see how we can work together to bring them to life. 
+                  I&apos;m committed to delivering high-quality results through effective collaboration.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white">
-                    Start Your Project
+                    Start Collaboration
                   </Button>
                   <Button variant="outline" className="border-green-200 dark:border-green-800">
-                    View More Reviews
+                    View Work Together
                   </Button>
                 </div>
               </CardContent>

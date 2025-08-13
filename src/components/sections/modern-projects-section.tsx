@@ -49,32 +49,6 @@ const projects = [
   },
   {
     id: 3,
-    title: "AI Content Generator",
-    description: "Advanced AI-powered content generation platform with natural language processing and creative writing capabilities.",
-    image: "/api/placeholder/600/400",
-    technologies: ["Python", "TensorFlow", "OpenAI", "FastAPI", "Docker"],
-    category: "AI/ML",
-    status: "Beta",
-    featured: false,
-    color: "from-teal-500 to-cyan-600",
-    icon: Zap,
-    metrics: { generated: "1M+", languages: "12", accuracy: "96%" }
-  },
-  {
-    id: 4,
-    title: "Blockchain Voting System",
-    description: "Decentralized voting platform ensuring transparency, security, and immutability for democratic processes.",
-    image: "/api/placeholder/600/400",
-    technologies: ["Solidity", "Web3", "React", "IPFS", "MetaMask"],
-    category: "Blockchain",
-    status: "Live",
-    featured: false,
-    color: "from-yellow-500 to-red-600",
-    icon: Globe,
-    metrics: { votes: "25K+", security: "100%", transparency: "Full" }
-  },
-  {
-    id: 5,
     title: "Africa Above - Corporate Website",
     description: "Professional corporate website built with WordPress and Elementor, featuring modern design, responsive layout, and optimized performance for business presence.",
     image: "/api/placeholder/600/400",
@@ -89,7 +63,7 @@ const projects = [
     highlights: ["Custom Design", "Mobile Optimized", "SEO Friendly", "Fast Loading"]
   },
   {
-    id: 6,
+    id: 4,
     title: "Adams Coffee Co - E-commerce Site",
     description: "Professional coffee e-commerce website with custom design, product showcase, and seamless user experience using WordPress and Elementor.",
     image: "/api/placeholder/600/400",
@@ -104,7 +78,7 @@ const projects = [
     highlights: ["E-commerce Integration", "Payment Processing", "Product Catalog", "Responsive Design"]
   },
   {
-    id: 7,
+    id: 5,
     title: "Blade Master - Business Website",
     description: "Modern business website showcasing services and company profile with professional design, built using WordPress and Elementor for optimal performance.",
     image: "/api/placeholder/600/400",
@@ -117,23 +91,10 @@ const projects = [
     metrics: { uptime: "99.9%", speed: "A+", design: "Modern" },
     liveUrl: "https://blademaster.co.za",
     highlights: ["Professional Design", "Service Showcase", "Contact Integration", "Performance Optimized"]
-  },
-  {
-    id: 8,
-    title: "Design System Library",
-    description: "Comprehensive design system with reusable components, design tokens, and automated testing for consistent UX.",
-    image: "/api/placeholder/600/400",
-    technologies: ["Storybook", "Figma", "React", "Sass", "Jest"],
-    category: "Design Systems",
-    status: "Live",
-    featured: false,
-    color: "from-teal-500 to-cyan-600",
-    icon: Palette,
-    metrics: { components: "200+", teams: "15", consistency: "98%" }
   }
 ];
 
-const categories = ["All", "Desktop Application", "Web Development", "WordPress Development", "AI/ML", "Blockchain", "Design Systems"];
+const categories = ["All", "Desktop Application", "Web Development", "WordPress Development"];
 
 export function ModernProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -150,8 +111,6 @@ export function ModernProjectsSection() {
   const filteredProjects = selectedCategory === "All" 
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
-
-  const featuredProjects = projects.filter(project => project.featured);
 
   const handleMouseMove = (event: React.MouseEvent) => {
     if (containerRef.current) {
@@ -252,7 +211,7 @@ export function ModernProjectsSection() {
             ))}
           </motion.div>
 
-          {/* Featured Projects - Large Cards */}
+          {/* Filtered Projects - Large Cards */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -261,10 +220,10 @@ export function ModernProjectsSection() {
             className="mb-20"
           >
             <h3 className="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Featured Projects
+              {selectedCategory === "All" ? "All Projects" : selectedCategory}
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project, index) => (
+              {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 60 }}
