@@ -11,6 +11,7 @@ const skills = [
   { name: "Python & C/C++", color: "from-purple-400 to-purple-600" },
   { name: "Node.js & Express", color: "from-green-400 to-green-600" },
   { name: "Flutter & Mobile Dev", color: "from-orange-400 to-red-600" },
+  { name: "WordPress & Elementor", color: "from-blue-600 to-indigo-600" },
   { name: "Arduino & Raspberry Pi", color: "from-teal-400 to-teal-600" },
   { name: "IoT & Embedded Systems", color: "from-blue-400 to-blue-600" },
   { name: "Azure Cloud & AI", color: "from-blue-500 to-teal-500" },
@@ -60,11 +61,13 @@ const achievements = [
   { icon: Award, title: "Azure AI Certified", desc: "Microsoft Azure AI Fundamentals", color: "text-blue-500" },
   { icon: Target, title: "Full-Stack Developer", desc: "React, Node.js, Flutter", color: "text-teal-500" },
   { icon: Zap, title: "IoT Specialist", desc: "5+ IoT systems deployed", color: "text-cyan-500" },
-  { icon: Star, title: "DevOps & Git Expert", desc: "CI/CD & Version Control", color: "text-green-500" }
+  { icon: Star, title: "WordPress Expert", desc: "10+ websites delivered", color: "text-orange-500" },
+  { icon: Code, title: "DevOps & Git Expert", desc: "CI/CD & Version Control", color: "text-green-500" }
 ];
 
 const timeline = [
   { year: "2024", title: "Software Quality Engineer", company: "Capgemini Engineering", current: true },
+  { year: "2023-2024", title: "Freelance Web Developer", company: "Independent", current: true },
   { year: "2023", title: "IoT System Developer", company: "Smart Kokusai", current: false },
   { year: "2022", title: "Platform Architect", company: "CIN Group", current: false },
   { year: "2021", title: "Computer Engineering Student", company: "ISTIC", current: false }

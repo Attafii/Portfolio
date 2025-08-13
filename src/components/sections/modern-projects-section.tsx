@@ -25,32 +25,30 @@ const projects = [
   },
   {
     id: 2,
-    title: "E-Commerce Analytics Dashboard",
-    description: "Real-time analytics platform with advanced data visualization, sales forecasting, and automated reporting.",
+    title: "IntelliConnect - Project Management Dashboard",
+    description: "Modern, comprehensive project management dashboard with AI-powered analytics, glassmorphism design, and intelligent insights. Features multilingual chatbot, 3D elements, and advanced data visualization.",
     image: "/api/placeholder/600/400",
-    technologies: ["Next.js", "TypeScript", "D3.js", "PostgreSQL", "Redis"],
+    technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion", "Spline 3D", "Radix UI"],
     category: "Web Development",
     status: "Live",
     featured: true,
-    color: "from-green-500 to-teal-600",
-    icon: Database,
-    metrics: { revenue: "$2M+", accuracy: "94%", reports: "500+" }
+    color: "from-blue-500 to-teal-600",
+    icon: Zap,
+    metrics: { modules: "8", features: "AI-Powered", design: "3D + Glass" },
+    github: "https://github.com/Attafii/IntelliConnect",
+    highlights: [
+      "AI Chatbot Assistant (3 Languages)", 
+      "Glassmorphism UI Design", 
+      "3D Spline Models Integration", 
+      "Document Intelligence", 
+      "Real-time Analytics", 
+      "Global Search System",
+      "Project Timeline Management",
+      "Financial Dashboard"
+    ]
   },
   {
     id: 3,
-    title: "Mobile Banking App",
-    description: "Secure mobile banking application with biometric authentication, instant transfers, and expense tracking.",
-    image: "/api/placeholder/600/400",
-    technologies: ["React Native", "Firebase", "Blockchain", "AI/ML"],
-    category: "Mobile Development",
-    status: "Development",
-    featured: true,
-    color: "from-cyan-500 to-blue-600",
-    icon: Smartphone,
-    metrics: { downloads: "50K+", rating: "4.8★", security: "100%" }
-  },
-  {
-    id: 4,
     title: "AI Content Generator",
     description: "Advanced AI-powered content generation platform with natural language processing and creative writing capabilities.",
     image: "/api/placeholder/600/400",
@@ -63,7 +61,7 @@ const projects = [
     metrics: { generated: "1M+", languages: "12", accuracy: "96%" }
   },
   {
-    id: 5,
+    id: 4,
     title: "Blockchain Voting System",
     description: "Decentralized voting platform ensuring transparency, security, and immutability for democratic processes.",
     image: "/api/placeholder/600/400",
@@ -76,7 +74,52 @@ const projects = [
     metrics: { votes: "25K+", security: "100%", transparency: "Full" }
   },
   {
+    id: 5,
+    title: "Africa Above - Corporate Website",
+    description: "Professional corporate website built with WordPress and Elementor, featuring modern design, responsive layout, and optimized performance for business presence.",
+    image: "/api/placeholder/600/400",
+    technologies: ["WordPress", "Elementor", "PHP", "MySQL", "CSS3"],
+    category: "WordPress Development",
+    status: "Live",
+    featured: true,
+    color: "from-orange-500 to-amber-600",
+    icon: Globe,
+    metrics: { load: "<2s", responsive: "100%", seo: "A+" },
+    liveUrl: "https://africaabove.com",
+    highlights: ["Custom Design", "Mobile Optimized", "SEO Friendly", "Fast Loading"]
+  },
+  {
     id: 6,
+    title: "Adams Coffee Co - E-commerce Site",
+    description: "Professional coffee e-commerce website with custom design, product showcase, and seamless user experience using WordPress and Elementor.",
+    image: "/api/placeholder/600/400",
+    technologies: ["WordPress", "WooCommerce", "Elementor", "Payment Gateway"],
+    category: "WordPress Development",
+    status: "Live",
+    featured: true,
+    color: "from-amber-600 to-yellow-600",
+    icon: Globe,
+    metrics: { products: "50+", conversion: "High", mobile: "100%" },
+    liveUrl: "https://adamscoffeeco.co.za",
+    highlights: ["E-commerce Integration", "Payment Processing", "Product Catalog", "Responsive Design"]
+  },
+  {
+    id: 7,
+    title: "Blade Master - Business Website",
+    description: "Modern business website showcasing services and company profile with professional design, built using WordPress and Elementor for optimal performance.",
+    image: "/api/placeholder/600/400",
+    technologies: ["WordPress", "Elementor", "Custom CSS", "Performance Optimization"],
+    category: "WordPress Development",
+    status: "Live",
+    featured: true,
+    color: "from-slate-500 to-gray-600",
+    icon: Globe,
+    metrics: { uptime: "99.9%", speed: "A+", design: "Modern" },
+    liveUrl: "https://blademaster.co.za",
+    highlights: ["Professional Design", "Service Showcase", "Contact Integration", "Performance Optimized"]
+  },
+  {
+    id: 8,
     title: "Design System Library",
     description: "Comprehensive design system with reusable components, design tokens, and automated testing for consistent UX.",
     image: "/api/placeholder/600/400",
@@ -90,7 +133,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Desktop Application", "Web Development", "Mobile Development", "AI/ML", "Blockchain", "Design Systems"];
+const categories = ["All", "Desktop Application", "Web Development", "WordPress Development", "AI/ML", "Blockchain", "Design Systems"];
 
 export function ModernProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -248,22 +291,32 @@ export function ModernProjectsSection() {
                         animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
-                          onClick={() => project.projectUrl && window.open(project.projectUrl, '_blank')}
-                        >
-                          <ExternalLink className="w-5 h-5 text-white" />
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
-                          onClick={() => project.github && window.open(project.github, '_blank')}
-                        >
-                          <Github className="w-5 h-5 text-white" />
-                        </motion.button>
+                        {/* Live Site Button */}
+                        {(project.liveUrl || project.projectUrl) && (
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+                            onClick={() => {
+                              const url = project.liveUrl || project.projectUrl;
+                              if (url) window.open(url, '_blank');
+                            }}
+                          >
+                            <ExternalLink className="w-5 h-5 text-white" />
+                          </motion.button>
+                        )}
+                        
+                        {/* GitHub Button */}
+                        {project.github && (
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30"
+                            onClick={() => project.github && window.open(project.github, '_blank')}
+                          >
+                            <Github className="w-5 h-5 text-white" />
+                          </motion.button>
+                        )}
                       </motion.div>
 
                       {/* Status Badge */}
