@@ -489,7 +489,27 @@ export function CreativeAboutSection() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-block"
                 >
-                  <div className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                  <div 
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        // Pre-fill contact form with "Get In Touch" specific template
+                        setTimeout(() => {
+                          const subjectField = document.querySelector('input[name="subject"]') as HTMLInputElement;
+                          const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+                          if (subjectField) subjectField.value = "Getting In Touch - Introduction & Discussion";
+                          if (messageField) messageField.value = "Hi Ahmed!\n\nI came across your portfolio and I'm impressed by your work. I'd love to get in touch to introduce myself and discuss potential opportunities.\n\nI'm particularly interested in:\n- Learning more about your expertise\n- Exploring how we might work together\n- Discussing my current needs/projects\n\nLooking forward to connecting with you!\n\nBest regards,";
+                          
+                          // Trigger change events to update form state
+                          const changeEvent = new Event('input', { bubbles: true });
+                          if (subjectField) subjectField.dispatchEvent(changeEvent);
+                          if (messageField) messageField.dispatchEvent(changeEvent);
+                        }, 500);
+                      }
+                    }}
+                    className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                  >
                     Get In Touch
                   </div>
                 </motion.div>

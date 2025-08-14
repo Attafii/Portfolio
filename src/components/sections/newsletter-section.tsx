@@ -70,7 +70,7 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section id="newsletter" className="py-32 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-teal-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:via-teal-900/20 dark:to-cyan-900/20" />

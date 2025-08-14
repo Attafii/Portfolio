@@ -349,10 +349,36 @@ export function TestimonialsSection() {
                   I&apos;m committed to delivering high-quality results through effective collaboration.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white">
+                  <Button 
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        // Pre-fill contact form with "Start Collaboration" specific template
+                        setTimeout(() => {
+                          const subjectField = document.querySelector('input[name="subject"]') as HTMLInputElement;
+                          const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+                          if (subjectField) subjectField.value = "Collaboration Opportunity - Partnership Proposal";
+                          if (messageField) messageField.value = "Hi Ahmed!\n\nAfter reading the testimonials and seeing your work, I'm interested in exploring a collaboration opportunity.\n\nCollaboration Details:\n- Type of collaboration: [Joint project, partnership, subcontracting, etc.]\n- My expertise/role: [What you bring to the table]\n- Project scope: [What we'd be working on together]\n- Timeline: [Proposed collaboration timeline]\n- Benefits: [How this collaboration would be mutually beneficial]\n\nI believe our combined skills could deliver exceptional results. Let's discuss how we can work together!\n\nLooking forward to your response,";
+                          
+                          // Trigger change events to update form state
+                          const changeEvent = new Event('input', { bubbles: true });
+                          if (subjectField) subjectField.dispatchEvent(changeEvent);
+                          if (messageField) messageField.dispatchEvent(changeEvent);
+                        }, 500);
+                      }
+                    }}
+                    className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white"
+                  >
                     Start Collaboration
                   </Button>
-                  <Button variant="outline" className="border-green-200 dark:border-green-800">
+                  <Button 
+                    onClick={() => {
+                      window.open('https://github.com/Attafii', '_blank');
+                    }}
+                    variant="outline" 
+                    className="border-green-200 dark:border-green-800"
+                  >
                     View Work Together
                   </Button>
                 </div>

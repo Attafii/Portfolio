@@ -495,6 +495,19 @@ export function BlogArticlesSection() {
                 Get notified when I publish new articles about software development, IoT solutions, and enterprise architecture.
               </p>
               <Button
+                onClick={() => {
+                  const newsletterSection = document.getElementById('newsletter');
+                  if (newsletterSection) {
+                    newsletterSection.scrollIntoView({ behavior: 'smooth' });
+                    // Focus on newsletter input after scrolling
+                    setTimeout(() => {
+                      const emailInput = document.querySelector('input[type="email"][placeholder*="newsletter" i], input[type="email"][placeholder*="email" i]') as HTMLInputElement;
+                      if (emailInput) {
+                        emailInput.focus();
+                      }
+                    }, 500);
+                  }
+                }}
                 size="lg"
                 className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white"
               >
