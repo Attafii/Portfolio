@@ -14,70 +14,20 @@ import {
   Activity,
   Flame,
   TrendingUp,
-  Users
+  Users,
+  RefreshCw,
+  AlertCircle,
+  Loader2
 } from 'lucide-react'
-
-// Mock GitHub data - in production, this would come from GitHub API
-const githubStats = {
-  totalRepos: 42,
-  totalStars: 156,
-  totalForks: 23,
-  totalContributions: 1247,
-  currentStreak: 15,
-  longestStreak: 47,
-  followers: 89,
-  following: 34
-}
-
-const languageStats = [
-  { name: 'TypeScript', percentage: 35, color: 'from-blue-500 to-blue-600' },
-  { name: 'JavaScript', percentage: 28, color: 'from-teal-500 to-teal-600' },
-  { name: 'Python', percentage: 18, color: 'from-cyan-500 to-cyan-600' },
-  { name: 'C#', percentage: 12, color: 'from-blue-400 to-blue-500' },
-  { name: 'SQL', percentage: 7, color: 'from-teal-400 to-teal-500' }
-]
-
-const recentRepos = [
-  {
-    name: 'Portfolio-Website',
-    description: 'Modern portfolio built with Next.js 15, TypeScript, and Tailwind CSS',
-    language: 'TypeScript',
-    stars: 12,
-    forks: 3,
-    updated: '2 days ago',
-    url: 'https://github.com/Attafii/Portfolio'
-  },
-  {
-    name: 'IoT-Smart-Home',
-    description: 'Smart home automation system using ESP32 and Azure IoT Hub',
-    language: 'C++',
-    stars: 8,
-    forks: 2,
-    updated: '1 week ago',
-    url: '#'
-  },
-  {
-    name: 'AI-Chatbot-Assistant',
-    description: 'Intelligent chatbot powered by Groq API and fine-tuned models',
-    language: 'Python',
-    stars: 15,
-    forks: 4,
-    updated: '3 days ago',
-    url: '#'
-  }
-]
-
-const contributionData = [
-  { day: 'Mon', contributions: 3 },
-  { day: 'Tue', contributions: 7 },
-  { day: 'Wed', contributions: 5 },
-  { day: 'Thu', contributions: 9 },
-  { day: 'Fri', contributions: 12 },
-  { day: 'Sat', contributions: 2 },
-  { day: 'Sun', contributions: 4 }
-]
+import { ContributionGraph } from '@/components/ui/contribution-graph'
+import { useGitHubData, fallbackGitHubData } from '@/hooks/useGitHubData'
 
 export function GitHubActivitySection() {
+  const { data, loading, error, refetch } = useGitHubData()
+  
+  // Use real data if available, fallback otherwise
+  const githubData = data || fallbackGitHubData
+  const isUsingFallback = !data && !loading
   return (
     <section className="relative py-20 bg-gradient-to-br from-blue-50/30 via-teal-50/30 to-cyan-50/30 dark:from-blue-950/20 dark:via-teal-950/20 dark:to-cyan-950/20">
       {/* Background Effects */}
@@ -114,9 +64,38 @@ export function GitHubActivitySection() {
                 Activity
               </span>
             </h2>
+            {/* Real-time indicator */}
+            <div className="flex items-center gap-2">
+              {loading && <Loader2 className="w-5 h-5 animate-spin text-blue-500" />}
+              {error && (
+                <button 
+                  onClick={refetch}
+                  className="flex items-center gap-1 text-red-500 hover:text-red-600 transition-colors"
+                  title="Retry fetching data"
+                >
+                  <AlertCircle className="w-4 h-4" />
+                  <RefreshCw className="w-4 h-4" />
+                </button>
+              )}
+              {data && !loading && (
+                <div className="flex items-center gap-1 text-green-500" title="Live data">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-xs font-medium">Live</span>
+                </div>
+              )}
+              {isUsingFallback && (
+                <div className="flex items-center gap-1 text-orange-500" title="Using cached data">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                  <span className="text-xs font-medium">Cached</span>
+                </div>
+              )}
+            </div>
           </div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A snapshot of my coding journey, contributions, and open-source projects
+            {error 
+              ? "Showing cached data - GitHub API temporarily unavailable" 
+              : "A live snapshot of my coding journey, contributions, and open-source projects"
+            }
           </p>
         </motion.div>
 
@@ -143,10 +122,10 @@ export function GitHubActivitySection() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   {[
-                    { label: 'Repositories', value: githubStats.totalRepos, icon: Code2, color: 'from-blue-500 to-blue-600' },
-                    { label: 'Total Stars', value: githubStats.totalStars, icon: Star, color: 'from-teal-500 to-teal-600' },
-                    { label: 'Forks', value: githubStats.totalForks, icon: GitFork, color: 'from-cyan-500 to-cyan-600' },
-                    { label: 'Followers', value: githubStats.followers, icon: Users, color: 'from-blue-400 to-teal-400' }
+                    { label: 'Repositories', value: githubData.user.totalRepos, icon: Code2, color: 'from-blue-500 to-blue-600' },
+                    { label: 'Total Stars', value: githubData.user.totalStars, icon: Star, color: 'from-teal-500 to-teal-600' },
+                    { label: 'Forks', value: githubData.user.totalForks, icon: GitFork, color: 'from-cyan-500 to-cyan-600' },
+                    { label: 'Followers', value: githubData.user.followers, icon: Users, color: 'from-blue-400 to-teal-400' }
                   ].map((stat, index) => (
                     <motion.div
                       key={stat.label}
@@ -174,14 +153,14 @@ export function GitHubActivitySection() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <Flame className="w-5 h-5 text-orange-500" />
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">Current Streak</span>
+                      <span className="font-semibold text-gray-700 dark:text-gray-300">Account Age</span>
                     </div>
                     <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
-                      {githubStats.currentStreak} days
+                      {githubData.user.accountAge} days
                     </Badge>
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
-                    Longest streak: {githubStats.longestStreak} days • Total contributions: {githubStats.totalContributions}
+                    Following: {githubData.user.following} • Total repositories: {githubData.user.totalRepos}
                   </div>
                 </div>
               </CardContent>
@@ -205,7 +184,7 @@ export function GitHubActivitySection() {
                 </div>
 
                 <div className="space-y-4">
-                  {contributionData.map((day) => (
+                  {githubData.contributionData.map((day, index) => (
                     <div key={day.day} className="flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-8">
                         {day.day}
@@ -233,7 +212,7 @@ export function GitHubActivitySection() {
         </div>
 
         {/* Language Stats and Recent Repositories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Language Statistics */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -251,7 +230,7 @@ export function GitHubActivitySection() {
                 </div>
 
                 <div className="space-y-4">
-                  {languageStats.map((lang, index) => (
+                  {githubData.languageStats.map((lang, index) => (
                     <motion.div
                       key={lang.name}
                       initial={{ opacity: 0, x: -20 }}
@@ -313,7 +292,7 @@ export function GitHubActivitySection() {
                 </div>
 
                 <div className="space-y-4">
-                  {recentRepos.map((repo, index) => (
+                  {githubData.repositories.slice(0, 3).map((repo, index) => (
                     <motion.div
                       key={repo.name}
                       initial={{ opacity: 0, y: 20 }}
@@ -359,24 +338,55 @@ export function GitHubActivitySection() {
           </motion.div>
         </div>
 
-        {/* Call to Action */}
+        {/* Contribution Graph */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="mb-12"
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white"
-            asChild
-          >
-            <a href="https://github.com/Attafii" target="_blank" rel="noopener noreferrer">
-              <GitBranch className="w-5 h-5 mr-2" />
-              Explore My GitHub
-            </a>
-          </Button>
+          <ContributionGraph />
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white"
+              asChild
+            >
+              <a href="https://github.com/Attafii" target="_blank" rel="noopener noreferrer">
+                <GitBranch className="w-5 h-5 mr-2" />
+                Explore My GitHub
+              </a>
+            </Button>
+            
+            {!loading && !error && (
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={refetch}
+                className="border-blue-300 dark:border-blue-700 hover:bg-blue-500/10"
+              >
+                <RefreshCw className="w-5 h-5 mr-2" />
+                Refresh Data
+              </Button>
+            )}
+          </div>
+          
+          {data && (
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+              Data updated in real-time from GitHub API
+            </p>
+          )}
         </motion.div>
       </div>
     </section>
