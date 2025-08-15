@@ -11,12 +11,12 @@ interface ContributionGraphProps {
 }
 
 export function ContributionGraph({ data = [] }: ContributionGraphProps) {
-  // Generate mock contribution data for the last 12 weeks if no data provided
+  // Generate mock contribution data for the last 26 weeks if no data provided
   const generateContributionData = () => {
     const weeks = []
     const today = new Date()
     
-    for (let weekIndex = 11; weekIndex >= 0; weekIndex--) {
+    for (let weekIndex = 25; weekIndex >= 0; weekIndex--) {
       const weekStart = new Date(today)
       weekStart.setDate(today.getDate() - (weekIndex * 7) - today.getDay())
       
@@ -88,7 +88,7 @@ export function ContributionGraph({ data = [] }: ContributionGraphProps) {
           </h3>
           <div className="text-right">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              {totalContributions} contributions in the last 12 weeks
+              {totalContributions} contributions in the last 26 weeks
             </div>
             <div className="text-xs text-gray-400 dark:text-gray-500">
               Current streak: {streakData.current} days • Best: {streakData.longest} days
