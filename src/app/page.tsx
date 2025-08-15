@@ -128,7 +128,7 @@ export default function Home() {
             </motion.div>
 
             {/* Centered Desktop Navigation */}
-            <div className="hidden md:flex flex-1 justify-center">
+            <div className="hidden lg:flex flex-1 justify-center">
               <motion.nav 
                 className="flex items-center gap-8"
                 initial={{ opacity: 0, y: -20 }}
@@ -173,7 +173,7 @@ export default function Home() {
             </div>
 
             {/* Right side - Quick Actions & Theme Toggle */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               {/* Quick Actions */}
               <motion.div
                 className="flex items-center gap-2"
@@ -220,7 +220,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-3">
+            <div className="lg:hidden flex items-center gap-3 ml-auto">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -269,7 +269,7 @@ export default function Home() {
                 animate={{ opacity: 1, height: "auto", y: 0 }}
                 exit={{ opacity: 0, height: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="md:hidden overflow-hidden"
+                className="lg:hidden overflow-hidden"
               >
                 <motion.div 
                   className="pb-6 pt-4 border-t border-blue-200/20 dark:border-blue-800/20 bg-background/30 backdrop-blur-lg rounded-b-2xl mt-2"

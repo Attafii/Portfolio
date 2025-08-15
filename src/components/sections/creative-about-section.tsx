@@ -202,6 +202,45 @@ export function CreativeAboutSection() {
             </motion.div>
           </motion.div>
 
+          {/* Impressive Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          >
+            {[
+              { label: "Projects Delivered", value: "50+", icon: Briefcase, color: "from-blue-500 to-cyan-500" },
+              { label: "Client Satisfaction", value: "98%", icon: Star, color: "from-green-500 to-emerald-500" },
+              { label: "Code Commits", value: "2000+", icon: Zap, color: "from-purple-500 to-violet-500" },
+              { label: "Awards Won", value: "8+", icon: Award, color: "from-orange-500 to-red-500" }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <Card className="relative bg-gradient-to-br from-white/90 to-blue-50/70 dark:from-gray-800/90 dark:to-blue-950/70 border-blue-200/30 dark:border-blue-700/30 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group">
+                  <CardContent className="p-6">
+                    <div className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-br ${stat.color}/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <stat.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                      {stat.label}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-16 mb-20">
             {/* Left Column - Story & Journey */}

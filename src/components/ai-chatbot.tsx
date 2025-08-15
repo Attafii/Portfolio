@@ -29,7 +29,7 @@ export function AIChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hi! I'm Ahmed's AI assistant! 👋 I'm here to help you learn about Ahmed Attafi - his skills, projects, and how he can help with your next project. What would you like to know?",
+      content: "Hi! I'm Attafii, Ahmed's AI assistant! 👋 I'm here to help you learn about Ahmed Attafi - his skills, projects, and how he can help with your next project. What would you like to know?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -162,7 +162,7 @@ export function AIChatbot() {
               
               {/* Tooltip */}
               <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                Chat with Ahmed's AI Assistant
+                Chat with Attafii
               </div>
             </motion.button>
           </motion.div>
@@ -194,7 +194,7 @@ export function AIChatbot() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm">Ahmed's AI Assistant</h3>
+                    <h3 className="font-semibold text-sm">Attafii - AI Assistant</h3>
                     <p className="text-xs text-white/80">Online • Ready to help!</p>
                   </div>
                 </div>
@@ -322,14 +322,14 @@ export function AIChatbot() {
                             value={inputMessage}
                             onChange={(e) => setInputMessage(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            placeholder="Ask me anything about Ahmed..."
-                            className="flex-1 border-purple-200 dark:border-purple-800 focus:border-purple-500 focus:ring-purple-500"
+                            placeholder="Ask Attafii anything about Ahmed..."
+                            className="flex-1 border-blue-200 dark:border-blue-800 focus:border-blue-500 focus:ring-blue-500"
                             disabled={isLoading}
                           />
                           <Button
                             onClick={sendMessage}
                             disabled={isLoading || !inputMessage.trim()}
-                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
                           >
                             <Send className="w-4 h-4" />
                           </Button>

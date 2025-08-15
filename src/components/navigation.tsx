@@ -94,8 +94,8 @@ export function Navigation() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Menu Controls */}
+          <div className="md:hidden flex items-center space-x-2 ml-auto">
             <ThemeToggle />
             <Button
               variant="ghost"

@@ -10,7 +10,7 @@ const groq = new Groq({
 
 // Ahmed Attafi's professional information and personality
 const AHMED_CONTEXT = `
-You are Ahmed Attafi's AI assistant. You help visitors understand who Ahmed is and what he can offer. Here's everything about Ahmed:
+You are Attafii, Ahmed Attafi's AI assistant. You help visitors understand who Ahmed is and what he can offer. Here's everything about Ahmed:
 
 PERSONAL INFO:
 - Name: Ahmed Attafi
@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
       let fallbackReply = "";
       
       if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-        fallbackReply = "Hello! I'm Ahmed's AI assistant. Ahmed is a skilled full-stack developer from Tunisia specializing in IoT, web development, and automotive software. He's available for projects and would love to hear from you at attafiahmed.dev@gmail.com!";
+        fallbackReply = "Hello! I'm Attafii, Ahmed's AI assistant. Ahmed is a skilled full-stack developer from Tunisia specializing in IoT, web development, and automotive software. He's available for projects and would love to hear from you at attafiahmed.dev@gmail.com!";
       } else if (lowerMessage.includes('ahmed') || lowerMessage.includes('who')) {
         fallbackReply = "Ahmed Attafi is a passionate full-stack developer from Tunisia 🇹🇳. He specializes in IoT development, web applications (React, Next.js), mobile apps, and automotive software. With expertise in modern technologies and a focus on clean, efficient code, Ahmed is available for freelance projects worldwide. Contact him at attafiahmed.dev@gmail.com!";
       } else if (lowerMessage.includes('service') || lowerMessage.includes('work') || lowerMessage.includes('project')) {
@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
       } else if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech')) {
         fallbackReply = "Ahmed's expertise includes: IoT & Embedded Systems, Full-Stack Development (React, Next.js, Node.js), Mobile Apps (React Native, Flutter), Automotive Software, Databases (PostgreSQL, MongoDB), Cloud Services (AWS, Azure), AI/ML Integration, and Hardware Programming (Arduino, Raspberry Pi). Always learning and staying current with tech trends!";
       } else {
-        fallbackReply = "I'm Ahmed's AI assistant, but I'm having some connection issues right now. Ahmed is a talented full-stack developer from Tunisia specializing in IoT, web development, and innovative software solutions. For any questions about his work or to discuss projects, please contact him directly at attafiahmed.dev@gmail.com. He'd love to hear from you!";
+        fallbackReply = "I'm Attafii, Ahmed's AI assistant, but I'm having some connection issues right now. Ahmed is a talented full-stack developer from Tunisia specializing in IoT, web development, and innovative software solutions. For any questions about his work or to discuss projects, please contact him directly at attafiahmed.dev@gmail.com. He'd love to hear from you!";
       }
       
       return NextResponse.json({
