@@ -10,13 +10,18 @@ export function ModernHeroSection() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
+      // Only show cursor on desktop (screen width >= 768px)
+      if (cursorRef.current && window.innerWidth >= 768) {
         cursorRef.current.style.left = e.clientX + 'px';
         cursorRef.current.style.top = e.clientY + 'px';
       }
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    // Only add event listener on desktop
+    if (window.innerWidth >= 768) {
+      document.addEventListener('mousemove', handleMouseMove);
+    }
+    
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -56,7 +61,7 @@ export function ModernHeroSection() {
       {/* Custom Cursor */}
       <div 
         ref={cursorRef}
-        className="fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
+        className="hidden md:block fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
         style={{ transform: 'translate(-50%, -50%)' }}
       >
         <div className="w-full h-full bg-white rounded-full" />
