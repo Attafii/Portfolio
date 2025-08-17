@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Twitter, MessageCircle } from "lucide-react";
 import { trackContactForm, trackExternalLink } from "@/lib/analytics";
 
 interface FormData {
@@ -99,6 +99,13 @@ export function ContactSection() {
       content: "+216 96 576 301",
       href: "tel:+21696576301",
       color: "from-green-500 to-blue-500"
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      content: "+216 95 448 612",
+      href: "https://wa.me/21695448612",
+      color: "from-green-400 to-green-600"
     },
     {
       icon: MapPin,
