@@ -15,22 +15,43 @@ export interface SEOConfig {
 }
 
 const defaultSEO = {
-  title: 'Ahmed Attafi - Full Stack Developer & Software Engineer',
-  description: 'Experienced Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Building innovative solutions with clean code and exceptional user experiences.',
+  title: 'Ahmed Attafi - Full Stack Developer & Software Engineer | Attafii Portfolio',
+  description: 'Ahmed Attafi (Attafii) - Expert Full Stack Developer from Tunisia. Specializing in React, Next.js, Node.js, TypeScript. Ahmed builds innovative web solutions and software applications with modern technologies.',
   keywords: [
     'Ahmed Attafi',
+    'Attafii',
+    'Ahmed',
+    'Ahmed Attafi Portfolio',
+    'Attafii Portfolio', 
+    'Ahmed Attafi Developer',
+    'Attafii Developer',
+    'Ahmed Attafi Tunisia',
+    'Attafii Tunisia',
+    'Ahmed Attafi Full Stack',
+    'Ahmed Attafi Software Engineer',
+    'Ahmed Attafi React',
+    'Ahmed Attafi Next.js',
+    'Ahmed Attafi TypeScript',
+    'Ahmed Attafi JavaScript',
+    'Ahmed Attafi Web Developer',
+    'Ahmed Attafi Frontend',
+    'Ahmed Attafi Backend',
+    'Ahmed Attafi Freelancer',
+    'Ahmed Attafi GitHub',
     'Full Stack Developer',
     'Software Engineer',
     'React Developer',
-    'Next.js',
-    'TypeScript',
-    'Node.js',
+    'Next.js Developer',
+    'TypeScript Developer',
+    'Node.js Developer',
     'Web Development',
     'Frontend Development',
     'Backend Development',
-    'JavaScript',
+    'JavaScript Developer',
     'Portfolio',
-    'Software Development'
+    'Software Development',
+    'Tunisia Developer',
+    'Tunisian Developer'
   ],
   author: 'Ahmed Attafi',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.vercel.app',
@@ -162,23 +183,31 @@ export function generateStructuredData(config: SEOConfig & {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Ahmed Attafi",
+    "alternateName": ["Attafii", "Ahmed", "Ahmed Attafi Developer"],
     "url": defaultSEO.siteUrl,
     "sameAs": [
       defaultSEO.linkedInProfile,
       "https://github.com/Attafii",
       "https://twitter.com/ahmedattafi"
     ],
-    "jobTitle": "Full Stack Developer",
-    "description": description,
+    "jobTitle": ["Full Stack Developer", "Software Engineer", "Web Developer"],
+    "description": "Ahmed Attafi (Attafii) is an expert Full Stack Developer from Tunisia specializing in React, Next.js, Node.js, and modern web technologies.",
     "knowsAbout": skills,
     "worksFor": {
       "@type": "Organization",
       "name": "Freelance"
     },
     "alumniOf": {
-      "@type": "Organization",
+      "@type": "Organization", 
       "name": "University"
-    }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "Tunisia"
+    },
+    "nationality": "Tunisian",
+    "expertise": ["React", "Next.js", "TypeScript", "Node.js", "Full Stack Development"],
+    "brand": "Attafii"
   };
 
   // Website Schema

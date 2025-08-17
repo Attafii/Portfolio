@@ -33,10 +33,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = generateMetadata({
-  title: "Ahmed Attafi - Full Stack Developer & Software Engineer",
-  description: "Experienced Full Stack Developer from Tunisia specializing in React, Next.js, Node.js, and modern web technologies. Building innovative solutions with clean code and exceptional user experiences.",
+  title: "Ahmed Attafi - Full Stack Developer & Software Engineer | Attafii Portfolio",
+  description: "Ahmed Attafi (Attafii) - Expert Full Stack Developer from Tunisia. Specializing in React, Next.js, Node.js, TypeScript. Ahmed builds innovative web solutions and modern applications.",
   keywords: [
     "Ahmed Attafi", 
+    "Attafii",
+    "Ahmed",
+    "Ahmed Attafi Portfolio",
+    "Attafii Portfolio",
+    "Ahmed Attafi Developer",
+    "Ahmed Attafi Tunisia", 
+    "Attafii Tunisia",
+    "Ahmed Attafi Full Stack",
+    "Ahmed Attafi Software Engineer",
+    "Ahmed Attafi React",
+    "Ahmed Attafi Next.js",
     "Software Developer", 
     "Full Stack Developer", 
     "Tunisia", 
@@ -52,12 +63,13 @@ export const metadata: Metadata = generateMetadata({
 });
 
 const structuredData = generateStructuredData({
-  title: "Ahmed Attafi - Full Stack Developer",
-  description: "Experienced Full Stack Developer from Tunisia specializing in React, Next.js, Node.js, and modern web technologies.",
+  title: "Ahmed Attafi - Full Stack Developer & Software Engineer",
+  description: "Ahmed Attafi (Attafii) - Expert Full Stack Developer from Tunisia specializing in React, Next.js, Node.js, TypeScript and modern web technologies.",
   url: "/",
   skills: [
     "JavaScript", "TypeScript", "React", "Next.js", "Node.js", 
-    "Python", "PostgreSQL", "MongoDB", "AWS", "Docker", "Git"
+    "Python", "PostgreSQL", "MongoDB", "AWS", "Docker", "Git",
+    "Full Stack Development", "Frontend Development", "Backend Development"
   ]
 });
 
@@ -89,6 +101,26 @@ export default function RootLayout({
           }}
         />
         
+        {/* Additional Name-focused Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Brand",
+              "name": "Attafii",
+              "alternateName": ["Ahmed Attafi", "Ahmed", "Attafii Developer"],
+              "url": "https://attafii.vercel.app",
+              "logo": "https://attafii.vercel.app/logo.svg",
+              "description": "Ahmed Attafi (Attafii) - Professional Full Stack Developer brand from Tunisia",
+              "founder": {
+                "@type": "Person",
+                "name": "Ahmed Attafi"
+              }
+            }),
+          }}
+        />
+        
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -105,8 +137,47 @@ export default function RootLayout({
         <meta property="og:locale" content="en_US" />
         <meta property="profile:first_name" content="Ahmed" />
         <meta property="profile:last_name" content="Attafi" />
-        <meta property="profile:username" content="ahmedattafi" />
+        <meta property="profile:username" content="attafii" />
         <meta property="article:author" content="Ahmed Attafi" />
+        
+        {/* Name-specific meta tags for better search recognition */}
+        <meta name="author" content="Ahmed Attafi" />
+        <meta name="creator" content="Ahmed Attafi" />
+        <meta name="publisher" content="Ahmed Attafi" />
+        <meta name="designer" content="Ahmed Attafi" />
+        <meta name="developer" content="Ahmed Attafi" />
+        <meta name="owner" content="Ahmed Attafi" />
+        <meta name="copyright" content="Ahmed Attafi" />
+        <meta name="subject" content="Ahmed Attafi - Full Stack Developer Portfolio" />
+        <meta name="classification" content="Ahmed Attafi Portfolio, Attafii Developer" />
+        <meta name="category" content="Portfolio, Web Development, Ahmed Attafi" />
+        <meta name="coverage" content="Tunisia, Worldwide" />
+        <meta name="distribution" content="Global" />
+        <meta name="rating" content="General" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="language" content="English" />
+        <meta name="identifier-URL" content="https://attafii.vercel.app" />
+        <meta name="directory" content="submission" />
+        <meta name="pagename" content="Ahmed Attafi Portfolio" />
+        <meta name="reply-to" content="attafiahmed.dev@gmail.com" />
+        <meta name="target" content="all" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="geo.region" content="TN" />
+        <meta name="geo.placename" content="Tunisia" />
+        <meta name="ICBM" content="33.886917, 9.537499" />
+        <meta name="DC.title" content="Ahmed Attafi - Full Stack Developer" />
+        <meta name="DC.creator" content="Ahmed Attafi" />
+        <meta name="DC.subject" content="Web Development, Full Stack, Ahmed Attafi" />
+        <meta name="DC.description" content="Ahmed Attafi (Attafii) Portfolio - Expert Full Stack Developer" />
+        <meta name="DC.publisher" content="Ahmed Attafi" />
+        <meta name="DC.contributor" content="Ahmed Attafi" />
+        <meta name="DC.type" content="Text" />
+        <meta name="DC.format" content="text/html" />
+        <meta name="DC.identifier" content="https://attafii.vercel.app" />
+        <meta name="DC.language" content="en" />
+        <meta name="DC.coverage" content="Tunisia" />
+        <meta name="DC.rights" content="Copyright Ahmed Attafi" />
         
         {/* Twitter Card additional meta */}
         <meta name="twitter:image:alt" content="Ahmed Attafi - Full Stack Developer Portfolio" />
@@ -114,6 +185,11 @@ export default function RootLayout({
         
         {/* LinkedIn specific */}
         <meta property="og:image:secure_url" content="https://attafii.vercel.app/og-image.png" />  
+        {/* Search Engine Tags */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        
         {/* Additional meta tags for better SEO */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />

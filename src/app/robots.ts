@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahmed-attafi.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.vercel.app'
 
   return {
     rules: [
@@ -15,6 +15,16 @@ export default function robots(): MetadataRoute.Robots {
           '/private/',
           '*.json',
         ],
+      },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/admin/', '/api/', '/private/'],
+      },
+      {
+        userAgent: 'Bingbot', 
+        allow: '/',
+        disallow: ['/admin/', '/api/', '/private/'],
       },
       {
         userAgent: 'GPTBot',

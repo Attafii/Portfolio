@@ -268,17 +268,17 @@ export function CreativeAboutSection() {
                   
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      I am a passionate and versatile <strong className="text-blue-600 dark:text-blue-400">IoT & Software Developer</strong> with a strong foundation in embedded systems, automotive technologies, and full-stack development. With hands-on experience in both hardware and software domains, I specialize in building intelligent, secure, and user-centric systems that bridge the physical and digital worlds.
+                      I am <strong className="text-blue-600 dark:text-blue-400">Ahmed Attafi (Attafii)</strong>, a passionate and versatile <strong className="text-blue-600 dark:text-blue-400">IoT & Software Developer</strong> from Tunisia with a strong foundation in embedded systems, automotive technologies, and full-stack development. Ahmed Attafi specializes in building intelligent, secure, and user-centric systems that bridge the physical and digital worlds.
                     </p>
                     <p>
-                      Currently serving as an <strong className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                      Automotive Software Tester at Capgemini Engineering</strong>, I develop and execute comprehensive test plans for automotive software systems, focusing on safety, compliance, and performance optimization for next-generation automotive technologies.
+                      Ahmed Attafi currently serves as an <strong className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                      Automotive Software Tester at Capgemini Engineering</strong>, developing and executing comprehensive test plans for automotive software systems, focusing on safety, compliance, and performance optimization for next-generation automotive technologies.
                     </p>
                     <p>
-                      My work spans across automotive software testing, IoT system architecture, and investment platform development, combining technical depth with a keen eye for design and usability. I thrive in hybrid and collaborative environments, where innovation, problem-solving, and continuous learning are key.
+                      Ahmed Attafi's work spans across automotive software testing, IoT system architecture, and investment platform development, combining technical depth with a keen eye for design and usability. Ahmed thrives in hybrid and collaborative environments, where innovation, problem-solving, and continuous learning are key.
                     </p>
                     <p>
-                      🎓 Currently pursuing my <strong className="text-teal-600 dark:text-teal-400">Engineering Degree in Embedded Ambient and Mobile Systems</strong> at ESPRIT (2023-2027), building upon my Bachelor's in Computer Engineering from ISTIC.
+                      🎓 Ahmed Attafi is currently pursuing his <strong className="text-teal-600 dark:text-teal-400">Engineering Degree in Embedded Ambient and Mobile Systems</strong> at ESPRIT (2023-2027), building upon his Bachelor's in Computer Engineering from ISTIC.
                     </p>
                   </div>
                 </CardContent>

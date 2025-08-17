@@ -195,10 +195,10 @@ export function ModernHeroSection() {
                 className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent"
                 style={{ backgroundSize: "200% 100%" }}
               >
-                Software Developer & IoT Specialist
+                Full Stack Developer & Software Engineer
               </motion.span>
               <br />
-              <span className="text-lg">Crafting digital experiences that inspire</span>
+              <span className="text-lg">Ahmed Attafi (Attafii) - Crafting digital experiences from Tunisia</span>
             </div>
           </motion.div>
 

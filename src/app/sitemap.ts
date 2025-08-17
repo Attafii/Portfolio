@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ahmed-attafi.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.vercel.app'
   const currentDate = new Date()
 
-  // Static pages
+  // Static pages with SEO-optimized URLs
   const staticPages = [
     {
       url: baseUrl,
@@ -13,35 +13,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/#about`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}/projects`,
+      url: `${baseUrl}/#projects`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/skills`,
+      url: `${baseUrl}/#skills`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/#contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }
   ]
 
   // You can add dynamic pages here when you have real data
