@@ -236,6 +236,19 @@ export default function RootLayout({
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
                   page_title: document.title,
                   page_location: window.location.href,
+                  custom_map: {
+                    'custom_parameter_1': 'Ahmed Attafi',
+                    'custom_parameter_2': 'Attafii',
+                    'custom_parameter_3': 'Portfolio'
+                  }
+                });
+                
+                // Track name-based searches
+                gtag('event', 'page_view', {
+                  developer_name: 'Ahmed Attafi',
+                  brand_name: 'Attafii',
+                  location: 'Tunisia',
+                  profession: 'Full Stack Developer'
                 });
               `}
             </Script>
