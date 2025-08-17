@@ -110,8 +110,8 @@ export default function RootLayout({
               "@type": "Brand",
               "name": "Attafii",
               "alternateName": ["Ahmed Attafi", "Ahmed", "Attafii Developer"],
-              "url": "https://attafii.vercel.app",
-              "logo": "https://attafii.vercel.app/logo.svg",
+              "url": "https://attafii.dev",
+              "logo": "https://attafii.dev/logo.svg",
               "description": "Ahmed Attafi (Attafii) - Professional Full Stack Developer brand from Tunisia",
               "founder": {
                 "@type": "Person",
@@ -156,7 +156,7 @@ export default function RootLayout({
         <meta name="rating" content="General" />
         <meta name="revisit-after" content="7 days" />
         <meta name="language" content="English" />
-        <meta name="identifier-URL" content="https://attafii.vercel.app" />
+        <meta name="identifier-URL" content="https://attafii.dev" />
         <meta name="directory" content="submission" />
         <meta name="pagename" content="Ahmed Attafi Portfolio" />
         <meta name="reply-to" content="attafiahmed.dev@gmail.com" />
@@ -174,17 +174,17 @@ export default function RootLayout({
         <meta name="DC.contributor" content="Ahmed Attafi" />
         <meta name="DC.type" content="Text" />
         <meta name="DC.format" content="text/html" />
-        <meta name="DC.identifier" content="https://attafii.vercel.app" />
+        <meta name="DC.identifier" content="https://attafii.dev" />
         <meta name="DC.language" content="en" />
         <meta name="DC.coverage" content="Tunisia" />
         <meta name="DC.rights" content="Copyright Ahmed Attafi" />
         
         {/* Twitter Card additional meta */}
         <meta name="twitter:image:alt" content="Ahmed Attafi - Full Stack Developer Portfolio" />
-        <meta name="twitter:domain" content="attafii.vercel.app" />
+        <meta name="twitter:domain" content="attafii.dev" />
         
         {/* LinkedIn specific */}
-        <meta property="og:image:secure_url" content="https://attafii.vercel.app/og-image.png" />  
+        <meta property="og:image:secure_url" content="https://attafii.dev/og-image.png" />  
         {/* Search Engine Tags */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />

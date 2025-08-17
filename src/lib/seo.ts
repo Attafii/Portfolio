@@ -54,7 +54,7 @@ const defaultSEO = {
     'Tunisian Developer'
   ],
   author: 'Ahmed Attafi',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://attafii.dev',
   image: '/og-image.png',
   twitterHandle: '@ahmedattafi',
   linkedInProfile: 'https://www.linkedin.com/in/ahmed-attafi/'

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://attafii.vercel.app/sitemap.xml
+Sitemap: https://attafii.dev/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 1

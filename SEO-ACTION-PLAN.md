@@ -4,8 +4,8 @@
 
 ### 1. Submit to Search Engines
 - **Google Search Console**: https://search.google.com/search-console
-  - Add your website: https://attafii.vercel.app
-  - Submit sitemap: https://attafii.vercel.app/sitemap.xml
+  - Add your website: https://attafii.dev
+  - Submit sitemap: https://attafii.dev/sitemap.xml
   - Request indexing for main pages
   
 - **Bing Webmaster Tools**: https://www.bing.com/webmasters
@@ -62,7 +62,7 @@
 - Ubersuggest (freemium)
 
 ## Content Ideas for Immediate Impact
-1. LinkedIn post: "Just launched my new portfolio at attafii.vercel.app - Ahmed Attafi"
+1. LinkedIn post: "Just launched my new portfolio at attafii.dev - Ahmed Attafi"
 2. Twitter thread about your development journey
 3. GitHub README update with portfolio link
 4. Blog post: "Building My Portfolio with Next.js - Ahmed Attafi"

@@ -64,7 +64,7 @@ export default function AboutPage() {
             <li>Email: attafiahmed.dev@gmail.com</li>
             <li>LinkedIn: Ahmed Attafi</li>
             <li>GitHub: Attafii</li>
-            <li>Portfolio: attafii.vercel.app</li>
+            <li>Portfolio: attafii.dev</li>
           </ul>
 
           <h3>Ahmed Attafi's Mission</h3>
