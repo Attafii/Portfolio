@@ -382,6 +382,20 @@ export async function unsubscribeFromNewsletter(email: string): Promise<void> {
   }
 }
 
+export async function isEmailSubscribed(email: string): Promise<boolean> {
+  try {
+    const result = await sql`
+      SELECT id FROM newsletter_subscribers 
+      WHERE email = ${email} AND active = true
+      LIMIT 1
+    `;
+    return result.length > 0;
+  } catch (error) {
+    console.error('Database error checking email subscription:', error);
+    throw new Error('Failed to check email subscription');
+  }
+}
+
 // Analytics Functions
 export async function trackPageView(data: {
   page_path: string;

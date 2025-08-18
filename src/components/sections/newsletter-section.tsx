@@ -56,17 +56,37 @@ export function NewsletterSection() {
 
     setIsLoading(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
-    setEmail("");
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+
+      setIsLoading(false);
+      setIsSubmitted(true);
+      setEmail("");
+
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Newsletter subscription error:', error);
+      
+      // You could add error state here to show user-friendly error messages
+      alert(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
+    }
   };
 
   return (
@@ -310,8 +330,8 @@ export function NewsletterSection() {
                       significantly improved my development workflow and kept me updated on the latest trends.&rdquo;
                     </blockquote>
                     <div className="flex items-center gap-2">
-                      <div className="text-sm font-semibold">Sarah Chen</div>
-                      <div className="text-xs text-muted-foreground">Senior Developer at TechCorp</div>
+                      <div className="text-sm font-semibold">Eya Khemiri</div>
+                      <div className="text-xs text-muted-foreground">Software Developer and Team Leader</div>
                     </div>
                   </div>
                 </div>
