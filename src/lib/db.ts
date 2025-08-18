@@ -500,22 +500,34 @@ export async function getAnalyticsStats(days = 30): Promise<{
 // Project Functions
 export async function addProject(projectData: {
   title: string;
+  slug?: string;
   description?: string;
+  long_description?: string;
+  category?: string;
+  technologies?: string[];
+  features?: string[];
   image_url?: string;
   github_url?: string;
-  live_url?: string;
-  technologies?: string[];
+  demo_url?: string;
+  status?: string;
   featured?: boolean;
 }): Promise<Record<string, unknown>> {
   try {
+    // Generate slug if not provided
+    const slug = projectData.slug || projectData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    
     const result = await sql`
       INSERT INTO projects (
-        title, description, image_url, github_url, live_url, technologies, featured
+        title, slug, description, long_description, category, 
+        technologies, features, image_url, github_url, demo_url, 
+        status, featured, created_at, updated_at
       )
       VALUES (
-        ${projectData.title}, ${projectData.description}, ${projectData.image_url || null},
-        ${projectData.github_url || null}, ${projectData.live_url || null},
-        ${JSON.stringify(projectData.technologies || [])}, ${projectData.featured || false}
+        ${projectData.title}, ${slug}, ${projectData.description || ''}, 
+        ${projectData.long_description || ''}, ${projectData.category || 'Web Development'},
+        ${JSON.stringify(projectData.technologies || [])}, ${JSON.stringify(projectData.features || [])}, 
+        ${projectData.image_url || null}, ${projectData.github_url || null}, ${projectData.demo_url || null},
+        ${projectData.status || 'completed'}, ${projectData.featured || false}, NOW(), NOW()
       )
       RETURNING *
     `;

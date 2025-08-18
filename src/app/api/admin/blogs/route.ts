@@ -4,7 +4,7 @@ import { getBlogPosts, addBlogPost, updateBlogPost, deleteBlogPost } from '@/lib
 export async function GET() {
   try {
     const blogs = await getBlogPosts();
-    return NextResponse.json({ blogs });
+    return NextResponse.json(blogs);
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return NextResponse.json(
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     const blog = await addBlogPost(blogData);
-    return NextResponse.json({ blog });
+    return NextResponse.json(blog);
   } catch (error) {
     console.error('Error creating blog post:', error);
     return NextResponse.json(
@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const blog = await updateBlogPost(id, blogData);
-    return NextResponse.json({ blog });
+    return NextResponse.json(blog);
   } catch (error) {
     console.error('Error updating blog post:', error);
     return NextResponse.json(

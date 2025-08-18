@@ -4,7 +4,7 @@ import { getSkills, addSkill, updateSkill, deleteSkill } from '@/lib/db';
 export async function GET() {
   try {
     const skills = await getSkills();
-    return NextResponse.json({ skills });
+    return NextResponse.json(skills);
   } catch (error) {
     console.error('Error fetching skills:', error);
     return NextResponse.json(
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     const skill = await addSkill(skillData);
-    return NextResponse.json({ skill });
+    return NextResponse.json(skill);
   } catch (error) {
     console.error('Error creating skill:', error);
     return NextResponse.json(
@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const skill = await updateSkill(id, skillData);
-    return NextResponse.json({ skill });
+    return NextResponse.json(skill);
   } catch (error) {
     console.error('Error updating skill:', error);
     return NextResponse.json(

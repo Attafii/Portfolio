@@ -4,7 +4,7 @@ import { getProjects, addProject, updateProject, deleteProject } from '@/lib/db'
 export async function GET() {
   try {
     const projects = await getProjects();
-    return NextResponse.json({ projects });
+    return NextResponse.json(projects);
   } catch (error) {
     console.error('Error fetching projects:', error);
     return NextResponse.json(
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     const project = await addProject(projectData);
-    return NextResponse.json({ project });
+    return NextResponse.json(project);
   } catch (error) {
     console.error('Error creating project:', error);
     return NextResponse.json(
@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const project = await updateProject(id, projectData);
-    return NextResponse.json({ project });
+    return NextResponse.json(project);
   } catch (error) {
     console.error('Error updating project:', error);
     return NextResponse.json(
