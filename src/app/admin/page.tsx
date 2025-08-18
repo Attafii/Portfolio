@@ -1,359 +1,662 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
+  Plus, 
+  Edit, 
+  Trash2, 
+  Save, 
+  X, 
   Users, 
-  MessageSquare, 
-  FolderOpen, 
-  PenTool, 
-  BarChart3, 
-  Settings,
-  LogOut,
+  FileText, 
+  Code, 
   Mail,
+  BarChart3,
+  Calendar,
+  Star,
   Eye,
-  TrendingUp,
-  Sparkles,
-  Crown
+  EyeOff
 } from "lucide-react";
-import Link from "next/link";
+
+interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  long_description?: string;
+  category: string;
+  technologies: string[];
+  features: string[];
+  image_url?: string;
+  github_url?: string;
+  demo_url?: string;
+  status: string;
+  featured: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt?: string;
+  category: string;
+  tags: string[];
+  featured_image?: string;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+interface Skill {
+  id: number;
+  name: string;
+  category: string;
+  proficiency_level: number;
+  icon?: string;
+  description?: string;
+}
+
+interface NewsletterSubscriber {
+  id: number;
+  email: string;
+  active: boolean;
+  subscribed_at: string;
+  unsubscribed_at?: string;
+}
+
+interface NewsletterStats {
+  totalSubscribers: number;
+  activeSubscribers: number;
+  recentSubscriptions: number;
+}
 
 export default function AdminDashboard() {
-  const { data: session, status } = useSession();
-  const [mounted, setMounted] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [newsletterSubscribers, setNewsletterSubscribers] = useState<NewsletterSubscriber[]>([]);
+  const [newsletterStats, setNewsletterStats] = useState<NewsletterStats>({
+    totalSubscribers: 0,
+    activeSubscribers: 0,
+    recentSubscriptions: 0
+  });
+
+  const [editingProject, setEditingProject] = useState<Partial<Project> | null>(null);
+  const [editingBlog, setEditingBlog] = useState<Partial<BlogPost> | null>(null);
+  const [editingSkill, setEditingSkill] = useState<Partial<Skill> | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    fetchData();
   }, []);
 
-  if (status === "loading" || !mounted) {
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      
+      // Fetch all data in parallel
+      const [projectsRes, blogsRes, skillsRes, newsletterRes] = await Promise.all([
+        fetch('/api/admin/projects'),
+        fetch('/api/admin/blogs'),
+        fetch('/api/admin/skills'),
+        fetch('/api/admin/newsletter')
+      ]);
+
+      const projectsData = await projectsRes.json();
+      const blogsData = await blogsRes.json();
+      const skillsData = await skillsRes.json();
+      const newsletterData = await newsletterRes.json();
+
+      setProjects(projectsData.projects || []);
+      setBlogs(blogsData.blogs || []);
+      setSkills(skillsData.skills || []);
+      setNewsletterSubscribers(newsletterData.subscribers || []);
+      setNewsletterStats(newsletterData.stats || {
+        totalSubscribers: 0,
+        activeSubscribers: 0,
+        recentSubscriptions: 0
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Project Functions
+  const saveProject = async () => {
+    if (!editingProject) return;
+
+    try {
+      const method = editingProject.id ? 'PUT' : 'POST';
+      const response = await fetch('/api/admin/projects', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingProject),
+      });
+
+      if (response.ok) {
+        setEditingProject(null);
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error saving project:', error);
+    }
+  };
+
+  const deleteProject = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this project?')) return;
+
+    try {
+      const response = await fetch('/api/admin/projects', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
+  };
+
+  // Blog Functions
+  const saveBlog = async () => {
+    if (!editingBlog) return;
+
+    try {
+      const method = editingBlog.id ? 'PUT' : 'POST';
+      const response = await fetch('/api/admin/blogs', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingBlog),
+      });
+
+      if (response.ok) {
+        setEditingBlog(null);
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error saving blog:', error);
+    }
+  };
+
+  const deleteBlog = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this blog post?')) return;
+
+    try {
+      const response = await fetch('/api/admin/blogs', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting blog:', error);
+    }
+  };
+
+  // Skill Functions
+  const saveSkill = async () => {
+    if (!editingSkill) return;
+
+    try {
+      const method = editingSkill.id ? 'PUT' : 'POST';
+      const response = await fetch('/api/admin/skills', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingSkill),
+      });
+
+      if (response.ok) {
+        setEditingSkill(null);
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error saving skill:', error);
+    }
+  };
+
+  const deleteSkill = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this skill?')) return;
+
+    try {
+      const response = await fetch('/api/admin/skills', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting skill:', error);
+    }
+  };
+
+  // Newsletter Functions
+  const deleteSubscriber = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this subscriber?')) return;
+
+    try {
+      const response = await fetch('/api/admin/newsletter', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        fetchData();
+      }
+    } catch (error) {
+      console.error('Error deleting subscriber:', error);
+    }
+  };
+
+  if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-purple-500"></div>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading admin dashboard...</p>
+        </div>
       </div>
     );
   }
 
-  if (status === "unauthenticated") {
-    redirect("/admin/login");
-  }
-
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Global gradient background */}
-      <div className="fixed inset-0 animated-gradient-light dark:animated-gradient-dark opacity-10 pointer-events-none" />
-      
-      {/* Dynamic Background Grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          animation: 'grid-move 20s linear infinite'
-        }} />
-      </div>
-      {/* Header */}
-      <header className="relative z-10 bg-background/80 backdrop-blur-xl border-b border-purple-200/20 dark:border-purple-800/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div>
-              <h1 className="text-4xl font-bold gradient-text-purple-pink mb-2">
-                <Crown className="inline-block w-8 h-8 mr-3" />
-                Admin Dashboard
-              </h1>
-              <p className="text-muted-foreground flex items-center">
-                <Sparkles className="w-4 h-4 mr-2 text-purple-400" />
-                Welcome back, {session?.user?.name || session?.user?.email}
-              </p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-sm font-medium text-foreground">{session?.user?.name || "Admin"}</p>
-                <p className="text-xs text-muted-foreground">{session?.user?.email}</p>
-              </div>
-              <Button 
-                onClick={() => signOut({ callbackUrl: "/" })}
-                variant="outline" 
-                size="sm" 
-                className="border-purple-200/30 hover:border-purple-400/50 hover:bg-purple-500/10"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="relative z-10 max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          {/* Stats Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
-                <CardTitle className="text-sm font-medium">Total Messages</CardTitle>
-                <MessageSquare className="h-5 w-5 text-purple-500 group-hover:scale-110 transition-transform" />
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="text-3xl font-bold bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent">12</div>
-                <p className="text-xs text-muted-foreground flex items-center">
-                  <TrendingUp className="w-3 h-3 mr-1 text-green-500" />
-                  +2 from last week
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-green-500/10 transition-all duration-300 group">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 group-hover:from-green-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
-                <CardTitle className="text-sm font-medium">Projects</CardTitle>
-                <FolderOpen className="h-5 w-5 text-green-500 group-hover:scale-110 transition-transform" />
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="text-3xl font-bold bg-gradient-to-br from-green-600 to-blue-600 bg-clip-text text-transparent">3</div>
-                <p className="text-xs text-muted-foreground">
-                  Active portfolio projects
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-300" />
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
-                <CardTitle className="text-sm font-medium">Page Views</CardTitle>
-                <Eye className="h-5 w-5 text-blue-500 group-hover:scale-110 transition-transform" />
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="text-3xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">1,234</div>
-                <p className="text-xs text-muted-foreground flex items-center">
-                  <TrendingUp className="w-3 h-3 mr-1 text-green-500" />
-                  +12% from last month
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 group">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-pink-500/5 group-hover:from-orange-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
-                <CardTitle className="text-sm font-medium">Newsletter Subs</CardTitle>
-                <TrendingUp className="h-5 w-5 text-orange-500 group-hover:scale-110 transition-transform" />
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="text-3xl font-bold bg-gradient-to-br from-orange-600 to-pink-600 bg-clip-text text-transparent">89</div>
-                <p className="text-xs text-muted-foreground flex items-center">
-                  <TrendingUp className="w-3 h-3 mr-1 text-green-500" />
-                  +5 new this week
-                </p>
-              </CardContent>
-            </Card>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+              Admin Dashboard
+            </h1>
+            <p className="text-muted-foreground">Manage your portfolio content</p>
           </div>
 
-          {/* Management Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            <Link href="/admin/contacts" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-blue-600 transition-colors">
-                    <Mail className="w-6 h-6 mr-3 text-blue-600 group-hover:scale-110 transition-transform" />
-                    Contact Messages
-                  </CardTitle>
-                  <CardDescription>
-                    Manage contact form submissions and inquiries
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      View and respond to messages
-                    </span>
-                    <Button variant="outline" size="sm" className="border-blue-200/50 hover:border-blue-400 hover:bg-blue-500/10 group-hover:shadow-lg">
-                      Manage
-                    </Button>
+          {/* Overview Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
+                    <Code className="w-6 h-6 text-blue-600" />
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link href="/admin/projects" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-green-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 group-hover:from-green-500/10 group-hover:to-blue-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-green-600 transition-colors">
-                    <FolderOpen className="w-6 h-6 mr-3 text-green-600 group-hover:scale-110 transition-transform" />
-                    Projects
-                  </CardTitle>
-                  <CardDescription>
-                    Add, edit, and manage your portfolio projects
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      Showcase your work
-                    </span>
-                    <Button variant="outline" size="sm" className="border-green-200/50 hover:border-green-400 hover:bg-green-500/10 group-hover:shadow-lg">
-                      Manage
-                    </Button>
+                  <div>
+                    <p className="text-2xl font-bold">{projects.length}</p>
+                    <p className="text-sm text-muted-foreground">Projects</p>
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
+                </div>
+              </CardContent>
+            </Card>
 
-            <Link href="/admin/skills" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-purple-600 transition-colors">
-                    <Users className="w-6 h-6 mr-3 text-purple-600 group-hover:scale-110 transition-transform" />
-                    Skills
-                  </CardTitle>
-                  <CardDescription>
-                    Update your skills and proficiency levels
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      Technical expertise
-                    </span>
-                    <Button variant="outline" size="sm" className="border-purple-200/50 hover:border-purple-400 hover:bg-purple-500/10 group-hover:shadow-lg">
-                      Manage
-                    </Button>
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-green-600" />
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link href="/admin/blog" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-pink-500/5 group-hover:from-orange-500/10 group-hover:to-pink-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-orange-600 transition-colors">
-                    <PenTool className="w-6 h-6 mr-3 text-orange-600 group-hover:scale-110 transition-transform" />
-                    Blog Posts
-                  </CardTitle>
-                  <CardDescription>
-                    Write and publish articles and tutorials
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      Share your knowledge
-                    </span>
-                    <Button variant="outline" size="sm" className="border-orange-200/50 hover:border-orange-400 hover:bg-orange-500/10 group-hover:shadow-lg">
-                      Manage
-                    </Button>
+                  <div>
+                    <p className="text-2xl font-bold">{blogs.length}</p>
+                    <p className="text-sm text-muted-foreground">Blog Posts</p>
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
+                </div>
+              </CardContent>
+            </Card>
 
-            <Link href="/admin/analytics" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-indigo-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-indigo-600 transition-colors">
-                    <BarChart3 className="w-6 h-6 mr-3 text-indigo-600 group-hover:scale-110 transition-transform" />
-                    Analytics
-                  </CardTitle>
-                  <CardDescription>
-                    View site statistics and visitor insights
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      Track performance
-                    </span>
-                    <Button variant="outline" size="sm" className="border-indigo-200/50 hover:border-indigo-400 hover:bg-indigo-500/10 group-hover:shadow-lg">
-                      View
-                    </Button>
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
+                    <BarChart3 className="w-6 h-6 text-purple-600" />
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link href="/admin/settings" className="group">
-              <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-gray-500/20 transition-all duration-500 group-hover:scale-[1.02] group-hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-purple-500/5 group-hover:from-gray-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <CardHeader className="relative z-10">
-                  <CardTitle className="flex items-center group-hover:text-gray-600 transition-colors">
-                    <Settings className="w-6 h-6 mr-3 text-gray-600 group-hover:scale-110 transition-transform" />
-                    Settings
-                  </CardTitle>
-                  <CardDescription>
-                    Configure site settings and preferences
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">
-                      System configuration
-                    </span>
-                    <Button variant="outline" size="sm" className="border-gray-200/50 hover:border-gray-400 hover:bg-gray-500/10 group-hover:shadow-lg">
-                      Configure
-                    </Button>
+                  <div>
+                    <p className="text-2xl font-bold">{skills.length}</p>
+                    <p className="text-sm text-muted-foreground">Skills</p>
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
+                </div>
+              </CardContent>
+            </Card>
 
-          {/* Quick Actions */}
-          <div className="mt-8">
-            <Card className="relative overflow-hidden border-purple-200/30 dark:border-purple-800/30 bg-background/50 backdrop-blur-sm">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5" />
-              <CardHeader className="relative z-10">
-                <CardTitle className="flex items-center gradient-text-purple-pink">
-                  <Sparkles className="w-5 h-5 mr-2" />
-                  Quick Actions
-                </CardTitle>
-                <CardDescription>
-                  Common tasks and shortcuts
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="relative z-10">
-                <div className="flex flex-wrap gap-4">
-                  <Link href="/admin/projects/new">
-                    <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                      <FolderOpen className="w-4 h-4 mr-2" />
-                      Add New Project
-                    </Button>
-                  </Link>
-                  <Link href="/admin/blog/new">
-                    <Button variant="outline" className="border-purple-200/50 hover:border-purple-400 hover:bg-purple-500/10">
-                      <PenTool className="w-4 h-4 mr-2" />
-                      Write Article
-                    </Button>
-                  </Link>
-                  <Link href="/" target="_blank">
-                    <Button variant="outline" className="border-blue-200/50 hover:border-blue-400 hover:bg-blue-500/10">
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Site
-                    </Button>
-                  </Link>
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{newsletterStats.activeSubscribers}</p>
+                    <p className="text-sm text-muted-foreground">Newsletter Subscribers</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
-        </div>
-      </main>
+
+          <Tabs defaultValue="projects" className="space-y-6">
+            <TabsList className="grid grid-cols-4 w-full max-w-md">
+              <TabsTrigger value="projects">Projects</TabsTrigger>
+              <TabsTrigger value="blogs">Blogs</TabsTrigger>
+              <TabsTrigger value="skills">Skills</TabsTrigger>
+              <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+            </TabsList>
+
+            {/* Projects Tab */}
+            <TabsContent value="projects">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>Projects Management</CardTitle>
+                  <Button
+                    onClick={() => setEditingProject({
+                      title: '',
+                      slug: '',
+                      description: '',
+                      category: '',
+                      technologies: [],
+                      features: [],
+                      status: 'completed',
+                      featured: false
+                    })}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Project
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  {editingProject && (
+                    <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <h3 className="text-lg font-semibold mb-4">
+                        {editingProject.id ? 'Edit Project' : 'Add New Project'}
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Input
+                          placeholder="Project Title"
+                          value={editingProject.title || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, title: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Slug (URL-friendly)"
+                          value={editingProject.slug || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, slug: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Category"
+                          value={editingProject.category || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, category: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Image URL"
+                          value={editingProject.image_url || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, image_url: e.target.value })}
+                        />
+                        <Input
+                          placeholder="GitHub URL"
+                          value={editingProject.github_url || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, github_url: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Demo URL"
+                          value={editingProject.demo_url || ''}
+                          onChange={(e) => setEditingProject({ ...editingProject, demo_url: e.target.value })}
+                        />
+                      </div>
+                      <Textarea
+                        placeholder="Short Description"
+                        value={editingProject.description || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })}
+                        className="mt-4"
+                      />
+                      <Textarea
+                        placeholder="Long Description"
+                        value={editingProject.long_description || ''}
+                        onChange={(e) => setEditingProject({ ...editingProject, long_description: e.target.value })}
+                        className="mt-4"
+                      />
+                      <div className="flex items-center gap-4 mt-4">
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={editingProject.featured || false}
+                            onChange={(e) => setEditingProject({ ...editingProject, featured: e.target.checked })}
+                          />
+                          Featured Project
+                        </label>
+                      </div>
+                      <div className="flex gap-2 mt-4">
+                        <Button onClick={saveProject}>
+                          <Save className="w-4 h-4 mr-2" />
+                          Save
+                        </Button>
+                        <Button variant="outline" onClick={() => setEditingProject(null)}>
+                          <X className="w-4 h-4 mr-2" />
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="space-y-4">
+                    {projects.map((project) => (
+                      <div key={project.id} className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg border">
+                        <div>
+                          <h4 className="font-semibold">{project.title}</h4>
+                          <p className="text-sm text-muted-foreground">{project.description}</p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <Badge variant={project.featured ? "default" : "secondary"}>
+                              {project.featured ? "Featured" : "Regular"}
+                            </Badge>
+                            <Badge variant="outline">{project.category}</Badge>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline" onClick={() => setEditingProject(project)}>
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => deleteProject(project.id)}>
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Blogs Tab - Simplified since not in original schema */}
+            <TabsContent value="blogs">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Blog Management</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-center py-8">
+                    <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Blog System Ready</h3>
+                    <p className="text-muted-foreground">Blog management will be available once you add blog posts to your database.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Skills Tab */}
+            <TabsContent value="skills">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>Skills Management</CardTitle>
+                  <Button
+                    onClick={() => setEditingSkill({
+                      name: '',
+                      category: '',
+                      proficiency_level: 50
+                    })}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Skill
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  {editingSkill && (
+                    <div className="mb-6 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <h3 className="text-lg font-semibold mb-4">
+                        {editingSkill.id ? 'Edit Skill' : 'Add New Skill'}
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Input
+                          placeholder="Skill Name"
+                          value={editingSkill.name || ''}
+                          onChange={(e) => setEditingSkill({ ...editingSkill, name: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Category"
+                          value={editingSkill.category || ''}
+                          onChange={(e) => setEditingSkill({ ...editingSkill, category: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Icon (optional)"
+                          value={editingSkill.icon || ''}
+                          onChange={(e) => setEditingSkill({ ...editingSkill, icon: e.target.value })}
+                        />
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Proficiency Level: {editingSkill.proficiency_level}%
+                          </label>
+                          <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={editingSkill.proficiency_level || 50}
+                            onChange={(e) => setEditingSkill({ ...editingSkill, proficiency_level: parseInt(e.target.value) })}
+                            className="w-full"
+                          />
+                        </div>
+                      </div>
+                      <Textarea
+                        placeholder="Description (optional)"
+                        value={editingSkill.description || ''}
+                        onChange={(e) => setEditingSkill({ ...editingSkill, description: e.target.value })}
+                        className="mt-4"
+                      />
+                      <div className="flex gap-2 mt-4">
+                        <Button onClick={saveSkill}>
+                          <Save className="w-4 h-4 mr-2" />
+                          Save
+                        </Button>
+                        <Button variant="outline" onClick={() => setEditingSkill(null)}>
+                          <X className="w-4 h-4 mr-2" />
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="space-y-4">
+                    {skills.map((skill) => (
+                      <div key={skill.id} className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg border">
+                        <div className="flex-1">
+                          <h4 className="font-semibold">{skill.name}</h4>
+                          <p className="text-sm text-muted-foreground">{skill.description}</p>
+                          <div className="flex items-center gap-4 mt-2">
+                            <Badge variant="outline">{skill.category}</Badge>
+                            <div className="flex items-center gap-2">
+                              <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-blue-600 transition-all duration-300"
+                                  style={{ width: `${skill.proficiency_level}%` }}
+                                />
+                              </div>
+                              <span className="text-sm text-muted-foreground">{skill.proficiency_level}%</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline" onClick={() => setEditingSkill(skill)}>
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => deleteSkill(skill.id)}>
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Newsletter Tab */}
+            <TabsContent value="newsletter">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Newsletter Management</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                      <h4 className="font-semibold text-blue-900 dark:text-blue-100">Total Subscribers</h4>
+                      <p className="text-2xl font-bold text-blue-600">{newsletterStats.totalSubscribers}</p>
+                    </div>
+                    <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-900 dark:text-green-100">Active Subscribers</h4>
+                      <p className="text-2xl font-bold text-green-600">{newsletterStats.activeSubscribers}</p>
+                    </div>
+                    <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                      <h4 className="font-semibold text-purple-900 dark:text-purple-100">Recent (30 days)</h4>
+                      <p className="text-2xl font-bold text-purple-600">{newsletterStats.recentSubscriptions}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {newsletterSubscribers.map((subscriber) => (
+                      <div key={subscriber.id} className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg border">
+                        <div>
+                          <h4 className="font-semibold">{subscriber.email}</h4>
+                          <div className="flex items-center gap-2 mt-1">
+                            <Badge variant={subscriber.active ? "default" : "secondary"}>
+                              {subscriber.active ? "Active" : "Unsubscribed"}
+                            </Badge>
+                            <span className="text-sm text-muted-foreground">
+                              Subscribed: {new Date(subscriber.subscribed_at).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </div>
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          onClick={() => deleteSubscriber(subscriber.id)}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </motion.div>
+      </div>
     </div>
   );
 }

@@ -396,6 +396,36 @@ export async function isEmailSubscribed(email: string): Promise<boolean> {
   }
 }
 
+export async function getNewsletterStats(): Promise<{
+  totalSubscribers: number;
+  activeSubscribers: number;
+  recentSubscriptions: number;
+}> {
+  try {
+    const totalResult = await sql`
+      SELECT COUNT(*) as count FROM newsletter_subscribers
+    `;
+    
+    const activeResult = await sql`
+      SELECT COUNT(*) as count FROM newsletter_subscribers WHERE active = true
+    `;
+    
+    const recentResult = await sql`
+      SELECT COUNT(*) as count FROM newsletter_subscribers 
+      WHERE active = true AND subscribed_at >= CURRENT_TIMESTAMP - INTERVAL '30 days'
+    `;
+    
+    return {
+      totalSubscribers: Number(totalResult[0].count),
+      activeSubscribers: Number(activeResult[0].count),
+      recentSubscriptions: Number(recentResult[0].count)
+    };
+  } catch (error) {
+    console.error('Database error fetching newsletter stats:', error);
+    throw new Error('Failed to fetch newsletter statistics');
+  }
+}
+
 // Analytics Functions
 export async function trackPageView(data: {
   page_path: string;
@@ -493,6 +523,188 @@ export async function addProject(projectData: {
   } catch (error) {
     console.error('Database error adding project:', error);
     throw new Error('Failed to add project');
+  }
+}
+
+export async function updateProject(id: number, projectData: {
+  title?: string;
+  slug?: string;
+  description?: string;
+  long_description?: string;
+  category?: string;
+  technologies?: string[];
+  features?: string[];
+  image_url?: string;
+  github_url?: string;
+  demo_url?: string;
+  status?: string;
+  featured?: boolean;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      UPDATE projects 
+      SET 
+        title = COALESCE(${projectData.title}, title),
+        slug = COALESCE(${projectData.slug}, slug),
+        description = COALESCE(${projectData.description}, description),
+        long_description = COALESCE(${projectData.long_description}, long_description),
+        category = COALESCE(${projectData.category}, category),
+        technologies = COALESCE(${JSON.stringify(projectData.technologies)}, technologies),
+        features = COALESCE(${JSON.stringify(projectData.features)}, features),
+        image_url = COALESCE(${projectData.image_url}, image_url),
+        github_url = COALESCE(${projectData.github_url}, github_url),
+        demo_url = COALESCE(${projectData.demo_url}, demo_url),
+        status = COALESCE(${projectData.status}, status),
+        featured = COALESCE(${projectData.featured}, featured),
+        updated_at = CURRENT_TIMESTAMP
+      WHERE id = ${id}
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error updating project:', error);
+    throw new Error('Failed to update project');
+  }
+}
+
+export async function deleteProject(id: number): Promise<void> {
+  try {
+    await sql`DELETE FROM projects WHERE id = ${id}`;
+  } catch (error) {
+    console.error('Database error deleting project:', error);
+    throw new Error('Failed to delete project');
+  }
+}
+
+// Blog Functions
+export async function addBlogPost(blogData: {
+  title: string;
+  slug: string;
+  content: string;
+  excerpt?: string;
+  category?: string;
+  tags?: string[];
+  featured_image?: string;
+  published?: boolean;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      INSERT INTO blog_posts (
+        title, slug, content, excerpt, category, tags, featured_image, published
+      )
+      VALUES (
+        ${blogData.title}, ${blogData.slug}, ${blogData.content},
+        ${blogData.excerpt || null}, ${blogData.category || 'General'},
+        ${JSON.stringify(blogData.tags || [])}, ${blogData.featured_image || null},
+        ${blogData.published || false}
+      )
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error adding blog post:', error);
+    throw new Error('Failed to add blog post');
+  }
+}
+
+export async function updateBlogPost(id: number, blogData: {
+  title?: string;
+  slug?: string;
+  content?: string;
+  excerpt?: string;
+  category?: string;
+  tags?: string[];
+  featured_image?: string;
+  published?: boolean;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      UPDATE blog_posts 
+      SET 
+        title = COALESCE(${blogData.title}, title),
+        slug = COALESCE(${blogData.slug}, slug),
+        content = COALESCE(${blogData.content}, content),
+        excerpt = COALESCE(${blogData.excerpt}, excerpt),
+        category = COALESCE(${blogData.category}, category),
+        tags = COALESCE(${JSON.stringify(blogData.tags)}, tags),
+        featured_image = COALESCE(${blogData.featured_image}, featured_image),
+        published = COALESCE(${blogData.published}, published),
+        updated_at = CURRENT_TIMESTAMP
+      WHERE id = ${id}
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error updating blog post:', error);
+    throw new Error('Failed to update blog post');
+  }
+}
+
+export async function deleteBlogPost(id: number): Promise<void> {
+  try {
+    await sql`DELETE FROM blog_posts WHERE id = ${id}`;
+  } catch (error) {
+    console.error('Database error deleting blog post:', error);
+    throw new Error('Failed to delete blog post');
+  }
+}
+
+// Skills Functions
+export async function addSkill(skillData: {
+  name: string;
+  category: string;
+  proficiency_level: number;
+  icon?: string;
+  description?: string;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      INSERT INTO skills (name, category, proficiency_level, icon, description)
+      VALUES (
+        ${skillData.name}, ${skillData.category}, ${skillData.proficiency_level},
+        ${skillData.icon || null}, ${skillData.description || null}
+      )
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error adding skill:', error);
+    throw new Error('Failed to add skill');
+  }
+}
+
+export async function updateSkill(id: number, skillData: {
+  name?: string;
+  category?: string;
+  proficiency_level?: number;
+  icon?: string;
+  description?: string;
+}): Promise<Record<string, unknown>> {
+  try {
+    const result = await sql`
+      UPDATE skills 
+      SET 
+        name = COALESCE(${skillData.name}, name),
+        category = COALESCE(${skillData.category}, category),
+        proficiency_level = COALESCE(${skillData.proficiency_level}, proficiency_level),
+        icon = COALESCE(${skillData.icon}, icon),
+        description = COALESCE(${skillData.description}, description)
+      WHERE id = ${id}
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Database error updating skill:', error);
+    throw new Error('Failed to update skill');
+  }
+}
+
+export async function deleteSkill(id: number): Promise<void> {
+  try {
+    await sql`DELETE FROM skills WHERE id = ${id}`;
+  } catch (error) {
+    console.error('Database error deleting skill:', error);
+    throw new Error('Failed to delete skill');
   }
 }
 
