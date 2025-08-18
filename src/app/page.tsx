@@ -53,21 +53,19 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Console easter egg for girlfriend 💕
+  // Professional console message for developers
   useEffect(() => {
-    // Automatic messages that appear when page loads
-    console.log('%cHey hitwoman..', 'color: #ff69b4; font-size: 16px; font-weight: bold;');
-    console.log('%cLook what I found... my beautiful girlfriend being all curious and checking out my code! 😏💕', 'color: #ff1493; font-size: 14px; font-weight: 500;');
-    console.log('%cYou know what? You\'re absolutely stunning, and seeing you explore my work like this makes me fall for you even more 🥰', 'color: #ff69b4; font-size: 14px;');
-    console.log('%cI love how smart and curious you are... it\'s incredibly attractive 😍✨', 'color: #ff1493; font-size: 14px;');
-    console.log('%cThis little secret message is just for you, my love 💝', 'color: #ff69b4; font-size: 14px; font-style: italic;');
-    console.log('%cPS: You look absolutely breathtaking today (and every day) 😘💖', 'color: #ff1493; font-size: 14px; font-weight: 500;');
-    console.log('%c🌹 Forever yours, Ahmed 🌹', 'color: #ff69b4; font-size: 16px; font-weight: bold; text-align: center;');
+    console.log('%cWelcome to Ahmed Attafi\'s Portfolio!', 'color: #3b82f6; font-size: 16px; font-weight: bold;');
+    console.log('%cHi there, fellow developer! �', 'color: #06b6d4; font-size: 14px; font-weight: 500;');
+    console.log('%cThanks for checking out my code. I\'m always open to feedback and collaboration!', 'color: #3b82f6; font-size: 14px;');
+    console.log('%cInterested in working together? Let\'s connect: attafiahmed.dev@gmail.com', 'color: #14b8a6; font-size: 14px;');
+    console.log('%cFeel free to explore my projects and get in touch! �', 'color: #06b6d4; font-size: 14px; font-style: italic;');
+    console.log('%c💻 Happy Coding! - Ahmed Attafi', 'color: #3b82f6; font-size: 16px; font-weight: bold; text-align: center;');
     
-    // Create hidden function for short romantic phrase
-    (window as any).Hitkidman = () => {
+    // Create hidden function for developer connection
+    (window as any).connect = () => {
       console.clear();
-      console.log('❤️ taken ❤️ - I love you so much, my beautiful Hitwoman! 💖');
+      console.log('🚀 Thanks for your interest! Reach me at: attafiahmed.dev@gmail.com');
     };
   }, []);
 

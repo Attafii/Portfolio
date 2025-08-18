@@ -66,11 +66,11 @@ const achievements = [
 ];
 
 const timeline = [
-  { year: "2024", title: "Software Quality Engineer", company: "Capgemini Engineering", current: true },
-  { year: "2023-2024", title: "Freelance Web Developer", company: "Independent", current: true },
+  { year: "2024", title: "Automotive Software Tester", company: "Capgemini Engineering", current: true },
+  { year: "2023-2024", title: "Freelance Full Stack Developer", company: "Independent", current: true },
   { year: "2023", title: "IoT System Developer", company: "Smart Kokusai", current: false },
   { year: "2022", title: "Platform Architect", company: "CIN Group", current: false },
-  { year: "2021", title: "Computer Engineering Student", company: "ISTIC", current: false }
+  { year: "2021-2023", title: "Computer Engineering Student", company: "ISTIC", current: false }
 ];
 
 export function CreativeAboutSection() {
@@ -211,10 +211,10 @@ export function CreativeAboutSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
           >
             {[
-              { label: "Projects Delivered", value: "50+", icon: Briefcase, color: "from-blue-500 to-cyan-500" },
-              { label: "Client Satisfaction", value: "98%", icon: Star, color: "from-green-500 to-emerald-500" },
-              { label: "Code Commits", value: "2000+", icon: Zap, color: "from-purple-500 to-violet-500" },
-              { label: "Awards Won", value: "8+", icon: Award, color: "from-orange-500 to-red-500" }
+              { label: "Projects Delivered", value: "25+", icon: Briefcase, color: "from-blue-500 to-cyan-500" },
+              { label: "Client Satisfaction", value: "100%", icon: Star, color: "from-green-500 to-emerald-500" },
+              { label: "Code Commits", value: "3000+", icon: Zap, color: "from-purple-500 to-violet-500" },
+              { label: "Certifications", value: "8+", icon: Award, color: "from-orange-500 to-red-500" }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -268,17 +268,17 @@ export function CreativeAboutSection() {
                   
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      I am <strong className="text-blue-600 dark:text-blue-400">Ahmed Attafi (Attafii)</strong>, a passionate and versatile <strong className="text-blue-600 dark:text-blue-400">IoT & Software Developer</strong> from Tunisia with a strong foundation in embedded systems, automotive technologies, and full-stack development. Ahmed Attafi specializes in building intelligent, secure, and user-centric systems that bridge the physical and digital worlds.
+                      I am <strong className="text-blue-600 dark:text-blue-400">Ahmed Attafi (Attafii)</strong>, a passionate and versatile <strong className="text-blue-600 dark:text-blue-400">Full Stack Developer & IoT Engineer</strong> from Tunisia with expertise in embedded systems, automotive technologies, and modern web development. I specialize in building intelligent, secure, and user-centric systems that bridge the physical and digital worlds.
                     </p>
                     <p>
-                      Ahmed Attafi currently serves as an <strong className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                      Automotive Software Tester at Capgemini Engineering</strong>, developing and executing comprehensive test plans for automotive software systems, focusing on safety, compliance, and performance optimization for next-generation automotive technologies.
+                      Currently serving as an <strong className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                      Automotive Software Tester at Capgemini Engineering</strong>, I develop and execute comprehensive test plans for automotive software systems, focusing on safety, compliance, and performance optimization for next-generation automotive technologies.
                     </p>
                     <p>
-                      Ahmed Attafi's work spans across automotive software testing, IoT system architecture, and investment platform development, combining technical depth with a keen eye for design and usability. Ahmed thrives in hybrid and collaborative environments, where innovation, problem-solving, and continuous learning are key.
+                      My expertise spans automotive software testing, IoT system architecture, full-stack web development, and mobile applications. I thrive in collaborative environments where innovation, problem-solving, and continuous learning drive success.
                     </p>
                     <p>
-                      🎓 Ahmed Attafi is currently pursuing his <strong className="text-teal-600 dark:text-teal-400">Engineering Degree in Embedded Ambient and Mobile Systems</strong> at ESPRIT (2023-2027), building upon his Bachelor's in Computer Engineering from ISTIC.
+                      🎓 Currently pursuing my <strong className="text-teal-600 dark:text-teal-400">Engineering Degree in Embedded Ambient and Mobile Systems</strong> at ESPRIT (2023-2027), building upon my Bachelor's in Computer Engineering from ISTIC.
                     </p>
                   </div>
                 </CardContent>
@@ -332,10 +332,10 @@ export function CreativeAboutSection() {
                 className="grid grid-cols-2 md:grid-cols-4 gap-4"
               >
                 {[
-                  { number: "5+", label: "Years Experience", icon: "💼", color: "from-blue-500 to-cyan-500" },
-                  { number: "20+", label: "Projects Completed", icon: "🚀", color: "from-green-500 to-teal-500" },
+                  { number: "4+", label: "Years Experience", icon: "💼", color: "from-blue-500 to-cyan-500" },
+                  { number: "25+", label: "Projects Completed", icon: "🚀", color: "from-green-500 to-teal-500" },
                   { number: "8+", label: "Certifications", icon: "🏆", color: "from-purple-500 to-pink-500" },
-                  { number: "4", label: "Programming Languages", icon: "💻", color: "from-orange-500 to-red-500" }
+                  { number: "5+", label: "Programming Languages", icon: "💻", color: "from-orange-500 to-red-500" }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}

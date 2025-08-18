@@ -13,8 +13,8 @@
         "https://www.linkedin.com/in/ahmed-attafi/",
         "https://twitter.com/ahmedattafi"
       ],
-      "jobTitle": ["Full Stack Developer", "Software Engineer", "IoT Developer", "Automotive Software Tester"],
-      "description": "Ahmed Attafi (Attafii) is an expert Full Stack Developer and Software Engineer from Tunisia, specializing in React, Next.js, Node.js, IoT systems, and automotive software testing.",
+      "jobTitle": ["Full Stack Developer", "IoT Engineer", "Automotive Software Tester", "Software Engineer"],
+      "description": "Ahmed Attafi (Attafii) is an expert Full Stack Developer and IoT Engineer from Tunisia, specializing in React, Next.js, Node.js, IoT systems, and automotive software testing.",
       "knowsAbout": [
         "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "C/C++",
         "IoT Development", "Embedded Systems", "Arduino", "Raspberry Pi", "Flutter",
@@ -66,7 +66,8 @@
         "skills": [
           "React Development", "Next.js", "Node.js", "TypeScript", "Python",
           "IoT Development", "Embedded Systems", "Automotive Software Testing",
-          "Full Stack Development", "Mobile Development", "Cloud Computing"
+          "Full Stack Development", "Mobile Development", "Flutter", "C/C++",
+          "WordPress Development", "Cloud Computing", "Azure AI"
         ]
       }
     },
@@ -106,7 +107,8 @@
       "serviceType": [
         "Web Development", "Full Stack Development", "Mobile App Development",
         "IoT Development", "Software Engineering", "Automotive Software Testing",
-        "Frontend Development", "Backend Development", "API Development"
+        "Frontend Development", "Backend Development", "API Development",
+        "WordPress Development", "Flutter Development", "Embedded Systems"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",

@@ -195,10 +195,10 @@ export function ModernHeroSection() {
                 className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent"
                 style={{ backgroundSize: "200% 100%" }}
               >
-                Full Stack Developer & Software Engineer
+                Full Stack Developer & IoT Engineer
               </motion.span>
               <br />
-              <span className="text-lg">Ahmed Attafi (Attafii) - Crafting digital experiences from Tunisia</span>
+              <span className="text-lg">Crafting digital experiences from Tunisia 🇹🇳</span>
             </div>
           </motion.div>
 
@@ -210,8 +210,8 @@ export function ModernHeroSection() {
             className="grid grid-cols-3 gap-8 max-w-md mx-auto mb-12"
           >
             {[
-              { number: "3+", label: "Years" },
-              { number: "15+", label: "Projects" },
+              { number: "4+", label: "Years" },
+              { number: "25+", label: "Projects" },
               { number: "100%", label: "Passion" }
             ].map((stat, index) => (
               <motion.div
