@@ -335,27 +335,27 @@ export default function AdminDashboard() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="sticky top-0 z-50 bg-background/70 backdrop-blur-2xl border-b border-blue-200/30 dark:border-blue-800/30 shadow-lg shadow-blue-500/5"
         >
-          <div className="container mx-auto px-4 lg:px-6 py-4">
-            <div className="flex items-center justify-between">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
               <motion.div 
-                className="flex items-center gap-4"
+                className="flex items-center gap-3 sm:gap-4"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <motion.img 
                   src="/Attafii.svg" 
                   alt="Attafii Logo" 
-                  className="h-8 w-auto"
+                  className="h-6 sm:h-8 w-auto flex-shrink-0"
                   initial={{ rotate: -10, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 />
-                <div className="w-px h-8 bg-gradient-to-b from-blue-400/20 to-teal-400/20" />
-                <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 bg-clip-text text-transparent font-inter">
+                <div className="w-px h-6 sm:h-8 bg-gradient-to-b from-blue-400/20 to-teal-400/20" />
+                <div className="min-w-0">
+                  <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 bg-clip-text text-transparent font-inter">
                     Admin Dashboard
                   </h1>
-                  <p className="text-sm text-muted-foreground font-inter">Portfolio Content Management</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground font-inter truncate">Portfolio Content Management</p>
                 </div>
               </motion.div>
               
@@ -363,26 +363,27 @@ export default function AdminDashboard() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 w-full sm:w-auto justify-end"
               >
                 <motion.a
                   href="/"
-                  className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-blue-500 
+                  className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-foreground/80 hover:text-blue-500 
                              bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20
                              border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300 dark:hover:border-blue-700
                              rounded-full transition-all duration-300 font-inter
-                             backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10"
+                             backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 whitespace-nowrap"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  ← Back to Portfolio
+                  <span className="hidden sm:inline">← Back to Portfolio</span>
+                  <span className="sm:hidden">← Portfolio</span>
                 </motion.a>
               </motion.div>
             </div>
           </div>
         </motion.div>
 
-        <div className="container mx-auto px-4 lg:px-6 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -474,9 +475,9 @@ export default function AdminDashboard() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
-                  className="flex justify-center px-4"
+                  className="flex justify-center px-2 sm:px-4"
                 >
-                  <TabsList className="h-15 grid grid-cols-4 max-w-2xl mx-auto bg-gradient-to-r from-blue-50/80 to-teal-50/60 dark:from-blue-950/40 dark:to-teal-950/30 backdrop-blur-xl border border-blue-300/40 dark:border-blue-700/40 rounded-2xl p-2 shadow-xl shadow-blue-500/20 dark:shadow-blue-500/10">{
+                  <TabsList className="h-12 sm:h-15 grid grid-cols-4 w-full max-w-xs sm:max-w-lg lg:max-w-2xl mx-auto bg-gradient-to-r from-blue-50/80 to-teal-50/60 dark:from-blue-950/40 dark:to-teal-950/30 backdrop-blur-xl border border-blue-300/40 dark:border-blue-700/40 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-xl shadow-blue-500/20 dark:shadow-blue-500/10">{
                     [
                       { value: "projects", icon: Code, label: "Projects" },
                       { value: "blogs", icon: FileText, label: "Blogs" },
@@ -488,15 +489,15 @@ export default function AdminDashboard() {
                         <TabsTrigger 
                           key={tab.value}
                           value={tab.value} 
-                          className="relative flex items-center justify-center gap-2 px-3 py-3 rounded-xl font-medium font-inter text-sm
+                          className="relative flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium font-inter text-xs sm:text-sm
                                      data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-teal-500 
                                      data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/30
                                      data-[state=active]:scale-105
                                      hover:bg-blue-100/60 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300
                                      text-blue-600 dark:text-blue-400 transition-all duration-300 transform"
                         >
-                          <IconComponent className="w-4 h-4 flex-shrink-0" />
-                          <span className="hidden sm:inline font-semibold text-center">{tab.label}</span>
+                          <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="font-semibold text-center text-xs sm:text-sm leading-tight">{tab.label}</span>
                         </TabsTrigger>
                       );
                     })}
@@ -506,12 +507,12 @@ export default function AdminDashboard() {
                 {/* Projects Tab */}
                 <TabsContent value="projects">
                   <Card className="border-0 bg-card/50 backdrop-blur-xl shadow-xl shadow-blue-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between border-b border-border/50">
-                      <div>
-                        <CardTitle className="text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+                    <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border/50 space-y-3 sm:space-y-0 pb-4 sm:pb-6">
+                      <div className="w-full sm:w-auto">
+                        <CardTitle className="text-lg sm:text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
                           Projects Management
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground font-inter mt-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1">
                           Create and manage your portfolio projects
                         </p>
                       </div>
@@ -526,24 +527,25 @@ export default function AdminDashboard() {
                           status: 'completed',
                           featured: false
                         })}
-                        className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter"
+                        className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter w-full sm:w-auto text-sm sm:text-base"
                       >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Add Project
+                        <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        <span className="hidden sm:inline">Add Project</span>
+                        <span className="sm:hidden">Add</span>
                       </Button>
                     </CardHeader>
                     <CardContent className="p-6">
                       {editingProject && (
                         <motion.div 
-                          className="mb-8 p-6 bg-gradient-to-br from-blue-50/50 to-teal-50/50 dark:from-blue-900/10 dark:to-teal-900/10 rounded-2xl border border-blue-200/30 dark:border-blue-800/30 backdrop-blur-sm"
+                          className="mb-6 sm:mb-8 p-4 sm:p-6 bg-gradient-to-br from-blue-50/50 to-teal-50/50 dark:from-blue-900/10 dark:to-teal-900/10 rounded-xl sm:rounded-2xl border border-blue-200/30 dark:border-blue-800/30 backdrop-blur-sm"
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <h3 className="text-lg font-semibold mb-6 font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+                          <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
                             {editingProject.id ? 'Edit Project' : 'Add New Project'}
                           </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <Input
                               placeholder="Project Title"
                               value={editingProject.title || ''}
@@ -641,23 +643,23 @@ export default function AdminDashboard() {
                               Featured Project
                             </label>
                           </div>
-                          <div className="flex gap-3 mt-6">
-                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                          <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6">
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1 sm:flex-none">
                               <Button 
                                 onClick={saveProject}
-                                className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter"
+                                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter text-sm sm:text-base"
                               >
-                                <Save className="w-4 h-4 mr-2" />
+                                <Save className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                                 Save Project
                               </Button>
                             </motion.div>
-                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1 sm:flex-none">
                               <Button 
                                 variant="outline" 
                                 onClick={() => setEditingProject(null)}
-                                className="border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-inter"
+                                className="w-full sm:w-auto border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-inter text-sm sm:text-base"
                               >
-                                <X className="w-4 h-4 mr-2" />
+                                <X className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                                 Cancel
                               </Button>
                             </motion.div>
@@ -668,29 +670,31 @@ export default function AdminDashboard() {
                         {projects.map((project, index) => (
                           <motion.div 
                             key={project.id} 
-                            className="group relative overflow-hidden bg-gradient-to-br from-blue-50/80 to-teal-50/40 dark:from-blue-950/30 dark:to-teal-950/20 backdrop-blur-sm border border-blue-300/50 dark:border-blue-700/50 rounded-2xl hover:shadow-lg hover:shadow-blue-500/20 hover:border-teal-400/60 dark:hover:border-teal-500/40 transition-all duration-300"
+                            className="group relative overflow-hidden bg-gradient-to-br from-blue-50/80 to-teal-50/40 dark:from-blue-950/30 dark:to-teal-950/20 backdrop-blur-sm border border-blue-300/50 dark:border-blue-700/50 rounded-xl sm:rounded-2xl hover:shadow-lg hover:shadow-blue-500/20 hover:border-teal-400/60 dark:hover:border-teal-500/40 transition-all duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
                             whileHover={{ scale: 1.01, y: -2 }}
                           >
-                            <div className="relative p-6 flex items-center justify-between">
-                              <div className="flex-1">
-                                <h4 className="font-semibold text-lg font-inter">{project.title}</h4>
-                                <p className="text-muted-foreground mt-1 font-inter">{project.description}</p>
-                                <div className="flex items-center gap-2 mt-3">
-                                  <Badge variant={project.featured ? "default" : "secondary"} className={project.featured ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white" : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"}>
+                            <div className="relative p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-base sm:text-lg font-inter truncate">{project.title}</h4>
+                                <p className="text-muted-foreground mt-1 font-inter text-sm sm:text-base line-clamp-2">{project.description}</p>
+                                <div className="flex flex-wrap items-center gap-2 mt-3">
+                                  <Badge variant={project.featured ? "default" : "secondary"} className={`text-xs ${project.featured ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white" : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"}`}>
                                     {project.featured ? "Featured" : "Regular"}
                                   </Badge>
-                                  <Badge variant="outline" className="border-teal-300 text-teal-600 dark:border-teal-600 dark:text-teal-400">{project.category}</Badge>
+                                  <Badge variant="outline" className="border-teal-300 text-teal-600 dark:border-teal-600 dark:text-teal-400 text-xs">{project.category}</Badge>
                                 </div>
                               </div>
-                              <div className="flex gap-2 ml-4">
-                                <Button size="sm" variant="outline" onClick={() => setEditingProject(project)} className="border-blue-300 text-blue-600 hover:bg-blue-50 hover:border-blue-400 dark:border-blue-600 dark:text-blue-400 dark:hover:bg-blue-950/30">
-                                  <Edit className="w-4 h-4" />
+                              <div className="flex gap-2 w-full sm:w-auto sm:ml-4">
+                                <Button size="sm" variant="outline" onClick={() => setEditingProject(project)} className="flex-1 sm:flex-none border-blue-300 text-blue-600 hover:bg-blue-50 hover:border-blue-400 dark:border-blue-600 dark:text-blue-400 dark:hover:bg-blue-950/30 text-xs sm:text-sm">
+                                  <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
+                                  <span className="ml-1 sm:hidden">Edit</span>
                                 </Button>
-                                <Button size="sm" variant="outline" onClick={() => deleteProject(project.id)} className="border-red-300 text-red-600 hover:bg-red-50 hover:border-red-400 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-950/30">
-                                  <Trash2 className="w-4 h-4" />
+                                <Button size="sm" variant="outline" onClick={() => deleteProject(project.id)} className="flex-1 sm:flex-none border-red-300 text-red-600 hover:bg-red-50 hover:border-red-400 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-950/30 text-xs sm:text-sm">
+                                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                                  <span className="ml-1 sm:hidden">Delete</span>
                                 </Button>
                               </div>
                             </div>
@@ -704,12 +708,12 @@ export default function AdminDashboard() {
                 {/* Other tabs with similar modern styling */}
                 <TabsContent value="blogs">
                   <Card className="border-0 bg-card/50 backdrop-blur-xl shadow-xl shadow-blue-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between border-b border-border/50">
-                      <div>
-                        <CardTitle className="text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+                    <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border/50 space-y-3 sm:space-y-0 pb-4 sm:pb-6">
+                      <div className="w-full sm:w-auto">
+                        <CardTitle className="text-lg sm:text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
                           Blog Management
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground font-inter mt-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1">
                           Create and manage your blog posts
                         </p>
                       </div>
@@ -723,10 +727,11 @@ export default function AdminDashboard() {
                           tags: [],
                           featured: false
                         })}
-                        className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter"
+                        className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter w-full sm:w-auto text-sm sm:text-base"
                       >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Add Blog Post
+                        <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        <span className="hidden sm:inline">Add Blog Post</span>
+                        <span className="sm:hidden">Add Post</span>
                       </Button>
                     </CardHeader>
                     <CardContent className="p-6">
@@ -874,20 +879,26 @@ export default function AdminDashboard() {
 
                 <TabsContent value="skills">
                   <Card className="border-0 bg-card/50 backdrop-blur-xl shadow-xl shadow-blue-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between border-b border-border/50">
-                      <CardTitle className="text-xl font-bold font-inter bg-gradient-to-r from-purple-600 to-violet-500 bg-clip-text text-transparent">
-                        Skills Management
-                      </CardTitle>
+                    <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border/50 space-y-3 sm:space-y-0 pb-4 sm:pb-6">
+                      <div className="w-full sm:w-auto">
+                        <CardTitle className="text-lg sm:text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
+                          Skills Management
+                        </CardTitle>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1">
+                          Manage your technical skills and expertise levels
+                        </p>
+                      </div>
                       <Button
                         onClick={() => setEditingSkill({
                           name: '',
                           category: '',
                           proficiency_level: 50
                         })}
-                        className="bg-gradient-to-r from-purple-600 to-violet-500 hover:from-purple-700 hover:to-violet-600 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 font-inter"
+                        className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 font-inter w-full sm:w-auto text-sm sm:text-base"
                       >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Add Skill
+                        <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        <span className="hidden sm:inline">Add Skill</span>
+                        <span className="sm:hidden">Add</span>
                       </Button>
                     </CardHeader>
                     <CardContent className="p-6">
@@ -932,20 +943,23 @@ export default function AdminDashboard() {
 
                 <TabsContent value="newsletter">
                   <Card className="border-0 bg-card/50 backdrop-blur-xl shadow-xl shadow-blue-500/5">
-                    <CardHeader>
-                      <CardTitle className="text-xl font-bold font-inter bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
+                    <CardHeader className="border-b border-border/50 pb-4 sm:pb-6">
+                      <CardTitle className="text-lg sm:text-xl font-bold font-inter bg-gradient-to-r from-blue-400 to-teal-500 bg-clip-text text-transparent">
                         Newsletter Management
                       </CardTitle>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-inter mt-1">
+                        View and manage newsletter subscribers
+                      </p>
                     </CardHeader>
-                    <CardContent className="p-6">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                        <div className="bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/10 dark:to-cyan-900/10 p-4 rounded-xl border border-blue-200/30 dark:border-blue-800/30">
-                          <h4 className="font-semibold text-blue-900 dark:text-blue-100 font-inter">Total Subscribers</h4>
-                          <p className="text-2xl font-bold text-blue-600 font-inter">{newsletterStats.totalSubscribers}</p>
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                        <div className="bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-900/10 dark:to-cyan-900/10 p-3 sm:p-4 rounded-xl border border-blue-200/30 dark:border-blue-800/30">
+                          <h4 className="font-semibold text-blue-900 dark:text-blue-100 font-inter text-sm">Total Subscribers</h4>
+                          <p className="text-xl sm:text-2xl font-bold text-blue-600 font-inter">{newsletterStats.totalSubscribers}</p>
                         </div>
-                        <div className="bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10 p-4 rounded-xl border border-green-200/30 dark:border-green-800/30">
-                          <h4 className="font-semibold text-green-900 dark:text-green-100 font-inter">Active Subscribers</h4>
-                          <p className="text-2xl font-bold text-green-600 font-inter">{newsletterStats.activeSubscribers}</p>
+                        <div className="bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10 p-3 sm:p-4 rounded-xl border border-green-200/30 dark:border-green-800/30">
+                          <h4 className="font-semibold text-green-900 dark:text-green-100 font-inter text-sm">Active Subscribers</h4>
+                          <p className="text-xl sm:text-2xl font-bold text-green-600 font-inter">{newsletterStats.activeSubscribers}</p>
                         </div>
                         <div className="bg-gradient-to-br from-purple-50/50 to-violet-50/50 dark:from-purple-900/10 dark:to-violet-900/10 p-4 rounded-xl border border-purple-200/30 dark:border-purple-800/30">
                           <h4 className="font-semibold text-purple-900 dark:text-purple-100 font-inter">Recent (30 days)</h4>
