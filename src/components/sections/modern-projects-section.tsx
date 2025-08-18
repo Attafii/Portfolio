@@ -9,6 +9,30 @@ import { ExternalLink, Github, Code, Palette, Smartphone, Globe, Database, Cpu, 
 const projects = [
   {
     id: 1,
+    title: "SmartHome Security - IoT Surveillance System",
+    description: "Comprehensive IoT home surveillance system using STM32F407VG microcontroller with multi-sensor integration, real-time monitoring, cloud connectivity, and intelligent alert system for complete home security automation.",
+    image: "/api/placeholder/600/400",
+    technologies: ["STM32F407VG", "C/C++", "ESP8266", "ThingSpeak IoT", "ADC", "UART", "GPIO", "Embedded Systems"],
+    category: "IoT & Embedded Systems",
+    status: "Live",
+    featured: true,
+    color: "from-red-500 to-orange-600",
+    icon: Cpu,
+    metrics: { sensors: "4", connectivity: "IoT Cloud", monitoring: "24/7" },
+    github: "https://github.com/Attafii/SmartHome-Security",
+    highlights: [
+      "STM32F407VG Microcontroller",
+      "Multi-Sensor Integration (Gas, Presence, Smoke)",
+      "Real-time ThingSpeak Cloud Integration", 
+      "Intelligent Alert System",
+      "UART Communication Protocol",
+      "ADC for Analog Sensor Reading",
+      "Automated LED & Buzzer Control",
+      "30-min Gas Alert System"
+    ]
+  },
+  {
+    id: 2,
     title: "ArchiFlow - Architecture Office Management",
     description: "Comprehensive Qt-based desktop application for architecture office management with AI integration, mapping services, and modular design for complete business workflow automation.",
     image: "/api/placeholder/600/400",
@@ -24,7 +48,7 @@ const projects = [
     highlights: ["Employee Management", "Project Tracking", "Contract Management", "Materials Inventory", "Invoice Generation", "AI Assistant"]
   },
   {
-    id: 2,
+    id: 3,
     title: "IntelliConnect - Project Management Dashboard",
     description: "Modern, comprehensive project management dashboard with AI-powered analytics, glassmorphism design, and intelligent insights. Features multilingual chatbot, 3D elements, and advanced data visualization.",
     image: "/api/placeholder/600/400",
@@ -48,7 +72,7 @@ const projects = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "Africa Above - Corporate Website",
     description: "Professional corporate website built with WordPress and Elementor, featuring modern design, responsive layout, and optimized performance for business presence.",
     image: "/api/placeholder/600/400",
@@ -63,7 +87,7 @@ const projects = [
     highlights: ["Custom Design", "Mobile Optimized", "SEO Friendly", "Fast Loading"]
   },
   {
-    id: 4,
+    id: 5,
     title: "Adams Coffee Co - E-commerce Site",
     description: "Professional coffee e-commerce website with custom design, product showcase, and seamless user experience using WordPress and Elementor.",
     image: "/api/placeholder/600/400",
@@ -78,7 +102,7 @@ const projects = [
     highlights: ["E-commerce Integration", "Payment Processing", "Product Catalog", "Responsive Design"]
   },
   {
-    id: 5,
+    id: 6,
     title: "Blade Master - Business Website",
     description: "Modern business website showcasing services and company profile with professional design, built using WordPress and Elementor for optimal performance.",
     image: "/api/placeholder/600/400",
@@ -94,7 +118,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Desktop Application", "Web Development", "WordPress Development"];
+const categories = ["All", "IoT & Embedded Systems", "Desktop Application", "Web Development", "WordPress Development"];
 
 export function ModernProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");

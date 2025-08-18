@@ -19,7 +19,9 @@
         "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "C/C++",
         "IoT Development", "Embedded Systems", "Arduino", "Raspberry Pi", "Flutter",
         "PostgreSQL", "MongoDB", "Azure Cloud", "Docker", "Git", "WordPress",
-        "Automotive Software Testing", "Full Stack Development", "Web Development"
+        "Automotive Software Testing", "Full Stack Development", "Web Development",
+        "STM32 Microcontrollers", "ESP8266", "ThingSpeak IoT Platform", "UART Communication",
+        "ADC Programming", "Real-time Systems", "Home Automation", "Security Systems"
       ],
       "worksFor": {
         "@type": "Organization",
@@ -67,7 +69,8 @@
           "React Development", "Next.js", "Node.js", "TypeScript", "Python",
           "IoT Development", "Embedded Systems", "Automotive Software Testing",
           "Full Stack Development", "Mobile Development", "Flutter", "C/C++",
-          "WordPress Development", "Cloud Computing", "Azure AI"
+          "WordPress Development", "Cloud Computing", "Azure AI", "STM32 Programming",
+          "ESP8266", "ThingSpeak IoT", "UART Communication", "Real-time Systems"
         ]
       }
     },
@@ -134,8 +137,8 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service", 
-              "name": "IoT & Embedded Systems",
-              "description": "IoT development and embedded systems programming"
+              "name": "IoT & Embedded Systems Development",
+              "description": "IoT development, embedded systems programming, and smart home automation solutions"
             }
           }
         ]
