@@ -3,11 +3,11 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://attafii.vercel.app/#person",
+      "@id": "https://attafii.dev/#person",
       "name": "Ahmed Attafi",
       "alternateName": ["Attafii", "Ahmed", "Ahmed Attafi Developer", "Attafii Developer"],
-      "url": "https://attafii.vercel.app",
-      "image": "https://attafii.vercel.app/ahmed-attafi.jpg",
+      "url": "https://attafii.dev",
+      "image": "https://attafii.dev/ahmed-attafi.jpg",
       "sameAs": [
         "https://github.com/Attafii",
         "https://www.linkedin.com/in/ahmed-attafi/",
@@ -72,35 +72,35 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://attafii.vercel.app/#website", 
-      "url": "https://attafii.vercel.app",
+      "@id": "https://attafii.dev/#website", 
+      "url": "https://attafii.dev",
       "name": "Ahmed Attafi Portfolio - Attafii Developer",
       "description": "Ahmed Attafi (Attafii) - Expert Full Stack Developer from Tunisia. Professional portfolio showcasing React, Next.js, IoT, and automotive software projects.",
       "author": {
-        "@id": "https://attafii.vercel.app/#person"
+        "@id": "https://attafii.dev/#person"
       },
       "publisher": {
-        "@id": "https://attafii.vercel.app/#person"
+        "@id": "https://attafii.dev/#person"
       },
       "inLanguage": "en-US",
       "copyrightHolder": {
-        "@id": "https://attafii.vercel.app/#person"
+        "@id": "https://attafii.dev/#person"
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://attafii.vercel.app/?q={search_term_string}",
+        "target": "https://attafii.dev/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://attafii.vercel.app/#service",
+      "@id": "https://attafii.dev/#service",
       "name": "Ahmed Attafi - Web Development & Software Engineering Services",
       "alternateName": "Attafii Development Services",
-      "url": "https://attafii.vercel.app",
+      "url": "https://attafii.dev",
       "description": "Professional web development and software engineering services by Ahmed Attafi (Attafii). Specializing in React, Next.js, full-stack solutions, IoT development, and automotive software testing.",
       "provider": {
-        "@id": "https://attafii.vercel.app/#person"
+        "@id": "https://attafii.dev/#person"
       },
       "areaServed": ["Tunisia", "Worldwide", "Europe", "Africa", "Middle East"],
       "serviceType": [
@@ -141,31 +141,31 @@
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://attafii.vercel.app/#breadcrumb",
+      "@id": "https://attafii.dev/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://attafii.vercel.app"
+          "item": "https://attafii.dev"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "About Ahmed Attafi",
-          "item": "https://attafii.vercel.app/#about"
+          "item": "https://attafii.dev/#about"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Ahmed Attafi Projects",
-          "item": "https://attafii.vercel.app/#projects"
+          "item": "https://attafii.dev/#projects"
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Contact Ahmed Attafi",
-          "item": "https://attafii.vercel.app/#contact"
+          "item": "https://attafii.dev/#contact"
         }
       ]
     }
