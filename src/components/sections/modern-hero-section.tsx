@@ -113,17 +113,6 @@ export function ModernHeroSection() {
       <div className="container mx-auto px-4 relative z-10 w-full">
         <div className="max-w-6xl mx-auto text-center pt-8 md:pt-12">
           {/* Greeting Animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 mt-6 md:mt-2"
-          >
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-sm" />
-              <span className="text-sm font-medium text-white">Available for work</span>
-            </div>
-          </motion.div>
 
           {/* Main Title with Letter Animation */}
           <motion.div
