@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
     id: "2",
     name: "Mohamed Ashref BNA",
     role: "Solution Developer",
-    company: "Tessan Group",
+    company: "Helo Solutions",
     avatar: "/ashrefjpeg.jpeg",
     content: "Ahmed is an outstanding developer. We've worked on multiple projects together, and his dedication and technical skills never cease to amaze me. He has a unique ability to understand complex requirements and deliver elegant solutions. Always reliable and professional.",
     rating: 5,
