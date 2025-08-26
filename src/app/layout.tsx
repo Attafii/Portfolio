@@ -272,7 +272,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_RYBBIT_ID && (
           <Script
             src="https://app.rybbit.io/api/script.js"
-            data-site-id={process.env.NEXT_PUBLIC_RYBBIT_ID}
+            data-site-id="2217"
             strategy="afterInteractive"
           />
         )}
