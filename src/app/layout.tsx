@@ -204,6 +204,12 @@ export default function RootLayout({
         {/* Prefetch DNS for performance */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        {/* Rybbit Analytics - placed in head as requested */}
+        <script
+          src="https://app.rybbit.io/api/script.js"
+          data-site-id="2217"
+          defer
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} antialiased`}
@@ -268,14 +274,7 @@ export default function RootLayout({
           </Script>
         )}
 
-        {/* Rybbit Analytics (optional) */}
-        {process.env.NEXT_PUBLIC_RYBBIT_ID && (
-          <Script
-            src="https://app.rybbit.io/api/script.js"
-            data-site-id="2217"
-            strategy="afterInteractive"
-          />
-        )}
+        {/* Rybbit moved to <head> per requested snippet */}
       </body>
     </html>
   );
