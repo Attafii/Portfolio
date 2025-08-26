@@ -97,7 +97,7 @@ export function Footer() {
                   Ahmed Attafi
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Software Developer & IoT Specialist passionate about building innovative solutions 
+                  Full Stack Developer & Software Tester passionate about building innovative solutions 
                   that bridge the physical and digital worlds.
                 </p>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground">

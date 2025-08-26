@@ -219,10 +219,10 @@ export function ModernHeroSection() {
                 className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent"
                 style={{ backgroundSize: "200% 100%" }}
               >
-                Full Stack Developer & IoT Engineer
+                Full Stack Developer & Software Tester
               </motion.span>
               <br />
-              <span className="text-lg">Crafting digital experiences from Tunisia 🇹🇳</span>
+              <span className="text-lg">Crafting digital experiences that inspires </span>
             </div>
           </motion.div>
 
