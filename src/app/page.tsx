@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ModernHeroSection } from "@/components/sections/modern-hero-section";
@@ -77,14 +77,34 @@ export default function Home() {
     setIsMobileMenuOpen(false); // Close mobile menu after clicking
   };
 
-  // Quick action handlers
-  const handleDownloadCV = () => {
-    // You can replace this with your actual CV file path
+  // Quick action handlers for CV download (offers ATS and Normal options)
+  const [showDownloadMenu, setShowDownloadMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  const downloadNormalCV = () => {
     const link = document.createElement('a');
-    link.href = '/Ahmed_Attafi_CV.pdf'; // Add your CV file to public folder
+    link.href = '/Ahmed_Attafi_CV.pdf'; // local CV in public folder
     link.download = 'Ahmed_Attafi_CV.pdf';
     link.click();
+    setShowDownloadMenu(false);
   };
+
+  const openATSCV = () => {
+    // Open the ATS CV (Google Drive link) in a new tab
+    const atsLink = 'https://drive.google.com/file/d/1Oq6NNlOIDiosl7qsie8PS3yOltCHjvFC/view?usp=sharing';
+    window.open(atsLink, '_blank', 'noopener,noreferrer');
+    setShowDownloadMenu(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setShowDownloadMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
@@ -180,29 +200,56 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 {/* Download CV Button */}
-                <motion.button
-                  onClick={handleDownloadCV}
-                  className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-white 
-                             bg-transparent hover:bg-blue-600 dark:hover:bg-blue-500
-                             border border-blue-200 dark:border-blue-800 hover:border-blue-600 dark:hover:border-blue-500
-                             rounded-full transition-all duration-300 font-poppins font-medium
-                             backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/25
-                             group overflow-hidden flex items-center gap-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  title="Download CV"
-                >
-                  <Download className="w-4 h-4" />
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                    Download CV
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
+                <div className="relative" ref={menuRef}>
+                  <motion.button
+                    onClick={() => setShowDownloadMenu((s) => !s)}
+                    className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-white 
+                               bg-transparent hover:bg-blue-600 dark:hover:bg-blue-500
+                               border border-blue-200 dark:border-blue-800 hover:border-blue-600 dark:hover:border-blue-500
+                               rounded-full transition-all duration-300 font-poppins font-medium
+                               backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/25
+                               group overflow-hidden flex items-center gap-2"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    title="Download CV"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                      Download CV
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {showDownloadMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden"
+                      >
+                        <button
+                          onClick={openATSCV}
+                          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                        >
+                          ATS CV (Google Drive)
+                        </button>
+                        <button
+                          onClick={downloadNormalCV}
+                          className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                        >
+                          Normal CV (PDF)
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 {/* Separator */}
                 <div className="w-px h-6 bg-border mx-2" />
