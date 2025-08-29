@@ -6,11 +6,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />
-      <Script
-        src="https://app.rybbit.io/api/script.js"
-        data-site-id="2217"
-        strategy="afterInteractive"
-      />
+      {process.env.NODE_ENV === 'production' && (
+        <Script
+          src="https://app.rybbit.io/api/script.js"
+          data-site-id="2217"
+          strategy="afterInteractive"
+        />
+      )}
     </>
   );
 }

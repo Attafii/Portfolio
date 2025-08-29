@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Home, User, Code, Briefcase, Mail, FileText } from 'lucide-react'
@@ -63,10 +64,13 @@ export function Navigation() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center"
           >
-            <img 
-              src="/Attafii.svg" 
-              alt="Attafii Logo" 
-              className="h-8 w-auto" 
+            <Image
+              src="/Attafii.svg"
+              alt="Attafii Logo"
+              width={40}
+              height={40}
+              priority
+              className="w-auto"
             />
           </motion.div>
 
