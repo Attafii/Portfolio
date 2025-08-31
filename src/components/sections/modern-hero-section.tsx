@@ -25,28 +25,15 @@ export function ModernHeroSection() {
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const letterVariants = {
-    initial: { y: 100, opacity: 0 },
-    animate: { y: 0, opacity: 1 }
-  };
-
-  const containerVariants = {
-    initial: { opacity: 0 },
-    animate: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.2
-      }
-    }
-  };
+  // Reduce heavy letter-by-letter animations to avoid blocking LCP.
+  // We'll render the title immediately and use lightweight CSS for visual flair.
 
   const floatingVariants = {
     initial: { y: 0 },
     animate: {
-      y: [-10, 10, -10],
+      y: [-6, 6, -6],
       transition: {
-        duration: 3,
+        duration: 4,
         repeat: Infinity,
         ease: "easeInOut" as const
       }
@@ -81,7 +68,7 @@ export function ModernHeroSection() {
 
       {/* Floating 3D Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
@@ -112,119 +99,39 @@ export function ModernHeroSection() {
       {/* Main Content */}
       <div className="container mx-auto px-4 relative z-10 w-full">
         <div className="max-w-6xl mx-auto text-center pt-8 md:pt-12">
-          {/* Greeting Animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 mt-6 md:mt-2"
-          >
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 backdrop-blur-sm border border-emerald-400/30 shadow-lg">
-              <motion.div 
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="w-3 h-3 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full shadow-lg"
-              />
-              <motion.span 
-                animate={{
-                  backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="text-sm font-semibold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent"
-                style={{ backgroundSize: "200% 100%" }}
-              >
-                ✨ Currently Active
-              </motion.span>
-            </div>
-          </motion.div>
+          {/* Greeting (static to avoid render-blocking animation) */}
+          <div className="mb-6 mt-6 md:mt-2 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 backdrop-blur-sm border border-emerald-400/10 shadow-sm">
+            <div className="w-3 h-3 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full shadow-sm" />
+            <span className="text-sm font-semibold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              ✨ Currently Active
+            </span>
+          </div>
 
-          {/* Main Title with Letter Animation */}
-          <motion.div
-            variants={containerVariants}
-            initial="initial"
-            animate="animate"
-            className="mb-6"
-          >
-            {/* Greeting Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-4"
-            >
+          {/* Main Title - render immediately (no blocking animations) */}
+          <div className="mb-6">
+            <div className="mb-4">
               <span className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground">
                 Hi I'm
               </span>
-            </motion.div>
-            
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight font-inter">
-              {["A", "h", "m", "e", "d"].map((letter, index) => (
-                <motion.span
-                  key={index}
-                  variants={letterVariants}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="inline-block bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 bg-clip-text text-transparent"
-                  style={{
-                    textShadow: '0 0 30px rgba(59, 130, 246, 0.5)'
-                  }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-              <br />
-              {["A", "t", "t", "a", "f", "i"].map((letter, index) => (
-                <motion.span
-                  key={index + 5}
-                  variants={letterVariants}
-                  transition={{ duration: 0.6, delay: (index + 5) * 0.1 }}
-                  className="inline-block bg-gradient-to-br from-teal-500 via-blue-500 to-cyan-400 bg-clip-text text-transparent"
-                  style={{
-                    textShadow: '0 0 30px rgba(20, 184, 166, 0.5)'
-                  }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </h1>
-          </motion.div>
-
-          {/* Dynamic Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mb-8"
-          >
-            <div className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground">
-              <motion.span
-                animate={{
-                  backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent"
-                style={{ backgroundSize: "200% 100%" }}
-              >
-                Full Stack Developer & Software Tester
-              </motion.span>
-              <br />
-              <span className="text-lg">Crafting digital experiences that inspires </span>
             </div>
-          </motion.div>
+
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight font-inter">
+              <span className="inline-block bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 bg-clip-text text-transparent" style={{ textShadow: '0 0 30px rgba(59, 130, 246, 0.3)' }}>Ahmed</span>
+              <br />
+              <span className="inline-block bg-gradient-to-br from-teal-500 via-blue-500 to-cyan-400 bg-clip-text text-transparent" style={{ textShadow: '0 0 30px rgba(20, 184, 166, 0.3)' }}>Attafi</span>
+            </h1>
+          </div>
+
+          {/* Dynamic Subtitle (static gradient text) */}
+          <div className="mb-8">
+            <div className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent" style={{ backgroundSize: '200% 100%' }}>
+                Full Stack Developer & Software Tester
+              </span>
+              <br />
+              <span className="text-lg">Crafting digital experiences that inspires</span>
+            </div>
+          </div>
 
           {/* Interactive Stats */}
           <motion.div
@@ -310,7 +217,7 @@ export function ModernHeroSection() {
 
       {/* Particle System */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-blue-400 rounded-full"
