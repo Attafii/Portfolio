@@ -7,15 +7,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Coffee, Code, Heart, Briefcase, Star, Zap, Award, Target } from "lucide-react";
 
 const skills = [
-  { name: "React & Next.js", color: "from-cyan-400 to-cyan-600" },
-  { name: "Python & C/C++", color: "from-purple-400 to-purple-600" },
-  { name: "Node.js", color: "from-green-400 to-green-600" },
-  { name: "Flutter", color: "from-orange-400 to-red-600" },
-  { name: "WordPress & Elementor", color: "from-blue-600 to-indigo-600" },
-  { name: "Arduino & Raspberry Pi", color: "from-teal-400 to-teal-600" },
-  { name: "IoT & Embedded Systems", color: "from-blue-400 to-blue-600" },
-  { name: "Azure Cloud & AI", color: "from-blue-500 to-teal-500" },
-  { name: "PostgreSQL", color: "from-indigo-400 to-blue-600" }
+  { name: "React & Next.js", color: "from-blue-400 to-cyan-600" },
+  { name: "Python & C/C++", color: "from-blue-400 to-cyan-600" },
+  { name: "Node.js", color: "from-blue-400 to-cyan-600" },
+  { name: "Flutter", color: "from-blue-400 to-cyan-600" },
+  { name: "WordPress & Elementor", color: "from-blue-400 to-cyan-600" },
+  { name: "Arduino & Raspberry Pi", color: "from-blue-400 to-cyan-600" },
+  { name: "IoT & Embedded Systems", color: "from-blue-400 to-cyan-600" },
+  { name: "Azure Cloud & AI", color: "from-blue-400 to-cyan-600" },
+  { name: "PostgreSQL", color: "from-blue-400 to-cyan-600" }
 ];
 
 const certifications = [
@@ -62,7 +62,6 @@ const achievements = [
   { icon: Target, title: "Full-Stack Developer", desc: "React, Node.js, Flutter", color: "text-teal-500" },
   { icon: Zap, title: "IoT Specialist", desc: "5+ IoT systems deployed", color: "text-cyan-500" },
   { icon: Star, title: "WordPress Expert", desc: "10+ websites delivered", color: "text-orange-500" },
-  { icon: Code, title: "DevOps & Git Expert", desc: "CI/CD & Version Control", color: "text-green-500" }
 ];
 
 const timeline = [
@@ -202,44 +201,6 @@ export function CreativeAboutSection() {
             </motion.div>
           </motion.div>
 
-          {/* Impressive Stats Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
-          >
-            {[
-              { label: "Projects Delivered", value: "25+", icon: Briefcase, color: "from-blue-500 to-cyan-500" },
-              { label: "Client Satisfaction", value: "100%", icon: Star, color: "from-green-500 to-emerald-500" },
-              { label: "Code Commits", value: "3000+", icon: Zap, color: "from-purple-500 to-violet-500" },
-              { label: "Certifications", value: "8+", icon: Award, color: "from-orange-500 to-red-500" }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <Card className="relative bg-gradient-to-br from-white/90 to-blue-50/70 dark:from-gray-800/90 dark:to-blue-950/70 border-blue-200/30 dark:border-blue-700/30 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group">
-                  <CardContent className="p-6">
-                    <div className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-br ${stat.color}/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <stat.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
 
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-16 mb-20">
@@ -260,7 +221,7 @@ export function CreativeAboutSection() {
                 />
                 <CardContent className="relative p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <Heart className="w-6 h-6 text-red-500" />
+                    <Heart className="w-6 h-6 text-blue-500" />
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                       My Journey
                     </h3>
@@ -379,9 +340,9 @@ export function CreativeAboutSection() {
               className="space-y-8"
             >
               {/* Skills with Animated Progress */}
-              <Card className="relative bg-gradient-to-br from-teal-50/80 to-cyan-50/80 dark:from-teal-900/20 dark:to-cyan-900/20 border-teal-200/50 dark:border-teal-800/50 backdrop-blur-sm">
+              <Card className="relative bg-gradient-to-br from-blue-50/80 to-teal-50/80 dark:from-blue-900/20 dark:to-teal-900/20 border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-cyan-600  bg-clip-text text-transparent">
                     Technical Expertise
                   </h3>
                   <div className="space-y-6">
@@ -430,9 +391,9 @@ export function CreativeAboutSection() {
               </div>
 
               {/* Certifications */}
-              <Card className="relative bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200/50 dark:border-purple-800/50 backdrop-blur-sm">
+              <Card className="relative bg-gradient-to-br from-blue-50/80 to-teal-50/80 dark:from-blue-900/20 dark:to-teal-900/20 border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     🏆 Recent Certifications
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -445,11 +406,11 @@ export function CreativeAboutSection() {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         whileHover={{ scale: 1.02, y: -2 }}
                       >
-                        <div className="flex items-start gap-3 p-4 rounded-lg bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-purple-200/30 dark:border-purple-700/30 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300">
+                        <div className="flex items-start gap-3 p-4 rounded-lg bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-blue-200/30 dark:border-blue-700/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
                           <span className="text-2xl">{cert.icon}</span>
                           <div className="flex-1 min-w-0">
                             <h4 className="font-semibold text-sm leading-tight mb-1">{cert.name}</h4>
-                            <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">{cert.issuer}</p>
+                            <p className="text-xs text-teal-600 dark:text-teal-400 font-medium">{cert.issuer}</p>
                             <p className="text-xs text-muted-foreground">{cert.date}</p>
                           </div>
                         </div>
@@ -460,19 +421,19 @@ export function CreativeAboutSection() {
               </Card>
 
               {/* Fun Facts */}
-              <Card className="relative bg-gradient-to-br from-green-50/80 to-teal-50/80 dark:from-green-900/20 dark:to-teal-900/20 border-green-200/50 dark:border-green-800/50 backdrop-blur-sm">
+              <Card className="relative bg-gradient-to-br from-blue-50/80 to-teal-50/80 dark:from-blue-900/20 dark:to-teal-900/20 border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                  <h3 className="text-xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     Languages & Interests
                   </h3>
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center justify-between">
                       <span className="font-medium">🇹🇳 Arabic</span>
-                      <span className="text-sm text-green-600 font-semibold">Native</span>
+                      <span className="text-sm text-teal-600 font-semibold">Native</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-medium">🇺🇸 English</span>
-                      <span className="text-sm text-blue-600 font-semibold">Fluent</span>
+                      <span className="text-sm text-teal-600 font-semibold">Fluent</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-medium">🇫🇷 French</span>
@@ -480,7 +441,7 @@ export function CreativeAboutSection() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-medium">🇩🇪 German</span>
-                      <span className="text-sm text-gray-600 font-semibold">Elementary</span>
+                      <span className="text-sm text-teal-600 font-semibold">Elementary</span>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -505,56 +466,6 @@ export function CreativeAboutSection() {
               </Card>
             </motion.div>
           </div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <Card className="inline-block relative bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Let&apos;s Build Something Amazing Together
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Ready to turn your ideas into reality? I&apos;m always excited to work on innovative projects 
-                  that push the boundaries of technology.
-                </p>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <div 
-                    onClick={() => {
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                        // Pre-fill contact form with "Get In Touch" specific template
-                        setTimeout(() => {
-                          const subjectField = document.querySelector('input[name="subject"]') as HTMLInputElement;
-                          const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-                          if (subjectField) subjectField.value = "Getting In Touch - Introduction & Discussion";
-                          if (messageField) messageField.value = "Hi Ahmed!\n\nI came across your portfolio and I'm impressed by your work. I'd love to get in touch to introduce myself and discuss potential opportunities.\n\nI'm particularly interested in:\n- Learning more about your expertise\n- Exploring how we might work together\n- Discussing my current needs/projects\n\nLooking forward to connecting with you!\n\nBest regards,";
-                          
-                          // Trigger change events to update form state
-                          const changeEvent = new Event('input', { bubbles: true });
-                          if (subjectField) subjectField.dispatchEvent(changeEvent);
-                          if (messageField) messageField.dispatchEvent(changeEvent);
-                        }, 500);
-                      }
-                    }}
-                    className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300"
-                  >
-                    Get In Touch
-                  </div>
-                </motion.div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -126,7 +126,7 @@ export function ModernHeroSection() {
           <div className="mb-8">
             <div className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground">
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent" style={{ backgroundSize: '200% 100%' }}>
-                Full Stack Developer & Software Tester
+                Full Stack Developer & IoT engineer
               </span>
               <br />
               <span className="text-lg">Crafting digital experiences that inspires</span>

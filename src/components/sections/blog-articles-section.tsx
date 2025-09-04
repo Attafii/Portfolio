@@ -12,7 +12,7 @@ const blogArticles = [
     id: 1,
     title: "How to build a personal coding portfolio",
     description: "Dive into a coding exploration! 🚀 Navigate platforms, elevate your portfolio, and engage with a thriving professional community.",
-    category: "IoT & Cloud",
+    category: "web Development",
     publishDate: "2025-01-15",
     linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_coding-adventure-activity-7153744110187687936-c7FV?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
   },
@@ -20,7 +20,7 @@ const blogArticles = [
     id: 2,
     title: "How to Expand your skills across varied platforms",
     description: "Elevate Your Coding Journey! From LeetCode's algorithmic challenges to Codingame's gaming adventures, explore diverse platforms for skill mastery. Discover your coding playground and excel in programming.",
-    category: "Programming",
+    category: "Programming Languages",
     publishDate: "2025-01-10",
     linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_platforms-for-mastery-and-innovation-activity-7142466677643931649-D-jq?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
   },
@@ -28,34 +28,11 @@ const blogArticles = [
     id: 3,
     title: "Difference between Edge, Fog, and Cloud Computing",
     description: "Embark on a journey through the heart of IoT computing paradigms - Edge, Fog, and Cloud. Explore how these innovative approaches shape data processing and drive connectivity. Join me in discovering the dynamic interplay between where data is processed and its impact on the future of technology.",
-    category: "IoT",
+    category: "IoT & Cloud",
     publishDate: "2025-01-08",
     linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_navigating-edge-fog-and-cloud-computing-activity-7102631182483251200-cc_T?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
   },
-  {
-    id: 4,
-    title: "IoT Software Communication Protocols Explained",
-    description: "Explore the fascinating realm of IoT dialogues orchestrated by software communication protocols. From HTTP's universal language to WebSockets' real-time rhythm, each protocol conducts a unique melody of connectivity.",
-    category: "IoT & Cloud",
-    publishDate: "2024-01-06",
-    linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_iot-software-communication-protocols-activity-7099727262949732352-drJM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
-  },
-  {
-    id: 5,
-    title: "mastering a programming language",
-    description: "Mastering a programming language requires time, effort, and consistent practice. By following this roadmap and staying committed to your goals, you can become an expert in your chosen programming language.",
-    category: "Programming Languages",
-    publishDate: "2023-12-20",
-    linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_mastering-a-programming-language-roadmap-activity-7038806521341702144-fi59?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
-  },
-  {
-    id: 6,
-    title: "IoT Developer Roadmap 2024",
-    description: "Becoming an IoT developer requires a strong foundation in electronics, programming, and data analytics. With a passion for learning and a dedication to staying current, you can build a successful career in this exciting field",
-    category: "IoT",
-    publishDate: "2023-12-15",
-    linkedinUrl: "https://www.linkedin.com/posts/ahmed-attafi_iot-developer-roadmap-activity-7038120803036454912-xyG-?utm_source=share&utm_medium=member_desktop&rcm=ACoAADglTuYB2KSHRCeCl-tt-Iz2vTs2gEpwstc"
-  }
+
 ] 
 
 const formatDate = (dateString: string) => {
@@ -186,30 +163,7 @@ export function BlogArticlesSection() {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-blue-500/10 to-teal-500/10 dark:from-blue-500/20 dark:to-teal-500/20 rounded-2xl p-8 border border-blue-200/30 dark:border-blue-700/30">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Want to stay updated?
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-              Follow me on LinkedIn for the latest insights, tutorials, and industry discussions on software development and technology.
-            </p>
-            <Button
-              onClick={() => window.open('https://linkedin.com/in/ahmed-attafi', '_blank', 'noopener,noreferrer')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
-            >
-              Follow on LinkedIn
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        </motion.div>
+       
       </div>
     </section>
   )

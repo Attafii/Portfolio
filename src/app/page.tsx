@@ -7,10 +7,8 @@ import { ModernHeroSection } from "@/components/sections/modern-hero-section";
 import { CreativeAboutSection } from "@/components/sections/creative-about-section";
 import { ModernProjectsSection } from "@/components/sections/modern-projects-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { BlogSection } from "@/components/sections/blog-section";
 import { BlogArticlesSection } from "@/components/sections/blog-articles-section";
 import { ContactSection } from "@/components/sections/contact-section";
-import { GitHubActivitySection } from "@/components/sections/github-activity-section";
 import { AIChatbot } from "@/components/ai-chatbot";
 import { Menu, X, Download } from "lucide-react";
 
@@ -32,7 +30,7 @@ export default function Home() {
       setScrollProgress(scrolled);
       
       // Determine active section based on scroll position
-      const sections = ['hero', 'about', 'projects', 'github', 'testimonials', 'blog', 'contact'];
+      const sections = ['hero', 'about', 'projects', 'testimonials', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100; // Offset for navbar height
       
       for (const section of sections) {
@@ -152,7 +150,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                {['about', 'projects', 'github', 'testimonials', 'blog', 'contact'].map((item, index) => {
+                {['about', 'projects', 'testimonials', 'blog', 'contact'].map((item, index) => {
                   const isActive = activeSection === item;
                   return (
                     <motion.button
@@ -237,13 +235,13 @@ export default function Home() {
                           onClick={openATSCV}
                           className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20"
                         >
-                          ATS CV (Google Drive)
+                          ATS Resume
                         </button>
                         <button
                           onClick={downloadNormalCV}
                           className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-blue-900/20"
                         >
-                          Normal CV (PDF)
+                          CV
                         </button>
                       </motion.div>
                     )}
@@ -409,9 +407,6 @@ export default function Home() {
         </section>
         <section id="projects">
           <ModernProjectsSection />
-        </section>
-        <section id="github">
-          <GitHubActivitySection />
         </section>
         <section id="testimonials">
           <TestimonialsSection />

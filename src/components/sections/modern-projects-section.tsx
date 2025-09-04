@@ -364,56 +364,7 @@ export function ModernProjectsSection() {
             </div>
           </motion.div>
 
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mt-20"
-          >
-            <Card className="inline-block relative bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <Star className="w-12 h-12 mx-auto mb-4 text-blue-600" />
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Have a Project in Mind?
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  I am always excited to work on new challenges and bring innovative ideas to life. 
-                  Let us discuss your next project!
-                </p>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <div 
-                    onClick={() => {
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                        // Pre-fill contact form with "Start a Project" specific template
-                        setTimeout(() => {
-                          const subjectField = document.querySelector('input[name="subject"]') as HTMLInputElement;
-                          const messageField = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-                          if (subjectField) subjectField.value = "New Project Inquiry - Let's Start Building";
-                          if (messageField) messageField.value = "Hi Ahmed!\n\nI have a project in mind and I'd love to work with you to bring it to life.\n\nProject Details:\n- Type of project: [Please describe - web app, mobile app, IoT solution, etc.]\n- Timeline: [Your preferred timeline]\n- Budget range: [Your budget expectations]\n- Key features needed: [Main functionality required]\n\nI'm excited about the possibility of working together and would love to discuss this project in more detail.\n\nBest regards,";
-                          
-                          // Trigger change events to update form state
-                          const changeEvent = new Event('input', { bubbles: true });
-                          if (subjectField) subjectField.dispatchEvent(changeEvent);
-                          if (messageField) messageField.dispatchEvent(changeEvent);
-                        }, 500);
-                      }
-                    }}
-                    className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full font-semibold cursor-pointer hover:shadow-lg transition-shadow duration-300"
-                  >
-                    Start a Project
-                  </div>
-                </motion.div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          
         </div>
       </div>
     </section>
