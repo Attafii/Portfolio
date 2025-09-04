@@ -13,13 +13,11 @@ import {
   Clock, 
   Search, 
   Filter,
-  Tag,
-  User,
+  ArrowRight,
+  X,
+  TrendingUp,
   Eye,
-  Heart,
-  Share2,
-  ExternalLink,
-  TrendingUp
+  Heart
 } from 'lucide-react'
 
 // Blog articles data with proper routing links
