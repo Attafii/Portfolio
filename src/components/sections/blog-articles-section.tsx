@@ -13,7 +13,6 @@ import {
   Clock, 
   Search, 
   Filter,
-  ArrowRight,
   Tag,
   User,
   Eye,
@@ -473,50 +472,6 @@ export function BlogArticlesSection() {
             </Button>
           </motion.div>
         )}
-
-        {/* Newsletter Subscription CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-20"
-        >
-          <Card className="relative bg-gradient-to-br from-blue-500/10 to-teal-500/10 border-blue-300/30 dark:border-blue-700/30 backdrop-blur-sm overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-teal-400/5" />
-            <CardContent className="relative p-8 text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <BookOpen className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Stay Updated
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                Get notified when I publish new articles about software development, IoT solutions, and enterprise architecture.
-              </p>
-              <Button
-                onClick={() => {
-                  const newsletterSection = document.getElementById('newsletter');
-                  if (newsletterSection) {
-                    newsletterSection.scrollIntoView({ behavior: 'smooth' });
-                    // Focus on newsletter input after scrolling
-                    setTimeout(() => {
-                      const emailInput = document.querySelector('input[type="email"][placeholder*="newsletter" i], input[type="email"][placeholder*="email" i]') as HTMLInputElement;
-                      if (emailInput) {
-                        emailInput.focus();
-                      }
-                    }, 500);
-                  }
-                }}
-                size="lg"
-                className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white"
-              >
-                Subscribe to Newsletter
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
     </section>
   )
