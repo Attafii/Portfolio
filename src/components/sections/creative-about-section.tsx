@@ -9,13 +9,13 @@ import { MapPin, Coffee, Code, Heart, Briefcase, Star, Zap, Award, Target } from
 const skills = [
   { name: "React & Next.js", color: "from-cyan-400 to-cyan-600" },
   { name: "Python & C/C++", color: "from-purple-400 to-purple-600" },
-  { name: "Node.js & Express", color: "from-green-400 to-green-600" },
-  { name: "Flutter & Mobile Dev", color: "from-orange-400 to-red-600" },
+  { name: "Node.js", color: "from-green-400 to-green-600" },
+  { name: "Flutter", color: "from-orange-400 to-red-600" },
   { name: "WordPress & Elementor", color: "from-blue-600 to-indigo-600" },
   { name: "Arduino & Raspberry Pi", color: "from-teal-400 to-teal-600" },
   { name: "IoT & Embedded Systems", color: "from-blue-400 to-blue-600" },
   { name: "Azure Cloud & AI", color: "from-blue-500 to-teal-500" },
-  { name: "PostgreSQL & MongoDB", color: "from-indigo-400 to-blue-600" }
+  { name: "PostgreSQL", color: "from-indigo-400 to-blue-600" }
 ];
 
 const certifications = [
