@@ -18,18 +18,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Modern Inter font for clean, professional typography
+// Optimize font loading with display swap and preload critical fonts
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
+  display: 'swap',
+  preload: true,
 });
 
-// Poppins font for modern, clean navigation
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
+  display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = generateMetadata({
@@ -121,9 +124,51 @@ export default function RootLayout({
           }}
         />
         
-        {/* Preconnect to external domains */}
+        {/* Critical CSS inlined */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            :root {
+              --radius: 0.625rem;
+              --background: oklch(1 0 0);
+              --foreground: oklch(0.145 0 0);
+              --primary: oklch(0.205 0 0);
+              --primary-foreground: oklch(0.985 0 0);
+            }
+            .dark {
+              --background: oklch(0.145 0 0);
+              --foreground: oklch(0.985 0 0);
+              --primary: oklch(0.922 0 0);
+              --primary-foreground: oklch(0.205 0 0);
+            }
+            .hero-gradient {
+              background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--primary) / 0.05) 50%, transparent 100%);
+            }
+            .text-gradient {
+              background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            .nav-blur {
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+            }
+            .no-animations * {
+              animation-duration: 0s !important;
+              animation-delay: 0s !important;
+              transition-duration: 0s !important;
+            }
+          `
+        }} />
+        
+        {/* Critical resource hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://app.rybbit.io" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        
+        {/* Preload critical CSS */}
+        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
         
         {/* Favicon and Icons */}
         <link rel="icon" href="/A (1).svg" type="image/svg+xml" />

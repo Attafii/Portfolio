@@ -3,7 +3,18 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'framer-motion'],
+    optimizeCss: true,
+  },
+  
+  // Turbopack configuration (moved from experimental.turbo)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
   
   // Image optimization
@@ -20,6 +31,11 @@ const nextConfig: NextConfig = {
   
   // Compression
   compress: true,
+  
+  // Modern compilation target
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   
   // PWA and Performance
   headers: async () => [
@@ -65,14 +81,23 @@ const nextConfig: NextConfig = {
     },
   ],
   
-  // Bundle analysis
-  webpack: (config, { dev, isServer }) => {
+  // Bundle analysis and optimization
+  webpack: (config, { dev, isServer, webpack }) => {
     // Optimize bundle size
     if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,
         sideEffects: false,
+        usedExports: true,
+        providedExports: true,
       };
+      
+      // Add compression plugin
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          __DEV__: JSON.stringify(false),
+        })
+      );
     }
     
     return config;

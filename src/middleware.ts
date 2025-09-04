@@ -3,51 +3,50 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export async function middleware(request: NextRequest) {
+  // Skip middleware for performance-critical paths
+  if (
+    request.nextUrl.pathname.startsWith('/_next/') ||
+    request.nextUrl.pathname.startsWith('/api/') ||
+    request.nextUrl.pathname.includes('.') // Files with extensions
+  ) {
+    const response = NextResponse.next();
+    
+    // Cache static resources aggressively
+    if (request.nextUrl.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2)$/)) {
+      response.headers.set(
+        'Cache-Control',
+        'public, max-age=31536000, immutable'
+      );
+    }
+    
+    return response;
+  }
+
   const response = NextResponse.next();
   
-  // Security headers for better SEO and security
+  // Essential security headers only (minimal overhead)
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  
-  // Performance headers
   response.headers.set('X-DNS-Prefetch-Control', 'on');
   
-  // Cache headers for static assets
-  if (request.nextUrl.pathname.startsWith('/_next/static/') || 
-      request.nextUrl.pathname.includes('.')) {
+  // Preload critical resources for main pages
+  if (request.nextUrl.pathname === '/') {
     response.headers.set(
-      'Cache-Control',
-      'public, max-age=31536000, immutable'
-    );
-  }
-  
-  // HSTS header for HTTPS
-  if (request.nextUrl.protocol === 'https:') {
-    response.headers.set(
-      'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains; preload'
+      'Link',
+      '</fonts/geist-sans.woff2>; rel=preload; as=font; type=font/woff2; crossorigin'
     );
   }
 
-  // Protect admin routes
+  // Protect admin routes (simplified auth check)
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    // Skip login page
     if (request.nextUrl.pathname === '/admin/login') {
       return response;
     }
     
     const session = await auth()
     
-    if (!session?.user) {
+    if (!session?.user || session.user.email !== (process.env.ADMIN_EMAIL || "attafiahmed.dev@gmail.com")) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
-    }
-    
-    // Check if user is admin (in our case, the specific email)
-    const adminEmail = process.env.ADMIN_EMAIL || "attafiahmed.dev@gmail.com"
-    if (session.user.email !== adminEmail) {
-      return NextResponse.redirect(new URL('/admin/login?error=unauthorized', request.url))
     }
   }
 
@@ -56,13 +55,8 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    // Exclude static files and API routes for better performance
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.).*)',
+    '/admin/:path*'
   ],
 }
