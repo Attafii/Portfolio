@@ -9,7 +9,6 @@ import { ModernProjectsSection } from "@/components/sections/modern-projects-sec
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { BlogSection } from "@/components/sections/blog-section";
 import { BlogArticlesSection } from "@/components/sections/blog-articles-section";
-import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { GitHubActivitySection } from "@/components/sections/github-activity-section";
 import { AIChatbot } from "@/components/ai-chatbot";
@@ -420,7 +419,6 @@ export default function Home() {
         <section id="blog">
           <BlogArticlesSection />
         </section>
-        <NewsletterSection />
         <section id="contact">
           <ContactSection />
         </section>
