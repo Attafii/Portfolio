@@ -69,22 +69,5 @@ export function validateRequest<T>(schema: z.ZodSchema<T>, data: unknown) {
   };
 }
 
-// Newsletter subscription schema (for future use)
-export const newsletterSchema = z.object({
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .max(254, 'Email is too long')
-    .toLowerCase()
-    .trim(),
-  name: z
-    .string()
-    .min(2, 'Name must be at least 2 characters long')
-    .max(100, 'Name is too long')
-    .optional()
-    .transform(val => val?.trim()),
-});
-
 export type ChatRequest = z.infer<typeof chatSchema>;
 export type ContactRequest = z.infer<typeof contactSchema>;
-export type NewsletterRequest = z.infer<typeof newsletterSchema>;
